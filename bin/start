@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+pushd ${0%/*}/.. > /dev/null
+trap "popd > /dev/null" EXIT
+
+WORKSPACE_ROOT=`pwd`
+
+if [ ! -f .env ]; then
+    cp .env.dist .env
+fi
+
+if [ -f .env ]; then
+    source .env
+fi
+
+docker-compose up -d --build
+
+#
+docker-compose ps | grep unison
+DISABLE_UNISON=$?
+
+if [ "$DISABLE_UNISON" = "0" ];
+then
+  sed \
+    -e "s|\${WORKSPACE_ROOT}|${WORKSPACE_ROOT}|" \
+    -e "s|\${REPLICA_URI}|socket:\/\/127.0.0.1:5000\/|" \
+    ./.docker-dev/unison/template.prf.tpl > $HOME/.unison/${COMPOSE_PROJECT_NAME}.prf
+
+  echo "Waiting for unison server (this may take a few seconds)..."
+  # There is some startup time needed for the unison server to come up. So, just retry for 60 seconds and swallow
+  # the output so the user doesn't see "Fatal error: Lost connection with the server"
+  until unison ${COMPOSE_PROJECT_NAME} -testserver > /dev/null 2>&1 || (( count++ >= 60 )); do sleep 1; echo -n '.'; done;
+
+  echo "Development environment up and running. CTRL+C to stop file synchronization."
+  unison ${COMPOSE_PROJECT_NAME}
+else
+  echo "Development environment up and running"
+fi

@@ -1,0 +1,17 @@
+version: '3.1'
+
+volumes:
+  app_var: {} # overwrites ./var from the host to make write/reads to cache faster
+  lsyncd_vendor: {} # shared with the lsyncd container
+
+services:
+  app:
+    volumes:
+      - app_var:/var/www/var:delegated
+      - lsyncd_vendor:/var/www/vendor:delegated
+
+  lsyncd:
+    image: chauffer/lsyncd:latest
+    volumes:
+      - app_vendor:/source:delegated
+      - ./vendor:/target:delegated

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+pushd ${0%/*}/.. > /dev/null
+trap "popd > /dev/null" EXIT
+
+docker-compose stop

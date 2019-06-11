@@ -1,0 +1,38 @@
+version: '3.1'
+
+volumes:
+  postgres-data: {}
+
+services:
+  app:
+    build:
+      context: .docker-dev/build
+    hostname: app
+    ports:
+      - "2022:22" # Expose SSH port for test execution via PhpStorm
+      - "80:80"
+    volumes:
+      - ~/.composer:/root/.composer:delegated
+      - ./:/var/www/:delegated
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "2"
+
+  postgres:
+    image: postgres:10.4
+    hostname: postgres
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+    ports:
+      - "5432:5432" # Expose port for direct access to the DB via external tools (e.g. DBeaver)
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - .docker-dev/postgres/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+      - .docker-dev/postgres/util-mount:/util-mount
+    logging:
+      options:
+        max-size: "1m"
+        max-file: "1"

@@ -1,0 +1,24 @@
+version: '3.1'
+
+# These volumes will be shared between the unison container and the application containers. These are docker "native"
+# volumes (not mounted from the host) so there is no performance penalty in using them.
+volumes:
+  unison_app: {}
+
+services:
+  # Overrides for application containers that need external mounts with code.
+  app:
+    volumes:
+      - unison_app:/var/www:delegated
+
+  # The extra unison container used to synchronize files with the host machine.
+  unison:
+    image: onnimonni/unison:2.48.4
+    environment:
+      - UNISON_DIR=/data
+      - UNISON_UID=1000
+      - UNISON_GID=8378
+    volumes:
+      - unison_app:/data
+    ports:
+      - "5000:5000"
