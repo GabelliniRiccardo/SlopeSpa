@@ -27,4 +27,12 @@ class DefaultController extends AbstractController
             'error' => $helper->getLastAuthenticationError()
         ]);
     }
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logout() : void
+    {
+        throw new \Exception('This should never be reached');
+    }
 }

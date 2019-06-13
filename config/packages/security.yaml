@@ -23,6 +23,24 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
+            form_login:
+              # The route name that the login form submits to
+                check_path: login
+                # When the user try to access a protected page is redirected here
+                login_path: login
+                # Secure the login form against CSRF
+                csrf_token_generator: security.csrf.token_manager
+                # The page where user is redirected to when the login has success
+                default_target_path: admin
+                # Tells Symfony that we are going to login using the email column of users table
+                username_parameter: _email
+
+            logout:
+                # The route name the user can go to in order to logout
+                path: logout
+                # The name of the route to redirect to after logging out
+                target: home
+
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:

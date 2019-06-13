@@ -33,6 +33,8 @@
                 </ul>
                 {% if  not app.user %}
                     <a class="btn btn-outline-primary" href="{{path('login')}}">Sign in</a>
+                {% else %}
+                    <a class="btn btn-outline-primary" href="{{path('logout')}}">Logout</a>
                 {% endif %}
             </div>
         </nav>
