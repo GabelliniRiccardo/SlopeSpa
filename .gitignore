@@ -18,4 +18,5 @@
 ###< symfony/web-server-bundle ###
 
 .idea
-src/Migrations/*.php
+/public/build
+/node_modules
