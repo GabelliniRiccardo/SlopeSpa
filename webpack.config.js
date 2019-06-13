@@ -17,12 +17,24 @@ Encore
    * Each entry will result in one JavaScript file (e.g. app.js)
    * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
    */
-  .addEntry('js/custom', './assets/js/custom.js')
-  .addStyleEntry('css/custom', ['./assets/css/custom.css'])
+  .addEntry('js/custom', [
+    './assets/js/custom.js'
+  ])
+
+  .addEntry('vendor', [ // Will be processed by CommonsChunkPlugin
+    'popper.js',
+    'bootstrap',
+  ])
+
+  .addStyleEntry('style.vendor', [
+    './node_modules/bootstrap/scss/bootstrap.scss',
+  ])
+
+  .addStyleEntry('css/signin', ['./assets/css/signin.css'])
 
   // will require an extra script tag for runtime.js
   // but, you probably want this, unless you're building a single-page app
-  .enableSingleRuntimeChunk()
+  .disableSingleRuntimeChunk()
 
   .cleanupOutputBeforeBuild()
   .enableSourceMaps(!Encore.isProduction())
@@ -33,7 +45,7 @@ Encore
 //.enableTypeScriptLoader()
 
 // uncomment if you use Sass/SCSS files
-//.enableSassLoader()
+.enableSassLoader()
 
 // uncomment if you're having problems with a jQuery plugin
 .autoProvidejQuery()
