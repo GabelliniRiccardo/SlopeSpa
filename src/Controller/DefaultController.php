@@ -17,14 +17,4 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
-
-    /**
-     * @Route("/login", name="login")
-     */
-    public function login(AuthenticationUtils $helper)
-    {
-        return $this->render('default/login.html.twig', [
-            'error' => $helper->getLastAuthenticationError()
-        ]);
-    }
 }

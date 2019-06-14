@@ -35,7 +35,7 @@ class UserFixtures extends Fixture
         return [
 
             ['Riccardo', 'Gabellini', 'gabelliniriccardo.94@gmail.com', 'riccard0', ['ROLE_ADMIN']],
-
+            ['Mario', 'Rossi', 'mariorossi@gmail.com', 'mari0', ['ROLE_STAFF']],
         ];
     }
 }
