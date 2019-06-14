@@ -2,6 +2,8 @@
 
 {% block title %}Login{% endblock %}
 
+{% block menu %}{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" type="text/css" href="{{ asset('build/css/signin.css') }}">
@@ -31,3 +33,5 @@
     </form>
 
 {% endblock %}
+
+{% block footer %}{% endblock %}
