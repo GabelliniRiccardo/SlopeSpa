@@ -17,24 +17,12 @@ Encore
    * Each entry will result in one JavaScript file (e.g. app.js)
    * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
    */
-  .addEntry('js/custom', [
-    './assets/js/custom.js'
+  .addEntry('js/loadJQuery', [
+    './assets/js/loadJQuery.js'
   ])
 
   .addEntry('js/sb-admin-2.min', [
     './assets/js/sb-admin-2.min.js'
-  ])
-
-  .addEntry('js/jquery.min', [
-    './assets/js/jquery.min.js'
-  ])
-
-  .addEntry('js/jquery.easing.min', [
-    './assets/js/jquery.easing.min.js'
-  ])
-
-  .addEntry('js/bootstrap.bundle.min', [
-    './assets/js/bootstrap.bundle.min.js'
   ])
 
   .addEntry('vendor', [ // Will be processed by CommonsChunkPlugin
