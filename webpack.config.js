@@ -21,16 +21,36 @@ Encore
     './assets/js/custom.js'
   ])
 
+  .addEntry('js/sb-admin-2.min', [
+    './assets/js/sb-admin-2.min.js'
+  ])
+
+  .addEntry('js/jquery.min', [
+    './assets/js/jquery.min.js'
+  ])
+
+  .addEntry('js/jquery.easing.min', [
+    './assets/js/jquery.easing.min.js'
+  ])
+
+  .addEntry('js/bootstrap.bundle.min', [
+    './assets/js/bootstrap.bundle.min.js'
+  ])
+
   .addEntry('vendor', [ // Will be processed by CommonsChunkPlugin
     'popper.js',
     'bootstrap',
+    '@fortawesome/fontawesome-free/js/all.js',
   ])
 
   .addStyleEntry('style.vendor', [
     './node_modules/bootstrap/scss/bootstrap.scss',
+    './node_modules/@fortawesome/fontawesome-free/css/all.css',
   ])
 
   .addStyleEntry('css/signin', ['./assets/css/signin.css'])
+
+  .addStyleEntry('css/sb-admin-2', ['./assets/css/sb-admin-2.min.css'])
 
   // will require an extra script tag for runtime.js
   // but, you probably want this, unless you're building a single-page app
@@ -48,7 +68,7 @@ Encore
 .enableSassLoader()
 
 // uncomment if you're having problems with a jQuery plugin
-.autoProvidejQuery()
+// .autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();
