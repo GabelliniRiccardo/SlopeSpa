@@ -18,40 +18,63 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @var integer
      */
     private $id;
 
     /**
-     * @Assert\NotBlank(message = "Please enter a valid email adress.")
-     * @Assert\Email()
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
-
-    /**
-     * @var string The hashed password
-     * @Assert\NotBlank(message = "Please enter a valid password.")
-     * @Assert\Length(max=4096)
-     * @ORM\Column(type="string")
-     */
-    private $password;
-
-    /**
      * @Assert\NotBlank(message = "Valid first name is required")
      * @ORM\Column(type="string", length=45)
+     * @var string
      */
     private $name;
 
     /**
      * @Assert\NotBlank(message = "Valid last name is required")
      * @ORM\Column(type="string", length=45)
+     * @var string
      */
     private $last_name;
+
+    /**
+     * @Assert\NotBlank(message = "Please enter a valid email adress.")
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     * )
+     * @ORM\Column(type="string", length=180, unique=true)
+     * @var string
+     */
+    private $email;
+
+    /**
+     * @var string The hashed password
+     * @Assert\NotBlank(message = "Please enter a valid password.")
+     * @Assert\Length(max=4096)
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    private $password;
+
+    /**
+     * @ORM\Column(type="json")
+     * @var array
+     */
+    private $roles = [];
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SPA", inversedBy="users")
+     * @var SPA
+     */
+    private $spa;
+
+    public function __construct($name, $last_name, $email, $password, $roles)
+    {
+        $this->setName($name);
+        $this->setLastName($last_name);
+        $this->setEmail($email);
+        $this->setPassword($password);
+        $this->setRoles($roles);
+    }
 
     public function getId(): ?int
     {
@@ -151,6 +174,18 @@ class User implements UserInterface
     public function setLastName(string $last_name): self
     {
         $this->last_name = $last_name;
+
+        return $this;
+    }
+
+    public function getSPA(): ?SPA
+    {
+        return $this->spa;
+    }
+
+    public function setSPA(?SPA $spa): self
+    {
+        $this->spa = $spa;
 
         return $this;
     }
