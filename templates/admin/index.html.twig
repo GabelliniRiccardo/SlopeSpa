@@ -3,28 +3,42 @@
 {% block title %}Admin{% endblock %}
 
 {% block main %}
-    <div class="row">
+    <div class="row justify-content-center">
 
-        <!-- Border Left Utilities -->
-        <div class="col-lg-6">
-
-            <div class="card mb-4 py-3 border-left-primary">
-                <div class="card-body">
-                    List of SPAs
+        <div class="col-md-8 col-xl-4 mb-4">
+            <a href="{{ path('admin_create_SPA') }}">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-success text-uppercase mb-1">Add SPA
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-plus fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
+            </a>
         </div>
 
-        <!-- Border Left Utilities -->
-        <div class="col-lg-6">
-
-            <div class="card mb-4 py-3 border-left-success">
-                <div class="card-body">
-                    Add SPA
+        <div class="col-md-8 col-xl-4 mb-4">
+            <a href="{{ path('admin_SPA_list') }}">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">Spa list
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-plus fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
+            </a>
         </div>
     </div>
 {% endblock %}
