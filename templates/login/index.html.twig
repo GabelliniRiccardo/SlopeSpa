@@ -2,19 +2,17 @@
 
 {% block title %}Login{% endblock %}
 
-{% block menu %}{% endblock %}
-
-{% block stylesheets %}
+{% block customStylesheets %}
     {{ parent() }}
     <link rel="stylesheet" type="text/css" href="{{ asset('build/css/signin.css') }}">
 {% endblock %}
 
 {% block main %}
-
-    <form method="POST" action="{{ path('app_login') }}" class="form-signin">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <form method="POST" action="{{ path('app_login') }}" class="form-signin my-5">
+        <h1 class="h3 my-3 font-weight-normal">Please sign in</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" name="email" id="inputEmail" class="form-control my-3" placeholder="Email address" required autofocus>
+        <input type="email" name="email" id="inputEmail" class="form-control my-3" placeholder="Email address" required
+               autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
         {% if error %}
@@ -31,7 +29,7 @@
         <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
     </form>
-
 {% endblock %}
 
-{% block footer %}{% endblock %}
+{% block footer %}
+{% endblock %}

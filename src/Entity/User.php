@@ -34,7 +34,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=45)
      * @var string
      */
-    private $last_name;
+    private $lastName;
 
     /**
      * @Assert\NotBlank(message = "Please enter a valid email adress.")
@@ -168,12 +168,12 @@ class User implements UserInterface
 
     public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
-    public function setLastName(string $last_name): self
+    public function setLastName(string $lastName): self
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
 
         return $this;
     }

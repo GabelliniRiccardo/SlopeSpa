@@ -1,36 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}
+
+
+    {% block customStylesheets %}
         <link rel="stylesheet" type="text/css" href="{{ asset('/build/style.vendor.css') }}">
+
+        <!-- Custom fonts for this template -->
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
+              rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+              rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('/build/css/one-page-wonder.css') }}" rel="stylesheet">
     {% endblock %}
+
+    <title>{% block title %}Welcome!{% endblock %}</title>
 </head>
 
 <body class="text-center">
-<div class="container-fluid">
 
-    {% block menu %}
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <a class="navbar-brand" href="{{ path('home') }}">SlopeSPA</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+{% block menu %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ path('home') }}">Slope SPA</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav ml-auto mr-lg-2 mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('home') }}">Home</a>
-                    </li>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Admin Dashboard</a>
-                        </li>
-                    {% endif %}
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
                     {% if is_granted('ROLE_STAFF') %}
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Your SPA</a>
@@ -42,27 +47,42 @@
                                 as {{ app.user.name }} {{ app.user.lastname }}</a>
                         </li>
                     {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('admin_dashboard') }}">Admin Dashboard</a>
+                        </li>
+                    {% endif %}
+                    {% if not app.user and app.request.get('_route') == 'home' %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+                        </li>
+                    {% elseif app.request.get('_route') == 'app_login' %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('home') }}">Home</a>
+                        </li>
+                    {% endif %}
+                    {% if app.user %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                        </li>
+                    {% endif %}
                 </ul>
-                {% if  not app.user %}
-                    <a class="btn btn-outline-primary" href="{{ path('app_login') }}">Sign in</a>
-                {% else %}
-                    <a class="btn btn-outline-primary" href="{{ path('app_logout') }}">Logout</a>
-                {% endif %}
             </div>
-        </nav>
-    {% endblock %}
-
-    {% block main %}
-    {% endblock %}
-
-    {% block footer %}
-        Footer
-    {% endblock %}
-
-</div>
-{% block customjavascripts %}
-    <script src="{{ asset('build/vendor.js') }}"></script>
-    <script src="{{ asset('build/js/loadJQuery.js') }}"></script>
+        </div>
+    </nav>
 {% endblock %}
+
+{% block main %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block customJavascripts %}
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ asset('build/js/one-page-wonder.js') }}"></script>
+{% endblock %}
+
 </body>
+
 </html>

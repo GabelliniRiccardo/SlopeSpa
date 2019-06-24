@@ -24,13 +24,13 @@ class Customer
      * @ORM\Column(type="string", length=255)
      * @var string
      */
-    private $first_name;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @var string
      */
-    private $last_name;
+    private $lastName;
 
     /**
      * @ORM\Column(type="date_immutable", nullable=true)
@@ -60,7 +60,7 @@ class Customer
      * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
-    private $phone_number;
+    private $phoneNumber;
 
     public function __construct($first_name, $last_name, $spas)
     {
@@ -81,24 +81,24 @@ class Customer
 
     public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $first_name): self
+    public function setFirstName(string $firstName): self
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
-    public function setLastName(string $last_name): self
+    public function setLastName(string $lastName): self
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -186,12 +186,12 @@ class Customer
 
     public function getPhoneNumber(): ?string
     {
-        return $this->phone_number;
+        return $this->phoneNumber;
     }
 
-    public function setPhoneNumber(?string $phone_number): self
+    public function setPhoneNumber(?string $phoneNumber): self
     {
-        $this->phone_number = $phone_number;
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }

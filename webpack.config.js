@@ -17,15 +17,20 @@ Encore
    * Each entry will result in one JavaScript file (e.g. app.js)
    * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
    */
-  .addEntry('js/loadJQuery', [
-    './assets/js/loadJQuery.js'
+
+  .addEntry('js/one-page-wonder', [
+    './node_modules/startbootstrap-one-page-wonder/vendor/jquery/jquery.min.js',
+    './node_modules/startbootstrap-one-page-wonder/vendor/bootstrap/js/bootstrap.bundle.min.js',
   ])
 
-  .addEntry('js/sb-admin-2.min', [
-    './assets/js/sb-admin-2.min.js'
+  .addEntry('js/sb-admin-2', [
+    './node_modules/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js',
+    './node_modules/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js',
+    './node_modules/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js',
+    './node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.js'
   ])
 
-  .addEntry('vendor', [ // Will be processed by CommonsChunkPlugin
+  .addEntry('vendor', [
     'popper.js',
     'bootstrap',
     '@fortawesome/fontawesome-free/js/all.js',
@@ -36,9 +41,15 @@ Encore
     './node_modules/@fortawesome/fontawesome-free/css/all.css',
   ])
 
-  .addStyleEntry('css/signin', ['./assets/css/signin.css'])
+  .addStyleEntry('css/sb-admin-2', [
+    './node_modules/startbootstrap-sb-admin-2/css/sb-admin-2.css'
+  ])
 
-  .addStyleEntry('css/sb-admin-2', ['./assets/css/sb-admin-2.min.css'])
+  .addStyleEntry('css/one-page-wonder', [
+    './node_modules/startbootstrap-one-page-wonder/css/one-page-wonder.min.css'
+  ])
+
+  .addStyleEntry('css/signin', ['./assets/css/signin.css'])
 
   // will require an extra script tag for runtime.js
   // but, you probably want this, unless you're building a single-page app
@@ -49,14 +60,14 @@ Encore
   // enables hashed filenames (e.g. app.abc123.css)
   .enableVersioning(Encore.isProduction())
 
-// uncomment if you use TypeScript
-//.enableTypeScriptLoader()
+  // uncomment if you use TypeScript
+  //.enableTypeScriptLoader()
 
-// uncomment if you use Sass/SCSS files
-.enableSassLoader()
+  // uncomment if you use Sass/SCSS files
+  .enableSassLoader()
 
 // uncomment if you're having problems with a jQuery plugin
-// .autoProvidejQuery()
+.autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();
