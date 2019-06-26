@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -14,9 +15,21 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class UserRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(RegistryInterface $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, User::class);
+        $this->paginator = $paginator;
+    }
+
+    public function findAllPaginated($page, $spaID)
+    {
+        $dbQuery = $this->createQueryBuilder('u')
+            ->andWhere('u.spa = :spa_id')
+            ->setParameter('spa_id', $spaID)
+            ->getQuery();
+
+        $paginatedUsers = $this->paginator->paginate($dbQuery, $page, 5);
+        return $paginatedUsers;
     }
 
     // /**

@@ -63,29 +63,50 @@ class SPA
     private $phoneNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="spa")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="spa", orphanRemoval=true)
      * @var Collection|User[]
      */
     private $users;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Operator", mappedBy="spa")
+     * @ORM\OneToMany(targetEntity="App\Entity\Operator", mappedBy="spa", orphanRemoval=true)
      * @var Collection|Operator[]
      */
     private $operators;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Customer", mappedBy="spas")
+     * @ORM\OneToMany(targetEntity="App\Entity\Treatment", mappedBy="spa", orphanRemoval=true)
+     * @var Collection|Treatment[]
+     */
+    private $treatments;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Customer", mappedBy="spa", orphanRemoval=true)
      * @var Collection|Customer[]
      */
     private $customers;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Room", mappedBy="spa", orphanRemoval=true)
+     * @var Collection|Room[]
+     */
+    private $rooms;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="spa", orphanRemoval=true)
+     * @var Collection|Reservation[]
+     */
+    private $reservations;
 
     public function __construct($name)
     {
         $this->setName($name);
         $this->users = new ArrayCollection();
         $this->operators = new ArrayCollection();
+        $this->treatments = new ArrayCollection();
         $this->customers = new ArrayCollection();
+        $this->rooms = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -191,6 +212,49 @@ class SPA
         return $this;
     }
 
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Treatment[]
+     */
+    public function getTreatments(): Collection
+    {
+        return $this->treatments;
+    }
+
+    public function addTreatment(Treatment $treatment): self
+    {
+        if (!$this->treatments->contains($treatment)) {
+            $this->treatments[] = $treatment;
+            $treatment->setSpa($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTreatment(Treatment $treatment): self
+    {
+        if ($this->treatments->contains($treatment)) {
+            $this->treatments->removeElement($treatment);
+            // set the owning side to null (unless already changed)
+            if ($treatment->getSpa() === $this) {
+                $treatment->setSpa(null);
+            }
+        }
+
+        return $this;
+    }
+
     /**
      * @return Collection|Customer[]
      */
@@ -203,7 +267,7 @@ class SPA
     {
         if (!$this->customers->contains($customer)) {
             $this->customers[] = $customer;
-            $customer->addSpa($this);
+            $customer->setSpa($this);
         }
 
         return $this;
@@ -213,20 +277,73 @@ class SPA
     {
         if ($this->customers->contains($customer)) {
             $this->customers->removeElement($customer);
-            $customer->removeSpa($this);
+            // set the owning side to null (unless already changed)
+            if ($customer->getSpa() === $this) {
+                $customer->setSpa(null);
+            }
         }
 
         return $this;
     }
 
-    public function getEmail(): ?string
+    /**
+     * @return Collection|Room[]
+     */
+    public function getRooms(): Collection
     {
-        return $this->email;
+        return $this->rooms;
     }
 
-    public function setEmail(?string $email): self
+    public function addRoom(Room $room): self
     {
-        $this->email = $email;
+        if (!$this->rooms->contains($room)) {
+            $this->rooms[] = $room;
+            $room->setSpa($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRoom(Room $room): self
+    {
+        if ($this->rooms->contains($room)) {
+            $this->rooms->removeElement($room);
+            // set the owning side to null (unless already changed)
+            if ($room->getSpa() === $this) {
+                $room->setSpa(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setSpa($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->contains($reservation)) {
+            $this->reservations->removeElement($reservation);
+            // set the owning side to null (unless already changed)
+            if ($reservation->getSpa() === $this) {
+                $reservation->setSpa(null);
+            }
+        }
 
         return $this;
     }

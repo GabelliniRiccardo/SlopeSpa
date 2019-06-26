@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\SPA;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @method SPA|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,9 +15,19 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class SPARepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(RegistryInterface $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, SPA::class);
+        $this->paginator = $paginator;
+    }
+
+    public function findAllPaginated($page)
+    {
+        $dbQuery = $this->createQueryBuilder('s')
+            ->getQuery();
+
+        $paginatedSpas = $this->paginator->paginate($dbQuery, $page, 5);
+        return $paginatedSpas;
     }
 
     // /**

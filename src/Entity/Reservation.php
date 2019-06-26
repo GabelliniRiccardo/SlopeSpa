@@ -69,7 +69,14 @@ class Reservation
      */
     private $VAT;
 
-    public function __construct($start_time, $end_time, $duration, $price, $treatment, $room, $customer, $VAT)
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SPA", inversedBy="reservations")
+     * @ORM\JoinColumn(nullable=false)
+     * @var SPA
+     */
+    private $spa;
+
+    public function __construct($start_time, $end_time, $duration, $price, $treatment, $room, $customer, $VAT, $spa)
     {
         $this->setStartTime($start_time);
         $this->setEndTime($end_time);
@@ -79,6 +86,7 @@ class Reservation
         $this->setRoom($room);
         $this->setCustomer($customer);
         $this->setVAT($VAT);
+        $this->setSpa($spa);
     }
 
     public function getId(): ?int
@@ -178,6 +186,18 @@ class Reservation
     public function setVAT(float $VAT): self
     {
         $this->VAT = $VAT;
+
+        return $this;
+    }
+
+    public function getSpa(): ?SPA
+    {
+        return $this->spa;
+    }
+
+    public function setSpa(?SPA $spa): self
+    {
+        $this->spa = $spa;
 
         return $this;
     }

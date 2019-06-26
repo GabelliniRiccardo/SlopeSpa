@@ -38,9 +38,17 @@ class Room
      */
     private $reservations;
 
-    public function __construct($name)
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SPA", inversedBy="rooms")
+     * @ORM\JoinColumn(nullable=false)
+     * @var SPA
+     */
+    private $spa;
+
+    public function __construct($name, $spa)
     {
         $this->setName($name);
+        $this->setSpa($spa);
         $this->treatment = new ArrayCollection();
         $this->reservations = new ArrayCollection();
     }
@@ -115,6 +123,18 @@ class Room
                 $reservation->setRoom(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSpa(): ?SPA
+    {
+        return $this->spa;
+    }
+
+    public function setSpa(?SPA $spa): self
+    {
+        $this->spa = $spa;
 
         return $this;
     }

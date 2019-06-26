@@ -23,24 +23,44 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @Assert\NotBlank(message = "Valid first name is required")
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=45)
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z ]+$/i",
+     *     match=true,
+     *     message="Name cannot contain a number"
+     * )
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 20,
+     *      minMessage = "The User's name must be at least {{ limit }} characters long",
+     *      maxMessage = "The User's name cannot be longer than {{ limit }} characters"
+     * )
      * @var string
      */
     private $name;
 
     /**
-     * @Assert\NotBlank(message = "Valid last name is required")
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=45)
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z ]+$/i",
+     *     match=true,
+     *     message="Last name cannot contain a number"
+     * )
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 20,
+     *      minMessage = "The User's last name must be at least {{ limit }} characters long",
+     *      maxMessage = "The User's last name cannot be longer than {{ limit }} characters"
+     * )
      * @var string
      */
     private $lastName;
 
     /**
-     * @Assert\NotBlank(message = "Please enter a valid email adress.")
-     * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email.",
-     * )
+     * @Assert\NotBlank
+     * @Assert\Email
      * @ORM\Column(type="string", length=180, unique=true)
      * @var string
      */
@@ -48,8 +68,13 @@ class User implements UserInterface
 
     /**
      * @var string The hashed password
-     * @Assert\NotBlank(message = "Please enter a valid password.")
-     * @Assert\Length(max=4096)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 20,
+     *      minMessage = "Password must be at least {{ limit }} characters long",
+     *      maxMessage = "Passwordcannot be longer than {{ limit }} characters"
+     * )
      * @ORM\Column(type="string")
      * @var string
      */
@@ -100,7 +125,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -109,8 +134,6 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
@@ -127,7 +150,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self
@@ -178,12 +201,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getSPA(): ?SPA
+    public function getSpa(): ?SPA
     {
         return $this->spa;
     }
 
-    public function setSPA(?SPA $spa): self
+    public function setSpa(?SPA $spa): self
     {
         $this->spa = $spa;
 

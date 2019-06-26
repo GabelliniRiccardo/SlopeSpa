@@ -5,6 +5,7 @@ namespace App\DataFixtures\SingleEntityFixture;
 use App\Entity\Customer;
 use App\Entity\Reservation;
 use App\Entity\Room;
+use App\Entity\SPA;
 use App\Entity\Treatment;
 use Doctrine\Common\Persistence\ObjectManager;
 use \Symfony\Component\Config\Definition\Exception\Exception;
@@ -19,9 +20,14 @@ class ReservationCreator
      */
     public static function create(ObjectManager $manager, array $fields = []): Reservation
     {
+        $spa = $manager->getRepository(SPA::class)->findOneBy(['id' => $fields['spa_id']]);
         $treatment = $manager->getRepository(Treatment::class)->findOneBy(['id' => $fields['treatment_id']]);
         $room = $manager->getRepository(Room::class)->findOneBy(['id' => $fields['room_id']]);
         $customer = $manager->getRepository(Customer::class)->findOneBy(['id' => $fields['customer_id']]);
+
+        if (is_null($treatment)) {
+            throw new Exception('SPA with id : ' . $fields['spa_id'] . ' not found');
+        }
 
         if (is_null($treatment)) {
             throw new Exception('Treatment with id : ' . $fields['treatment_id'] . ' not found');
@@ -43,7 +49,8 @@ class ReservationCreator
             $treatment,
             $room,
             $customer,
-            $fields['vat'] ?? 22
+            $fields['vat'] ?? 22,
+            $spa
         );
 
 

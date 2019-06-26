@@ -61,12 +61,20 @@ class Treatment
      */
     private $reservations;
 
-    public function __construct($name, $price, $duration, $VAT, $operator, $rooms)
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SPA", inversedBy="treatments")
+     * @ORM\JoinColumn(nullable=false)
+     * @var SPA
+     */
+    private $spa;
+
+    public function __construct($name, $price, $duration, $VAT, $operator, $rooms, $spa)
     {
         $this->setName($name);
         $this->setPrice($price);
         $this->setDuration($duration);
         $this->setVAT($VAT);
+        $this->setSpa($spa);
         $this->operator = new ArrayCollection();
         $this->rooms = new ArrayCollection();
         $this->reservations = new ArrayCollection();
@@ -212,6 +220,18 @@ class Treatment
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSpa(): ?SPA
+    {
+        return $this->spa;
+    }
+
+    public function setSpa(?SPA $spa): self
+    {
+        $this->spa = $spa;
 
         return $this;
     }

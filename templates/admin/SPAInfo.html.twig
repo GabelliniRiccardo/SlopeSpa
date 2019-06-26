@@ -1,0 +1,67 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block main %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col col-lg-4">
+                    <h6 class="m-0 font-weight-bold text-primary">Staff for SPA: {{ spa.name }}</h6>
+                </div>
+                <div class="col count">
+                    Total number of elements: {{ pagination.getTotalItemCount }}
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <table class="table table-responsive-lg">
+                        <tr>
+                            {# sorting of properties based on query components #}
+                            <th>{{ knp_pagination_sortable(pagination, 'Id', 'u.id') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Name', 'u.name') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'Email', 'u.email') }}</th>
+                            <th>Manage</th>
+                        </tr>
+
+                        {# table body #}
+                        {% for user in pagination %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-sm-6 mb-0 mb-sm-1">
+                                            <form action="{{ path('admin_delete_staff', {'user' : user.id}) }}" method="POST"
+                                                  class="delete-button-form">
+                                                <input name="_method" value="DELETE" type="hidden">
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-6 mb-0 mb-sm-1">
+                                            <a href="{{ path('admin_edit_staff', {'user' : user.id}) }}"
+                                               class="btn btn-warning">
+                                                <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    {# display navigation #}
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

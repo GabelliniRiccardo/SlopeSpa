@@ -35,7 +35,7 @@ class CustomersFixtures extends Fixture implements DependentFixtureInterface
                 'birthday' => new \DateTimeImmutable('1994-01-01'),
                 'address' => 'Address of customer 1',
                 'phone_number' => '1111111111',
-                'spa_ids' => [1, 2]
+                'spa_id' => 1
             ],
             [
                 'first_name' => 'Customer 2 first_name',
@@ -43,7 +43,7 @@ class CustomersFixtures extends Fixture implements DependentFixtureInterface
                 'birthday' => new \DateTimeImmutable('1981-07-09'),
                 'address' => 'Address of customer 1',
                 'phone_number' => '2222222222',
-                'spa_ids' => [1, 3]
+                'spa_id' => 1
             ],
             [
                 'first_name' => 'Customer 3 first_name',
@@ -51,7 +51,7 @@ class CustomersFixtures extends Fixture implements DependentFixtureInterface
                 'birthday' => new \DateTimeImmutable('1979-04-04'),
                 'address' => 'Address of customer 1',
                 'phone_number' => '2222222222',
-                'spa_ids' => [1]
+                'spa_id' => 2
             ],
         ];
     }

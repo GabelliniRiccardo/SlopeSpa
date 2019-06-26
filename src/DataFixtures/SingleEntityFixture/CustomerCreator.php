@@ -18,19 +18,17 @@ class CustomerCreator
      */
     public static function create(ObjectManager $manager, array $fields = []): Customer
     {
-        $spa_list = new ArrayCollection();
-        foreach ($fields['spa_ids'] as $spa_id) {
-            $spa = $manager->getRepository(SPA::class)->findOneBy(['id' => $spa_id]);
-            $spa_list->add($spa);
-            if (is_null($spa)) {
-                throw new Exception('Spa with id: ' . $spa_id . ' not found');
-            }
+
+        $spa = $manager->getRepository(SPA::class)->findOneBy(['id' => $fields['spa_id']]);
+        if (is_null($spa)) {
+            throw new Exception('Spa with id: ' . $fields['spa_id'] . ' not found');
         }
+
 
         $customer = new Customer(
             $fields['first_name'] ?? 'name not found',
             $fields['last_name'] ?? 'last name not found',
-            $spa_list
+            $spa
         );
 
         if (!!$fields['birthday']) {

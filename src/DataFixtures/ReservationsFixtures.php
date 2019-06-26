@@ -23,6 +23,7 @@ class ReservationsFixtures extends Fixture implements DependentFixtureInterface
             CustomersFixtures::class,
             RoomsFixtures::class,
             TreatmentsFixtures::class,
+            SPAsFixtures::class,
         );
     }
 
@@ -38,7 +39,8 @@ class ReservationsFixtures extends Fixture implements DependentFixtureInterface
                     'treatment_id' => 1,
                     'room_id' => 1,
                     'customer_id' => 2,
-                    'VAT' => 22.0
+                    'VAT' => 22.0,
+                    'spa_id' => 1
                 ],
                 [
                     'start_time' => new \DateTimeImmutable('2019-01-02 8:30:00'),
@@ -48,7 +50,8 @@ class ReservationsFixtures extends Fixture implements DependentFixtureInterface
                     'treatment_id' => 1,
                     'room_id' => 2,
                     'customer_id' => 1,
-                    'VAT' => 22.0
+                    'VAT' => 22.0,
+                    'spa_id' => 1
                 ],
                 [
                     'start_time' => new \DateTimeImmutable('2019-01-01 17:30:00'),
@@ -58,7 +61,8 @@ class ReservationsFixtures extends Fixture implements DependentFixtureInterface
                     'treatment_id' => 1,
                     'room_id' => 3,
                     'customer_id' => 2,
-                    'VAT' => 22.0
+                    'VAT' => 22.0,
+                    'spa_id' => 1
                 ],
             ];
     }

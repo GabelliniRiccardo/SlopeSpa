@@ -45,12 +45,6 @@ class Customer
     private $address;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\SPA", inversedBy="customers")
-     * @var Collection|SPA[]
-     */
-    private $spas;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="customer")
      * @var Collection|Reservation[]
      */
@@ -62,16 +56,19 @@ class Customer
      */
     private $phoneNumber;
 
-    public function __construct($first_name, $last_name, $spas)
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SPA", inversedBy="customers")
+     * @ORM\JoinColumn(nullable=false)
+     * @var SPA
+     */
+    private $spa;
+
+    public function __construct($first_name, $last_name, $spa)
     {
         $this->setFirstName($first_name);
         $this->setLastName($last_name);
-        $this->spas = new ArrayCollection();
+        $this->setSpa($spa);
         $this->reservations = new ArrayCollection();
-
-        foreach ($spas as $spa) {
-            $this->addSpa($spa);
-        }
     }
 
     public function getId(): ?int
@@ -128,32 +125,6 @@ class Customer
     }
 
     /**
-     * @return Collection|SPA[]
-     */
-    public function getSpas(): Collection
-    {
-        return $this->spas;
-    }
-
-    public function addSpa(SPA $spa): self
-    {
-        if (!$this->spas->contains($spa)) {
-            $this->spas[] = $spa;
-        }
-
-        return $this;
-    }
-
-    public function removeSpa(SPA $spa): self
-    {
-        if ($this->spas->contains($spa)) {
-            $this->spas->removeElement($spa);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Reservation[]
      */
     public function getReservations(): Collection
@@ -192,6 +163,18 @@ class Customer
     public function setPhoneNumber(?string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    public function getSpa(): ?SPA
+    {
+        return $this->spa;
+    }
+
+    public function setSpa(?SPA $spa): self
+    {
+        $this->spa = $spa;
 
         return $this;
     }

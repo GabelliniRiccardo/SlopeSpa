@@ -21,7 +21,8 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
     {
         return array(
             OperatorsFixtures::class,
-            RoomsFixtures::class
+            RoomsFixtures::class,
+            SPAsFixtures::class,
         );
     }
 
@@ -34,7 +35,8 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
                 'duration' => 20,
                 'VAT' => 22,
                 'operator_id' => 1,
-                'rooms_ids' => [1,2,3]
+                'rooms_ids' => [1,2,3],
+                'spa_id' => 1
             ],
             [
                 'name' => 'Treatment 2',
@@ -42,7 +44,8 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
                 'duration' => 40,
                 'VAT' => 22,
                 'operator_id' => 2,
-                'rooms_ids' => [4,5,6]
+                'rooms_ids' => [4,5,6],
+                'spa_id' => 2
             ],
             [
                 'name' => 'Treatment 3',
@@ -50,7 +53,8 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
                 'duration' => 100,
                 'VAT' => 22,
                 'operator_id' => 3,
-                'rooms_ids' => [7,8,9]
+                'rooms_ids' => [7,8,9],
+                'spa_id' => 1
             ],
             [
                 'name' => 'Treatment 4',
@@ -58,7 +62,8 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
                 'duration' => 180,
                 'VAT' => 22,
                 'operator_id' => 3,
-                'rooms_ids' => [1,2,3]
+                'rooms_ids' => [1,2,3],
+                'spa_id' => 1
             ],
             [
                 'name' => 'Treatment 5',
@@ -66,7 +71,8 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
                 'duration' => 40,
                 'VAT' => 22,
                 'operator_id' => 3,
-                'rooms_ids' => [4,5,6]
+                'rooms_ids' => [4,5,6],
+                'spa_id' => 1
             ],
             [
                 'name' => 'Treatment 6',
@@ -74,7 +80,8 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
                 'duration' => 15,
                 'VAT' => 22,
                 'operator_id' => 1,
-                'rooms_ids' => [7,8,9]
+                'rooms_ids' => [7,8,9],
+                'spa_id' => 1
             ],
         ];
     }
