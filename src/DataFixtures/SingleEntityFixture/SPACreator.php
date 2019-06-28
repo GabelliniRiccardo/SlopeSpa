@@ -16,12 +16,9 @@ class SPACreator
     public static function create(ObjectManager $manager, array $fields = []): SPA
     {
         $spa = new SPA(
-            $fields['name'] ?? 'name not found'
+            $fields['name'] ?? 'name not found',
+            $fields['email'] ?? 'email not found'
         );
-
-        if (!!$fields['email']) {
-            $spa->setEmail($fields['email']);
-        }
 
         if (!!$fields['address']) {
             $spa->setAddress($fields['address']);

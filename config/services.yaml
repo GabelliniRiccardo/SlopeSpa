@@ -26,3 +26,27 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    create_spa_command_handler:
+      class: App\CommandHandler\Admin\CreateSPACommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Admin\CreateSPA}
+    edit_spa_command_handler:
+      class: App\CommandHandler\Admin\EditSPACommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Admin\EditSPA}
+    delete_spa_command_handler:
+      class: App\CommandHandler\Admin\DeleteSPACommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Admin\DeleteSPA}
+    create_user_command_handler:
+      class: App\CommandHandler\Admin\CreateUserCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Admin\CreateUser}
+    edit_user_command_handler:
+      class: App\CommandHandler\Admin\EditUserCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Admin\EditUser}
+    delete_user_command_handler:
+      class: App\CommandHandler\Admin\DeleteUserCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Admin\DeleteUser}

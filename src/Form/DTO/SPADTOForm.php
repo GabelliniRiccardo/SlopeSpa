@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\DTO;
 
-use App\Entity\SPA;
+use App\Model\DTO\SPADTO;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SPACreateForm extends AbstractType
+class SPADTOForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -32,7 +32,8 @@ class SPACreateForm extends AbstractType
                     'attr' => [
                         'placeholder' => 'SPA\'s address'
                     ],
-                ])->add('phoneNumber', TextType::class,
+                ])
+            ->add('phoneNumber', TextType::class,
                 [
 
                     'required' => false,
@@ -45,7 +46,7 @@ class SPACreateForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => SPA::class,
+            'data_class' => SPADTO::class,
         ]);
     }
 }

@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="users")
- * @UniqueEntity("email")
+
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
@@ -61,19 +61,16 @@ class User implements UserInterface
     /**
      * @Assert\NotBlank
      * @Assert\Email
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180)
      * @var string
      */
     private $email;
 
     /**
-     * @var string The hashed password
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 3,
-     *      max = 20,
      *      minMessage = "Password must be at least {{ limit }} characters long",
-     *      maxMessage = "Passwordcannot be longer than {{ limit }} characters"
      * )
      * @ORM\Column(type="string")
      * @var string

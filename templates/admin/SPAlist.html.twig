@@ -47,16 +47,15 @@
                                 <td>
                                     <div class="row">
                                         <div class="col-lg-3 mb-md-1 mb-0 text-center">
-                                            <form action="{{ path('admin_delete_SPA', {'spa' : spa.id}) }}"
-                                                  method="POST"
-                                                  class="delete-button-form">
-                                                <input name="_method" value="DELETE" type="hidden">
-                                                <button type="submit"
-                                                        class="btn btn-danger"
-                                                        title="Delete {{ spa.name }}">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </button>
-                                            </form>
+                                            <!-- Button trigger modal -->
+                                            <button type="button"
+                                                    class="btn btn-danger deleteButton"
+                                                    id="{{ spa.id }}"
+                                                    data-toggle="modal"
+                                                    data-target="#exampleModal"
+                                                    title="Delete {{ spa.name }}">
+                                                <i class="fa fa-trash-alt" aria-hidden="true"></i>
+                                            </button>
                                         </div>
                                         <div class="col-lg-3 mb-md-1 mb-0 text-center">
                                             <a href="{{ path('admin_edit_SPA', {'spa' : spa.id}) }}"
@@ -83,6 +82,10 @@
                                 </td>
                             </tr>
                         {% endfor %}
+
+                        <!-- Modal -->
+                        {% include 'modal/LoadingModal.html.twig' %}
+
                     </table>
                     {# display navigation #}
                     <div class="navigation">
@@ -94,4 +97,7 @@
     </div>
 {% endblock %}
 
-
+{% block customJavascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/js/delete-SPA.js') }}"></script>
+{% endblock %}

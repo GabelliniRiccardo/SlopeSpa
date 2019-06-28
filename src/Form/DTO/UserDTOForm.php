@@ -1,28 +1,28 @@
 <?php
 
-namespace App\Form;
 
-use App\Entity\User;
+namespace App\Form\DTO;
 
+
+use App\Model\DTO\UserDTO;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class StaffUserCreateForm extends AbstractType
+class UserDTOForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('name', TextType::class,
-                [
-                    'attr' => [
-                        'placeholder' => 'User name'
-                    ]
-                ])
+        $builder  ->add('name', TextType::class,
+            [
+                'attr' => [
+                    'placeholder' => 'User name'
+                ]
+            ])
             ->add('lastName', TextType::class,
                 [
                     'attr' => [
@@ -49,7 +49,7 @@ class StaffUserCreateForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => UserDTO::class,
         ]);
     }
 }

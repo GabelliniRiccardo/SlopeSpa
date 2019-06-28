@@ -35,7 +35,7 @@ class SPA
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @Assert\Email
      * @var string
@@ -98,9 +98,10 @@ class SPA
      */
     private $reservations;
 
-    public function __construct($name)
+    public function __construct($name, $email)
     {
         $this->setName($name);
+        $this->setEmail($email);
         $this->users = new ArrayCollection();
         $this->operators = new ArrayCollection();
         $this->treatments = new ArrayCollection();

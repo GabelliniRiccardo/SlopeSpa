@@ -20,33 +20,35 @@ Encore
 
   .addEntry('js/one-page-wonder', [
     './node_modules/startbootstrap-one-page-wonder/vendor/jquery/jquery.min.js',
+    './node_modules/startbootstrap-one-page-wonder/vendor/bootstrap/js/bootstrap.min.js',
     './node_modules/startbootstrap-one-page-wonder/vendor/bootstrap/js/bootstrap.bundle.min.js',
   ])
 
   .addEntry('js/sb-admin-2', [
     './node_modules/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js',
-    './node_modules/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js',
     './node_modules/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js',
-    './node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.js'
-  ])
-
-  .addEntry('vendor', [
-    'popper.js',
-    'bootstrap',
+    './node_modules/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.js',
+    './node_modules/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js',
+    './node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.js',
     '@fortawesome/fontawesome-free/js/all.js',
   ])
 
-  .addStyleEntry('style.vendor', [
-    './node_modules/bootstrap/scss/bootstrap.scss',
-    './node_modules/@fortawesome/fontawesome-free/css/all.css',
+  .addEntry('js/delete-SPA', [
+    './assets/js/delete-SPA.js'
+  ])
+
+  .addEntry('js/delete-User', [
+    './assets/js/delete-User.js'
   ])
 
   .addStyleEntry('css/sb-admin-2', [
-    './node_modules/startbootstrap-sb-admin-2/css/sb-admin-2.css'
+    './node_modules/startbootstrap-sb-admin-2/css/sb-admin-2.css',
+    './node_modules/@fortawesome/fontawesome-free/css/all.css',
   ])
 
   .addStyleEntry('css/one-page-wonder', [
-    './node_modules/startbootstrap-one-page-wonder/css/one-page-wonder.min.css'
+    './node_modules/startbootstrap-one-page-wonder/vendor/bootstrap/css/bootstrap.min.css',
+    './node_modules/startbootstrap-one-page-wonder/css/one-page-wonder.min.css',
   ])
 
   .addStyleEntry('css/signin', ['./assets/css/signin.css'])

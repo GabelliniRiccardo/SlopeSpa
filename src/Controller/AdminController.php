@@ -2,15 +2,27 @@
 
 namespace App\Controller;
 
+use App\Command\Admin\CreateSPA;
+use App\Command\Admin\CreateUser;
+use App\Command\Admin\DeleteSPA;
+use App\Command\Admin\DeleteUser;
+use App\Command\Admin\EditSPA;
+use App\Command\Admin\EditUser;
 use App\Entity\SPA;
 use App\Entity\User;
-use App\Form\SPACreateForm;
-use App\Form\StaffUserCreateForm;
+use App\Form\CreateSPAForm;
+use App\Form\DeleteSPAForm;
+use App\Form\DeleteUserForm;
+use App\Form\EditSPAForm;
+use App\Form\CreateUserForm;
+use App\Form\EditUserForm;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use SimpleBus\SymfonyBridge\Bus\CommandBus;
 
 /**
  * @Route("/admin")
@@ -18,8 +30,17 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class AdminController extends AbstractController
 {
+    private $commandBus;
+    private $entityManager;
+
+    public function __construct(CommandBus $commandBus, EntityManagerInterface $entityManager)
+    {
+        $this->commandBus = $commandBus;
+        $this->entityManager = $entityManager;
+    }
+
     /**
-     * @Route("/dashboard", name="admin_dashboard")
+     * @Route("/dashboard", name="admin_dashboard", methods={"GET"})
      */
     public function index()
     {
@@ -27,13 +48,12 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/spa_list/{page}", defaults={"page" : "1"}, name="admin_SPA_list")
+     * @Route("/spa/list/{page}", defaults={"page" : "1"}, name="admin_SPA_list", methods={"GET"})
      */
     public function spaLIst($page)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $paginatedSpas = $entityManager->getRepository(SPA::class)->findAllPaginated($page);
 
+        $paginatedSpas = $this->entityManager->getRepository(SPA::class)->findAllPaginated($page);
         return $this->render('admin/SPAlist.html.twig',
             [
                 'pagination' => $paginatedSpas
@@ -41,85 +61,11 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/create", name="admin_create_SPA")
-     */
-    public function create(Request $request)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $spa = new SPA('');
-        $form = $this->createForm(SPACreateForm::class, $spa);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($spa);
-            $entityManager->flush();
-            return $this->redirectToRoute('admin_dashboard');
-        }
-        return $this->render('admin/createSPA.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/edit/spa/{spa}", name="admin_edit_SPA")
-     */
-    public function edit(SPA $spa, Request $request)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $form = $this->createForm(SPACreateForm::class, $spa);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($spa);
-            $entityManager->flush();
-            return $this->redirectToRoute('admin_dashboard');
-        }
-        return $this->render('admin/editSPA.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/delete/spa/{spa}", name="admin_delete_SPA", methods={"DELETE"})
-     */
-    public function deleteSPA(SPA $spa)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($spa);
-        $entityManager->flush();
-        return $this->redirectToRoute('admin_SPA_list');
-    }
-
-    /**
-     * @Route("/spa/{spa}/addStaff", name="admin_add_staff")
-     */
-    public function addStaff(SPA $spa, Request $request, UserPasswordEncoderInterface $encoder)
-    {
-        $user = new User('', '', '', '', ['ROLE_STAFF']);
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $form = $this->createForm(StaffUserCreateForm::class, $user);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $user->setspa($spa);
-            $encoded = $encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($encoded);
-            $entityManager->persist($user);
-            $entityManager->flush();
-            return $this->redirectToRoute('admin_dashboard');
-        }
-        return $this->render('admin/addStaffUser.html.twig', [
-            'form' => $form->createView(),
-            'spa' => $spa
-        ]);
-    }
-
-    /**
-     * @Route("/spa/{spa}", defaults={"page" : "1"}, name="admin_spa_info")
+     * @Route("/spa/{spa}/staff", defaults={"page" : "1"}, name="admin_spa_info", methods={"GET"})
      */
     public function spaInfo(SPA $spa, $page)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $paginatedUsers = $entityManager->getRepository(User::class)->findAllPaginated($page, $spa->getId());
+        $paginatedUsers = $this->entityManager->getRepository(User::class)->findAllPaginated($page, $spa->getId());
 
         return $this->render('admin/SPAInfo.html.twig',
             [
@@ -129,37 +75,123 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/delete/staff/{user}", name="admin_delete_staff", methods={"DELETE"})
+     * @Route("/spa/create", name="admin_create_SPA",  methods={"GET","POST"})
      */
-    public function deleteUser(User $user)
+    public function create(Request $request)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($user);
-        $entityManager->flush();
-        $spa_id = $user->getSpa()->getId();
-        return $this->redirectToRoute('admin_spa_info',
-            [
-                'spa' => $spa_id
-            ]);
+        $createSPA = new CreateSPA();
+        $form = $this->createForm(CreateSPAForm::class, $createSPA);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->commandBus->handle($createSPA);
+            return $this->redirectToRoute('admin_dashboard');
+        }
+        return $this->render('admin/createSPA.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**
-     * @Route("/edit/staff/{user}", name="admin_edit_staff")
+     * @Route("/spa/edit/{spa}", name="admin_edit_SPA", methods={"GET","POST"})
      */
-    public function editStaff(User $user, Request $request, UserPasswordEncoderInterface $encoder)
+    public function edit(SPA $spa, Request $request)
     {
-        $entityManager = $this->getDoctrine()->getManager();
+        $editSPA = new EditSPA($spa);
 
+        $form = $this->createForm(EditSPAForm::class, $editSPA);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->commandBus->handle($editSPA);
+            return $this->redirectToRoute('admin_dashboard');
+        }
+        return $this->render('admin/editSPA.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/spa/delete/{spa}", name="admin_delete_SPA", methods={"GET","DELETE"})
+     */
+    public function deleteSPA(SPA $spa, Request $request)
+    {
+        $deleteSPAForm = $this->createForm(DeleteSPAForm::class, $spa,
+            [
+                'action' => $this->generateUrl('admin_delete_SPA', ['spa' => $spa->getId()])
+            ]);
+        $deleteSPAForm->handleRequest($request);
+
+        if ($deleteSPAForm->isSubmitted() && $deleteSPAForm->isValid()) {
+            $deleteSPA = new DeleteSPA($spa);
+            $this->commandBus->handle($deleteSPA);
+            return $this->redirectToRoute('admin_SPA_list');
+        }
+
+        return $this->render('modal/SpaDeleteConfirmationModal.html.twig', [
+            'deleteSPAForm' => $deleteSPAForm->createView(),
+            'spa' => $spa
+        ]);
+    }
+
+    /**
+     * @Route("/spa/{spa}/addStaff", name="admin_add_staff", methods={"GET","POST"})
+     */
+    public function addStaff(SPA $spa, Request $request)
+    {
+        $createUser = new CreateUser($spa);
+        $form = $this->createForm(CreateUserForm::class, $createUser);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->commandBus->handle($createUser);
+            return $this->redirectToRoute('admin_dashboard');
+        }
+        return $this->render('admin/addStaffUser.html.twig', [
+            'form' => $form->createView(),
+            'spa' => $spa
+        ]);
+    }
+
+    /**
+     * @Route("/staff/delete/{user}", name="admin_delete_staff", methods={"GET","DELETE"})
+     */
+    public function deleteUser(User $user, Request $request)
+    {
+        $deleteUserForm = $this->createForm(DeleteUserForm::class, $user,
+            [
+                'action' => $this->generateUrl('admin_delete_staff', ['user' => $user->getId()])
+            ]);
+
+        $deleteUserForm->handleRequest($request);
+
+        if ($deleteUserForm->isSubmitted() && $deleteUserForm->isValid()) {
+            $deleteUser = new DeleteUser($user);
+            $this->commandBus->handle($deleteUser);
+            $spa_id = $user->getSpa()->getId();
+            return $this->redirectToRoute('admin_spa_info',
+                [
+                    'spa' => $spa_id
+                ]);
+        }
+
+        return $this->render('modal/UserDeleteConfirmationModal.html.twig', [
+            'deleteUserForm' => $deleteUserForm->createView(),
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * @Route("/staff/edit/{user}", name="admin_edit_staff", methods={"GET","POST"})
+     */
+    public function editUser(User $user, Request $request, UserPasswordEncoderInterface $encoder)
+    {
         $spa = $user->getSpa();
         $spa_id = $spa->getId();
 
-        $form = $this->createForm(StaffUserCreateForm::class, $user);
+        $editUser = new EditUser($user);
+        $form = $this->createForm(EditUserForm::class, $editUser);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $encoded = $encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($encoded);
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $this->commandBus->handle($editUser);
             return $this->redirectToRoute('admin_spa_info',
                 [
                     'spa' => $spa_id

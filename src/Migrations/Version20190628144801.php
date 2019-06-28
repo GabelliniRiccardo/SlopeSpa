@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190626090200 extends AbstractMigration
+final class Version20190628144801 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -29,7 +29,7 @@ final class Version20190626090200 extends AbstractMigration
         $this->addSql('CREATE SEQUENCE customers_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE users_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE operators_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('CREATE TABLE SPAs (id INT NOT NULL, name VARCHAR(255) NOT NULL, email VARCHAR(255) DEFAULT NULL, address VARCHAR(255) DEFAULT NULL, phone_number VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE SPAs (id INT NOT NULL, name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, address VARCHAR(255) DEFAULT NULL, phone_number VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE rooms (id INT NOT NULL, spa_id INT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_7CA11A96DF3CB247 ON rooms (spa_id)');
         $this->addSql('CREATE TABLE room_treatment (room_id INT NOT NULL, treatment_id INT NOT NULL, PRIMARY KEY(room_id, treatment_id))');
@@ -51,7 +51,6 @@ final class Version20190626090200 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_62534E21DF3CB247 ON customers (spa_id)');
         $this->addSql('COMMENT ON COLUMN customers.birthday IS \'(DC2Type:date_immutable)\'');
         $this->addSql('CREATE TABLE users (id INT NOT NULL, spa_id INT DEFAULT NULL, name VARCHAR(45) NOT NULL, last_name VARCHAR(45) NOT NULL, email VARCHAR(180) NOT NULL, password VARCHAR(255) NOT NULL, roles JSON NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_1483A5E9E7927C74 ON users (email)');
         $this->addSql('CREATE INDEX IDX_1483A5E9DF3CB247 ON users (spa_id)');
         $this->addSql('CREATE TABLE operators (id INT NOT NULL, spa_id INT NOT NULL, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, phone_number VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_8166DA1ADF3CB247 ON operators (spa_id)');
