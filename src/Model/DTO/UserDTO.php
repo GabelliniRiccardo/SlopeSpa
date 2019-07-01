@@ -19,13 +19,11 @@ class UserDTO
      * @Assert\Regex(
      *     pattern     = "/^[a-z ]+$/i",
      *     match=true,
-     *     message="Name cannot contain a number"
+     *     message="DTO.UserDTO.Name.LettersOnly"
      * )
      * @Assert\Length(
      *      min = 3,
      *      max = 20,
-     *      minMessage = "The User's name must be at least {{ limit }} characters long",
-     *      maxMessage = "The User's name cannot be longer than {{ limit }} characters"
      * )
      * @var string
      */
@@ -36,13 +34,11 @@ class UserDTO
      * @Assert\Regex(
      *     pattern     = "/^[a-z ]+$/i",
      *     match=true,
-     *     message="Last name cannot contain a number"
+     *     message="DTO.UserDTO.LastName.LettersOnly"
      * )
      * @Assert\Length(
      *      min = 3,
      *      max = 20,
-     *      minMessage = "The User's last name must be at least {{ limit }} characters long",
-     *      maxMessage = "The User's last name cannot be longer than {{ limit }} characters"
      * )
      * @var string
      */
@@ -59,7 +55,6 @@ class UserDTO
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 3,
-     *      minMessage = "Password must be at least {{ limit }} characters long",
      * )
      * @var string
      */

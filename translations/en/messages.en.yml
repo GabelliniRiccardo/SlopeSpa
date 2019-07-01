@@ -1,0 +1,103 @@
+# ADMIN DASHBOARD page
+
+Menu:
+  AppName: App Name
+  Dashboard: Dashboard
+  AddSPA: Add SPA
+  SPAList: SPA List
+  Logout: Logout
+  Back to Home: Back to Home
+
+LogoutModal:
+  Title: Confirm Exit
+  Logout: Logout
+  Sure: Are you sure to Logout?
+  Cancel: Cancel
+
+DeleteUserModal:
+  Title: Confirm Delete
+  SureToDelete: Are you sure to delete
+  Cancel: Cancel
+
+SPAList:
+  List: SPA list
+  TotalNumOfElements: Total number of elements
+  Id: Id
+  Name: Name
+  Email: Email
+  Address: Address
+  PhoneNumber: Phone
+  Manage: Manage
+  Delete: Delete
+  Edit: Edit
+  AddStaffTo: Add Staff to
+  WatchStaff: Watch Staff
+
+UserList:
+  ListUsersForSPA: List of users for SPA
+  TotalNumOfElements: Total number of elements
+  Id: Id
+  Name: Name
+  LastName: Last Name
+  Email: Email
+  Address: Address
+  Manage: Manage
+  Delete: Delete
+  Edit: Edit
+
+SpaForm:
+  AddSpa: Create new SPA
+  EditSpa: Edit SPA
+  Name:
+    Value: Name
+    Placeholder: SPA's Name
+  Email:
+    Value: Email
+    Placeholder: example@example.com
+  Address:
+    Value: SPA's Address
+    Placeholder: 10 Downing Street
+  PhoneNumber:
+    Value: Phone Number
+    Placeholder: ex 3333333333
+  CreateButton: Create
+  EditButton: Edit
+  DeleteButton: Delete
+
+UserForm:
+  AddUser: Add Staff
+  EditUser: Edit Staff
+  Name:
+    Value: Name
+    Placeholder: User's Name
+  LastName:
+    Value: Last Name
+    Placeholder: User's Last Name
+  Email:
+    Value: Email
+    Placeholder: example@example.com
+  Password: Password
+  RepeatPassword: Repeat Password
+  CreateButton: Create
+  EditButton: Edit
+  DeleteButton: Delete
+
+# TOP BAR page for Home page and login page
+
+TopBar:
+  AppName: App Name
+  YourSPA: Your SPA
+  LoggedAs: Logged as
+  AdminDashboard: Admin Dashboard
+  Login: Login
+  Home: Home
+  Logout: Logout
+
+# LOGIN page
+
+Login:
+  PleaseSignIn: Please Sign in
+  EmailAddress: Email Address
+  Password: Password
+  RememberMe: Remember Me
+  SignIn: Sign in

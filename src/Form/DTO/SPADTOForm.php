@@ -16,29 +16,32 @@ class SPADTOForm extends AbstractType
         $builder
             ->add('name', TextType::class,
                 [
+                    'label_format' => 'SpaForm.Name.Value',
                     'attr' => [
-                        'placeholder' => 'SPA\'s name'
+                        'placeholder' => 'SpaForm.Name.Placeholder'
                     ]
                 ])
             ->add('email', EmailType::class,
                 [
+                    'label_format' => 'SpaForm.Email.Value',
                     'attr' => [
-                        'placeholder' => 'example@example.com'
+                        'placeholder' => 'SpaForm.Email.Placeholder'
                     ]
                 ])
             ->add('address', TextType::class,
                 [
+                    'label_format' => 'SpaForm.Address.Value',
                     'required' => false,
                     'attr' => [
-                        'placeholder' => 'SPA\'s address'
+                        'placeholder' => 'SpaForm.Address.Placeholder'
                     ],
                 ])
             ->add('phoneNumber', TextType::class,
                 [
-
+                    'label_format' => 'SpaForm.PhoneNumber.Value',
                     'required' => false,
                     'attr' => [
-                        'placeholder' => 'SPA\'s phone number'
+                        'placeholder' => 'SpaForm.PhoneNumber.Placeholder'
                     ],
                 ]);
     }

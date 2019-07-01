@@ -9,12 +9,12 @@
 
 {% block main %}
     <form method="POST" action="{{ path('app_login') }}" class="form-signin my-5">
-        <h1 class="h3 my-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" name="email" id="inputEmail" class="form-control my-3" placeholder="Email address" required
+        <h1 class="h3 my-3 font-weight-normal">{% trans %}Login.PleaseSignIn{% endtrans %}</h1>
+        <label for="inputEmail" class="sr-only">{% trans %}Login.EmailAddress{% endtrans %}</label>
+        <input type="email" name="email" id="inputEmail" class="form-control my-3" placeholder="{% trans %}Login.EmailAddress{% endtrans %}" required
                autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <label for="inputPassword" class="sr-only">{% trans %}Login.Password{% endtrans %}</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="{% trans %}Login.Password{% endtrans %}" required>
         {% if error %}
             <div class="alert alert-danger">
                 {{ error.messageKey|trans(error.messageData, 'security') }}
@@ -22,10 +22,11 @@
         {% endif %}
         <div class="checkbox mb-3">
             <label>
-                <input type="checkbox" id="remember_me" name="_remember_me" checked> Remember me
+                <input type="checkbox" id="remember_me" name="_remember_me" checked>
+                {% trans %}Login.RememberMe{% endtrans %}
             </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans %}Login.SignIn{% endtrans %}</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
     </form>

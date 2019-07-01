@@ -1,19 +1,15 @@
-import 'bootstrap';
-
-var loadingContent;
-
-loadingContent = $('.modal-dialog').html();
+var loadingContent = $('#loadingModalDialog').html();
 
 $(".deleteButton").click(function (e) {
   e.preventDefault();
   var id = $(this).attr('id');
   var url = '/admin/staff/delete/' + id;
 
-  $('.modal-content').replaceWith(loadingContent);
+  $('#loadModalContent').replaceWith(loadingContent);
 
   $.get(url, function (content) {
     content = $.parseHTML(content);
-    $('.modal-content').replaceWith(content);
+    $('#loadModalContent').replaceWith(content);
   })
     .fail(function () {
       console.error('Ajax request for user id ' + id + ' error')
@@ -22,4 +18,3 @@ $(".deleteButton").click(function (e) {
       console.log('Ajax request for user id ' + id + ' success');
     });
 });
-

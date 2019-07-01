@@ -14,14 +14,18 @@ class CreateUserForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('user',
-            UserDTOForm::class,
-            [
-                'property_path' => 'userDTO',
-            ]
-        )
+        $builder
+            ->add('_',
+                UserDTOForm::class,
+                [
+                    'property_path' => 'userDTO',
+                ]
+            )
             ->add('edit',
-                SubmitType::class);
+                SubmitType::class,
+                [
+                    'label_format' => 'UserForm.CreateButton',
+                ]);
 
     }
 

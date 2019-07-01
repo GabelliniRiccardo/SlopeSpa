@@ -19,3 +19,5 @@
 .idea
 /public/build
 /node_modules
+
+/translations/*.xlf

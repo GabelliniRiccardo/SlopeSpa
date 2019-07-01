@@ -14,7 +14,10 @@ class DeleteSPAForm extends AbstractType
     {
         $builder
             ->setMethod('DELETE')
-            ->add('Delete', SubmitType::class);
+            ->add('Delete', SubmitType::class,
+                [
+                    'label_format' => 'SpaForm.DeleteButton',
+                ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

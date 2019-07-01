@@ -1,0 +1,10 @@
+DTO:
+  SPADTO:
+    NumbersOnly: Insert numbers only
+  UserDTO:
+    Name:
+      LettersOnly: Name can not contain numbers
+    LastName:
+      LettersOnly: Last name can not contain numbers
+    Password:
+      PasswordFieldMustMatch: The password fields must match

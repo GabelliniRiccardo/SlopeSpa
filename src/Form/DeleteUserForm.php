@@ -14,8 +14,10 @@ class DeleteUserForm extends AbstractType
     {
         $builder
             ->setMethod('DELETE')
-            ->add('Delete', SubmitType::class);
-        ;
+            ->add('Delete', SubmitType::class,
+                [
+                    'label_format' => 'UserForm.DeleteButton',
+                ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver)

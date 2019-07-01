@@ -7,10 +7,10 @@
         <div class="card-header py-3">
             <div class="row">
                 <div class="col col-lg-2">
-                    <h6 class="m-0 font-weight-bold text-primary">Create SPA</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">{% trans %}SPAList.List{% endtrans %}</h6>
                 </div>
                 <div class="col count">
-                    Total number of elements: {{ pagination.getTotalItemCount }}
+                    {% trans %}SPAList.TotalNumOfElements{% endtrans %}: {{ pagination.getTotalItemCount }}
                 </div>
             </div>
         </div>
@@ -20,12 +20,12 @@
                     <table class="table table-responsive-lg">
                         <tr>
                             {# sorting of properties based on query components #}
-                            <th>{{ knp_pagination_sortable(pagination, 'Id', 's.id') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Name', 's.name') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Email', 's.email') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Address', 's.address') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'Phone Number', 's.phoneNumber') }}</th>
-                            <th>Manage</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'SPAList.Id'|trans, 's.id') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'SPAList.Name'|trans, 's.name') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'SPAList.Email'|trans, 's.email') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'SPAList.Address'|trans, 's.address') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'SPAList.PhoneNumber'|trans, 's.phoneNumber') }}</th>
+                            <th>{% trans %}SPAList.Manage{% endtrans %}</th>
                         </tr>
 
                         {# table body #}
@@ -53,28 +53,28 @@
                                                     id="{{ spa.id }}"
                                                     data-toggle="modal"
                                                     data-target="#exampleModal"
-                                                    title="Delete {{ spa.name }}">
+                                                    title="{% trans %}SPAList.Delete{% endtrans %} {{ spa.name }}">
                                                 <i class="fa fa-trash-alt" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                         <div class="col-lg-3 mb-md-1 mb-0 text-center">
                                             <a href="{{ path('admin_edit_SPA', {'spa' : spa.id}) }}"
                                                class="btn btn-warning"
-                                               title="Edit {{ spa.name }}">
+                                               title="{% trans %}SPAList.Edit{% endtrans %} {{ spa.name }}">
                                                 <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                                             </a>
                                         </div>
                                         <div class="col-lg-3 mb-md-1 mb-0 text-center">
                                             <a href="{{ path('admin_add_staff', {'spa' : spa.id}) }}"
                                                class="btn btn-primary"
-                                               title="Add staff to {{ spa.name }}">
+                                               title="{% trans %}SPAList.AddStaffTo{% endtrans %} {{ spa.name }}">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </a>
                                         </div>
                                         <div class="col-lg-3 mb-md-1 mb-0 text-center">
                                             <a href="{{ path('admin_spa_info', {'spa' : spa.id}) }}"
                                                class="btn btn-success"
-                                               title="watch {{ spa.name }}">
+                                               title="{% trans %}SPAList.WatchStaff{% endtrans %} {{ spa.name }}">
                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                             </a>
                                         </div>

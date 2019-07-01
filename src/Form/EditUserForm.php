@@ -16,14 +16,17 @@ class EditUserForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('user',
+            ->add('_',
                 UserDTOForm::class,
                 [
                     'property_path' => 'userDTO',
                 ]
             )
             ->add('edit',
-                SubmitType::class);
+                SubmitType::class,
+                [
+                    'label_format' => 'UserForm.EditButton',
+                ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

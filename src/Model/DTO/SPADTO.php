@@ -18,8 +18,6 @@ class SPADTO
      * @Assert\Length(
      *      min = 3,
      *      max = 20,
-     *      minMessage = "The SPA's name must be at least {{ limit }} characters long",
-     *      maxMessage = "The SPA's name cannot be longer than {{ limit }} characters"
      * )
      */
     public $name;
@@ -35,8 +33,6 @@ class SPADTO
      * @Assert\Length(
      *      min = 5,
      *      max = 50,
-     *      minMessage = "The SPA's address must be at least {{ limit }} characters long",
-     *      maxMessage = "The SPA's address cannot be longer than {{ limit }} characters"
      * )
      * @var string
      */
@@ -44,7 +40,7 @@ class SPADTO
 
     /**
      * @Assert\Length(min = 8, max = 20, )
-     * @Assert\Regex(pattern="/^[0-9]*$/", message="please insert number_only")
+     * @Assert\Regex(pattern="/^[0-9]*$/", message="DTO.SPADTO.NumbersOnly")
      * @var string
      */
     public $phoneNumber;

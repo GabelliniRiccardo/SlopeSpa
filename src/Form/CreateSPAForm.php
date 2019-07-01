@@ -3,7 +3,6 @@
 namespace App\Form;
 
 
-
 use App\Command\Admin\CreateSPA;
 use App\Form\DTO\SPADTOForm;
 use Symfony\Component\Form\AbstractType;
@@ -16,14 +15,17 @@ class CreateSPAForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('SPA',
+            ->add('_',
                 SPADTOForm::class,
                 [
                     'property_path' => 'spaDTO',
                 ]
             )
             ->add('create',
-                SubmitType::class);
+                SubmitType::class,
+                [
+                    'label_format' => 'SpaForm.CreateButton',
+                ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

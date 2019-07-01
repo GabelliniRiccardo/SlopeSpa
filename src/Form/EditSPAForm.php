@@ -14,14 +14,17 @@ class EditSPAForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('SPA',
+            ->add('_',
                 SPADTOForm::class,
                 [
                     'property_path' => 'spaDTO',
                 ]
             )
             ->add('edit',
-                SubmitType::class);
+                SubmitType::class,
+                [
+                    'label_format' => 'SpaForm.EditButton',
+                ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

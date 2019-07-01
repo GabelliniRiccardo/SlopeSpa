@@ -1,0 +1,103 @@
+# ADMIN DASHBOARD page
+
+Menu:
+  AppName: Nome APP
+  Dashboard: Dashboard
+  AddSPA: Aggiungi SPA
+  SPAList: Lista SPA
+  Logout: Esci
+  Back to Home: Torna alla Home
+
+LogoutModal:
+  Title: Conferma Uscita
+  Logout: Esci
+  Sure: Sei sicuro di voler uscire?
+  Cancel: Annulla
+
+DeleteUserModal:
+  Title: Conferma Cancellazione
+  SureToDelete: Sei sicuro di voler cancellare
+  Cancel: Annulla
+
+SPAList:
+  List: Lista delle SPA
+  TotalNumOfElements: Numero totale di elementi
+  Id: Id
+  Name: Nome
+  Email: Email
+  Address: Indirizzo
+  PhoneNumber: Telefono
+  Manage: Gestisci
+  Delete: Cancella
+  Edit: Modifica
+  AddStaffTo: Aggiungi Staff a
+  WatchStaff: Visualizza Staff
+
+UserList:
+  ListUsersForSPA: Lista degli utenti per la SPA
+  TotalNumOfElements: Numero totale di elementi
+  Id: Id
+  Name: Nome
+  LastName: Cognome
+  Email: Email
+  Address: Indirizzo
+  Manage: Gestisci
+  Delete: Cancella
+  Edit: Modifica
+
+SpaForm:
+  AddSpa: Crea nuova SPA
+  EditSpa: Modifica SPA
+  Name:
+    Value: Nome
+    Placeholder: Nome della SPA
+  Email:
+    Value: Email
+    Placeholder: esempio@esempio.com
+  Address:
+    Value: Indirizzo
+    Placeholder: Via esempio N°10
+  PhoneNumber:
+    Value: Numero di Telefono
+    Placeholder: es 3333333333
+  CreateButton: Crea
+  EditButton: Modifica
+  DeleteButton: Elimina
+
+UserForm:
+  AddUser: Aggiungi Staff
+  EditUser: Modifica Staff
+  Name:
+    Value: Nome
+    Placeholder: Nome dell'utente
+  LastName:
+    Value: Cognome
+    Placeholder: Cognome dell'utente
+  Email:
+    Value: Email
+    Placeholder: esempio@esempio.com
+  Password: Password
+  RepeatPassword: Ripeti Password
+  CreateButton: Crea
+  EditButton: Modifica
+  DeleteButton: Elimina
+
+# TOP BAR page for Home page and login page
+
+TopBar:
+  AppName: Nome APP
+  YourSPA: La tua SPA
+  LoggedAs: Entrato come
+  AdminDashboard: Dashboard Admin
+  Login: Entra
+  Home: Home
+  Logout: Esci
+
+# LOGIN page
+
+Login:
+  PleaseSignIn: Esegui l'accesso
+  EmailAddress: Indirizzo email
+  Password: Password
+  RememberMe: Ricorda credenziali
+  SignIn: Entra
