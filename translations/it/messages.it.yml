@@ -1,12 +1,24 @@
-# ADMIN DASHBOARD page
+# SIDEBAR
 
 Menu:
   AppName: Nome APP
   Dashboard: Dashboard
   AddSPA: Aggiungi SPA
   SPAList: Lista SPA
+  Agenda: Agenda
+  Clients: Clienti
+  Vouchers: Vouchers
+  Configure:
+    YouCanConfigure: Puoi configurare
+    Configure: Configura
+    Treatments: Trattamenti
+    Operators: Operatori
+    Rooms: Cabine
+    Account: Account
   Logout: Esci
   Back to Home: Torna alla Home
+
+# ADMIN DASHBOARD page
 
 LogoutModal:
   Title: Conferma Uscita
@@ -101,3 +113,12 @@ Login:
   Password: Password
   RememberMe: Ricorda credenziali
   SignIn: Entra
+
+# STAFF index page
+
+AddOperator: Aggiungi Operatore
+AddRoom: Aggiungi Cabina
+AddTreatment: Aggiungi Trattamento
+OperatorList: Lista Operatori
+RoomList: Lista Camere
+TreatmentList: Lista Trattamenti

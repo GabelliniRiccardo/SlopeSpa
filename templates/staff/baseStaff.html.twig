@@ -1,15 +1,14 @@
 {% extends 'baseAdminAndStaff.html.twig' %}
 
-{% block title %}Admin{% endblock %}
-
+{% block title %}Staff{% endblock %}
 
 {% block sidebar %}
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center"
-           href="{{ path('admin_dashboard') }}">
+           href="#">
             <div class="mx-3">{% trans %}Menu.AppName{% endtrans %}</div>
         </a>
 
@@ -18,7 +17,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_dashboard') }}">
+            <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>{% trans %}Menu.Dashboard{% endtrans %}</span></a>
         </li>
@@ -26,23 +25,43 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Interface
-        </div>
-
         <!-- Nav Item - SPA list -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_create_SPA') }}">
-                <i class="fas fa-fw fa-plus"></i>
-                <span>{% trans %}Menu.AddSPA{% endtrans %}</span></a>
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-calendar-alt"></i>
+                <span>{% trans %}Menu.Agenda{% endtrans %}</span></a>
         </li>
 
         <!-- Nav Item - SPA list -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_SPA_list') }}">
-                <i class="fas fa-fw fa-list"></i>
-                <span>{% trans %}Menu.SPAList{% endtrans %}</span></a>
+            <a class="nav-link" href="#">
+                <i class="fas fa-users fa-fw "></i>
+                <span>{% trans %}Menu.Clients{% endtrans %}</span></a>
+        </li>
+
+        <!-- Nav Item - Logout -->
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-gifts"></i>
+                <span>{% trans %}Menu.Vouchers{% endtrans %}</span></a>
+        </li>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>{% trans %}Menu.Configure.Configure{% endtrans %}</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">{% trans %}Menu.Configure.YouCanConfigure{% endtrans %}:</h6>
+                    <a class="collapse-item" href="#">{% trans %}Menu.Configure.Treatments{% endtrans %}</a>
+                    <a class="collapse-item" href="#">{% trans %}Menu.Configure.Operators{% endtrans %}</a>
+                    <a class="collapse-item" href="#">{% trans %}Menu.Configure.Rooms{% endtrans %}</a>
+                    <a class="collapse-item" href="#">{% trans %}Menu.Configure.Account{% endtrans %}</a>
+                </div>
+            </div>
         </li>
 
         <!-- Nav Item - Logout -->
@@ -59,15 +78,17 @@
                 <span>{% trans %}Menu.Back to Home{% endtrans %}</span></a>
         </li>
 
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
-
     </ul>
+
     <!-- End of Sidebar -->
 {% endblock %}
-
 
 {% block topBar %}
     <!-- Topbar -->
@@ -104,16 +125,10 @@
     <!-- End of Topbar -->
 {% endblock %}
 
-
 {% block main %}
 {% endblock %}
-
 
 {% block customJavascripts %}
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('build/js/sb-admin-2.js') }}"></script>
 {% endblock %}
-
-
-
-

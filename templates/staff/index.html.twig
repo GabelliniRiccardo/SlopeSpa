@@ -1,38 +1,117 @@
-{#{% extends 'base.html.twig' %}#}
+{% extends 'staff/baseStaff.html.twig' %}
 
-{#{% block title %}Hello StaffController!{% endblock %}#}
+{% block main %}
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-xl-4 mb-4">
+            <a href="#">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-success text-uppercase mb-1">{% trans %}AddOperator{% endtrans %}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-plus fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
 
-{#{% block menu %}#}
-{#{% endblock %}#}
+        <div class="col-md-8 col-xl-4 mb-4">
+            <a href="#">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">{% trans %}OperatorList{% endtrans %}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-list fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 
-{#{% block main %}#}
-{#    <style>#}
-{#        .example-wrapper {#}
-{#            margin: 1em auto;#}
-{#            max-width: 800px;#}
-{#            width: 95%;#}
-{#            font: 18px/1.5 sans-serif;#}
-{#        }#}
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-xl-4 mb-4">
+            <a href="#">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-success text-uppercase mb-1">{% trans %}AddRoom{% endtrans %}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-plus fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
 
-{#        .example-wrapper code {#}
-{#            background: #F5F5F5;#}
-{#            padding: 2px 6px;#}
-{#        }#}
-{#    </style>#}
+        <div class="col-md-8 col-xl-4 mb-4">
+            <a href="#">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">{% trans %}RoomList{% endtrans %}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-list fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 
-{#    <div class="example-wrapper">#}
-{#        <h1>Hello {{ controller_name }}! ✅</h1>#}
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-xl-4 mb-4">
+            <a href="#">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-success text-uppercase mb-1">{% trans %}AddTreatment{% endtrans %}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-plus fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
 
-{#        This friendly message is coming from:#}
-{#        <ul>#}
-{#            <li>Your controller at <code><a href="{{ '/var/www/src/Controller/StaffController.php'|file_link(0) }}">src/Controller/StaffController.php</a></code>#}
-{#            </li>#}
-{#            <li>Your template at <code><a href="{{ '/var/www/templates/staff/index.html.twig'|file_link(0) }}">templates/staff/index.html.twig</a></code>#}
-{#            </li>#}
-{#        </ul>#}
-{#    </div>#}
-{#{% endblock %}#}
-
-{#{% block footer %}#}
-{#{% endblock %}#}
-staff
+        <div class="col-md-8 col-xl-4 mb-4">
+            <a href="#">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">{% trans %}TreatmentList{% endtrans %}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-list fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+{% endblock %}
