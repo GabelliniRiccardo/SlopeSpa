@@ -138,6 +138,7 @@ OperatorForm:
     Placeholder: ex 3333333333
   CreateButton: Create
   EditButton: Edit
+  DeleteButton: Delete
 
 # OPERATOR LIST page
 

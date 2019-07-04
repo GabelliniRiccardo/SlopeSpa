@@ -69,6 +69,11 @@ services:
       tags:
         - { name: command_handler, handles: App\Command\Staff\Operator\EditOperator}
 
+    delete_operator_command_handler:
+      class: App\CommandHandler\Staff\Operator\DeleteOperatorCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Operator\DeleteOperator}
+
     # Treatment Command Handler pattern
 
     create_treatment_command_handler:

@@ -42,7 +42,7 @@ class OperatorsFixtures extends Fixture implements DependentFixtureInterface
             ],
             [
                 'spa_id' => 1,
-                'first_name' => 'Operator 1 name',
+                'first_name' => 'Operator 3 name',
                 'last_name' => 'Operator 3 last name',
                 'phone_number' => '3333333333'
             ]

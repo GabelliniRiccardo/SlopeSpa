@@ -36,12 +36,8 @@
                         {# table body #}
                         {% for operator in pagination %}
                             <tr>
-                                <td>
-                                    {{ operator.id }}
-                                </td>
-                                <td>
-                                    {{ operator.firstName }}
-                                </td>
+                                <td>{{ operator.id }}</td>
+                                <td>{{ operator.firstName }}</td>
                                 <td>{{ operator.lastName }}</td>
                                 <td>{{ operator.phoneNumber }}</td>
                                 <td>
@@ -85,8 +81,7 @@
     </div>
 {% endblock %}
 
-{#@TODO remove operator#}
-{#{% block customJavascripts %}#}
-{#    {{ parent() }}#}
-{#    <script src="{{ asset('build/js/delete-SPA.js') }}"></script>#}
-{#{% endblock %}#}
+{% block customJavascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/js/delete-Operator.js') }}"></script>
+{% endblock %}

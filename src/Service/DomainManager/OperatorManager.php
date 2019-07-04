@@ -80,4 +80,14 @@ class OperatorManager
         return $operator;
     }
 
+    /**
+     * @param Operator $operator
+     * @return void
+     */
+    public function delete(Operator $operator): void
+    {
+        $this->entityManager->remove($operator);
+        $this->entityManager->flush();
+    }
+
 }

@@ -41,6 +41,10 @@ Encore
     './assets/js/delete-User.js'
   ])
 
+  .addEntry('js/delete-Operator', [
+    './assets/js/delete-Operator.js'
+  ])
+
   .addStyleEntry('css/sb-admin-2', [
     './node_modules/startbootstrap-sb-admin-2/css/sb-admin-2.css',
     './node_modules/@fortawesome/fontawesome-free/css/all.css',

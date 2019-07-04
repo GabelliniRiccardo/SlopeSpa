@@ -3,10 +3,12 @@
 namespace App\Controller\Staff;
 
 use App\Command\Staff\Operator\CreateOperator;
+use App\Command\Staff\Operator\DeleteOperator;
 use App\Command\Staff\Operator\EditOperator;
 use App\Entity\Operator;
 use App\Entity\SPA;
 use App\Form\CreateOperatorForm;
+use App\Form\DeleteOperatorForm;
 use App\Form\EditOperatorForm;
 use Doctrine\ORM\EntityManagerInterface;
 use SimpleBus\SymfonyBridge\Bus\CommandBus;
@@ -58,7 +60,7 @@ class OperatorController extends AbstractController
         $treatmentList = $spa->getTreatments();
 
         $createOperator = new CreateOperator($spa);
-        $form = $this->createForm(CreateOperatorForm::class, $createOperator, array('treatments' => $treatmentList ));
+        $form = $this->createForm(CreateOperatorForm::class, $createOperator, array('treatments' => $treatmentList));
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($createOperator);
@@ -78,7 +80,7 @@ class OperatorController extends AbstractController
         $editOperator = new EditOperator($operator);
         $treatmentList = $operator->getSpa()->getTreatments();
 
-        $form = $this->createForm(EditOperatorForm::class, $editOperator, array('treatments' => $treatmentList ));
+        $form = $this->createForm(EditOperatorForm::class, $editOperator, array('treatments' => $treatmentList));
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($editOperator);
@@ -86,6 +88,29 @@ class OperatorController extends AbstractController
         }
         return $this->render('staff/operator/editOperator.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/delete/{operator}", name="staff_delete_operator", methods={"GET","DELETE"})
+     */
+    public function deleteSPA(Operator $operator, Request $request)
+    {
+        $deleteOperatorForm = $this->createForm(DeleteOperatorForm::class, $operator,
+            [
+                'action' => $this->generateUrl('staff_delete_operator', ['operator' => $operator->getId()])
+            ]);
+        $deleteOperatorForm->handleRequest($request);
+
+        if ($deleteOperatorForm->isSubmitted() && $deleteOperatorForm->isValid()) {
+            $deleteSPA = new DeleteOperator($operator);
+            $this->commandBus->handle($deleteSPA);
+            return $this->redirectToRoute('staff_dashboard');
+        }
+
+        return $this->render('modal/OperatorDeleteConfirmationModal.html.twig', [
+            'deleteOperatorForm' => $deleteOperatorForm->createView(),
+            'operator' => $operator
         ]);
     }
 }
