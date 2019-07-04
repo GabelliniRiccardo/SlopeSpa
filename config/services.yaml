@@ -26,6 +26,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # SPA Command Handler pattern
+
     create_spa_command_handler:
       class: App\CommandHandler\Admin\CreateSPACommandHandler
       tags:
@@ -38,6 +41,9 @@ services:
       class: App\CommandHandler\Admin\DeleteSPACommandHandler
       tags:
         - { name: command_handler, handles: App\Command\Admin\DeleteSPA}
+
+    # User Command Handler pattern
+
     create_user_command_handler:
       class: App\CommandHandler\Admin\CreateUserCommandHandler
       tags:
@@ -50,3 +56,17 @@ services:
       class: App\CommandHandler\Admin\DeleteUserCommandHandler
       tags:
         - { name: command_handler, handles: App\Command\Admin\DeleteUser}
+
+    # Operator Command Handler pattern
+
+    create_operator_command_handler:
+      class: App\CommandHandler\Staff\Operator\CreateOperatorCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Operator\CreateOperator}
+
+    # Treatment Command Handler pattern
+
+    create_treatment_command_handler:
+      class: App\CommandHandler\Staff\Treatment\CreateTreatmentCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Treatment\CreateTreatment}

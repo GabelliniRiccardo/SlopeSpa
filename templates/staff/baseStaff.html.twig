@@ -8,7 +8,7 @@
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center"
-           href="#">
+           href="{{ path('staff_dashboard') }}">
             <div class="mx-3">{% trans %}Menu.AppName{% endtrans %}</div>
         </a>
 
@@ -17,7 +17,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ path('staff_dashboard') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>{% trans %}Menu.Dashboard{% endtrans %}</span></a>
         </li>
@@ -29,7 +29,8 @@
         <li class="nav-item">
             <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-calendar-alt"></i>
-                <span>{% trans %}Menu.Agenda{% endtrans %}</span></a>
+                <span>{% trans %}Menu.Agenda{% endtrans %}</span>
+            </a>
         </li>
 
         <!-- Nav Item - SPA list -->
@@ -56,8 +57,8 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">{% trans %}Menu.Configure.YouCanConfigure{% endtrans %}:</h6>
-                    <a class="collapse-item" href="#">{% trans %}Menu.Configure.Treatments{% endtrans %}</a>
-                    <a class="collapse-item" href="#">{% trans %}Menu.Configure.Operators{% endtrans %}</a>
+                    <a class="collapse-item" href="{{ path('staff_treatment_list') }}">{% trans %}Menu.Configure.Treatments{% endtrans %}</a>
+                    <a class="collapse-item" href="{{ path('staff_operator_list') }}">{% trans %}Menu.Configure.Operators{% endtrans %}</a>
                     <a class="collapse-item" href="#">{% trans %}Menu.Configure.Rooms{% endtrans %}</a>
                     <a class="collapse-item" href="#">{% trans %}Menu.Configure.Account{% endtrans %}</a>
                 </div>
@@ -99,8 +100,14 @@
             <i class="fa fa-bars"></i>
         </button>
 
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center disabled">
+            <div class="mx-3">{{ app.user.spa.name }}</div>
+        </a>
+
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
+
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
@@ -128,7 +135,3 @@
 {% block main %}
 {% endblock %}
 
-{% block customJavascripts %}
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('build/js/sb-admin-2.js') }}"></script>
-{% endblock %}

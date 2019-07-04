@@ -67,7 +67,7 @@ class Reservation
      * @ORM\Column(type="float")
      * @var float
      */
-    private $VAT;
+    private $vat;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\SPA", inversedBy="reservations")
@@ -76,7 +76,16 @@ class Reservation
      */
     private $spa;
 
-    public function __construct($start_time, $end_time, $duration, $price, $treatment, $room, $customer, $VAT, $spa)
+    public function __construct(
+        \DateTimeImmutable $start_time,
+        \DateTimeImmutable $end_time,
+        int $duration,
+        float $price,
+        Treatment $treatment,
+        Room $room,
+        Customer $customer,
+        float $vat,
+        SPA $spa)
     {
         $this->setStartTime($start_time);
         $this->setEndTime($end_time);
@@ -85,16 +94,16 @@ class Reservation
         $this->setTreatment($treatment);
         $this->setRoom($room);
         $this->setCustomer($customer);
-        $this->setVAT($VAT);
+        $this->setVat($vat);
         $this->setSpa($spa);
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getStartTime(): ?\DateTimeImmutable
+    public function getStartTime(): \DateTimeImmutable
     {
         return $this->start_time;
     }
@@ -106,7 +115,7 @@ class Reservation
         return $this;
     }
 
-    public function getEndTime(): ?\DateTimeImmutable
+    public function getEndTime(): \DateTimeImmutable
     {
         return $this->end_time;
     }
@@ -118,7 +127,7 @@ class Reservation
         return $this;
     }
 
-    public function getDuration(): ?int
+    public function getDuration(): int
     {
         return $this->duration;
     }
@@ -130,7 +139,7 @@ class Reservation
         return $this;
     }
 
-    public function getPrice(): ?float
+    public function getPrice(): float
     {
         return $this->price;
     }
@@ -142,60 +151,60 @@ class Reservation
         return $this;
     }
 
-    public function getTreatment(): ?Treatment
+    public function getTreatment(): Treatment
     {
         return $this->treatment;
     }
 
-    public function setTreatment(?Treatment $treatment): self
+    public function setTreatment(Treatment $treatment): self
     {
         $this->treatment = $treatment;
 
         return $this;
     }
 
-    public function getRoom(): ?Room
+    public function getRoom(): Room
     {
         return $this->room;
     }
 
-    public function setRoom(?Room $room): self
+    public function setRoom(Room $room): self
     {
         $this->room = $room;
 
         return $this;
     }
 
-    public function getCustomer(): ?Customer
+    public function getCustomer(): Customer
     {
         return $this->customer;
     }
 
-    public function setCustomer(?Customer $customer): self
+    public function setCustomer(Customer $customer): self
     {
         $this->customer = $customer;
 
         return $this;
     }
 
-    public function getVAT(): ?float
+    public function getVat(): float
     {
-        return $this->VAT;
+        return $this->vat;
     }
 
-    public function setVAT(float $VAT): self
+    public function setVat(float $vat): self
     {
-        $this->VAT = $VAT;
+        $this->vat = $vat;
 
         return $this;
     }
 
-    public function getSpa(): ?SPA
+    public function getSpa(): SPA
     {
         return $this->spa;
     }
 
-    public function setSpa(?SPA $spa): self
+    public function setSpa(SPA $spa): self
     {
         $this->spa = $spa;
 

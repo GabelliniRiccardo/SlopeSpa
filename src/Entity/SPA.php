@@ -98,7 +98,7 @@ class SPA
      */
     private $reservations;
 
-    public function __construct($name, $email)
+    public function __construct(string $name, string $email)
     {
         $this->setName($name);
         $this->setEmail($email);
@@ -110,12 +110,12 @@ class SPA
         $this->reservations = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -213,12 +213,12 @@ class SPA
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function setEmail(?string $email): self
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 

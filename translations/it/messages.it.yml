@@ -122,3 +122,18 @@ AddTreatment: Aggiungi Trattamento
 OperatorList: Lista Operatori
 RoomList: Lista Camere
 TreatmentList: Lista Trattamenti
+
+# STAFF OPERATOR CREATE page
+
+OperatorForm:
+  AddOperator: Aggiungi Operatore
+  Name:
+    Value: Nome
+    Placeholder: Nome dell'operatore
+  LastName:
+    Value: Cognome
+    Placeholder: Cognome dell'operatore
+  PhoneNumber:
+    Value: Numero di telefono
+    Placeholder: ex 3333333333
+  CreateButton: Crea

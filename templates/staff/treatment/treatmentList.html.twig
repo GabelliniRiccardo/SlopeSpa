@@ -1,0 +1,90 @@
+{% extends 'staff/baseStaff.html.twig' %}
+
+{% block main %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-xl-4">
+                    <h6 class="m-0 font-weight-bold text-primary">{% trans %}TreatmentList.ListOfTreatments{% endtrans %}</h6>
+                </div>
+                <div class="col-xl-4 count">
+                    {% trans %}TreatmentList.TotalNumOfElements{% endtrans %}: {{ pagination.getTotalItemCount }}
+                </div>
+                <div class="col-xl-4 text-xl-right">
+                    <a href="{{ path('staff_create_treatment') }}" class="text-decoration-none">
+                        <h6 class="m-0 font-weight-bold text-primary">{% trans %}TreatmentList.AddTreatment{% endtrans %}
+                            <i class="fas fa-plus-circle"></i>
+                        </h6>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <table class="table table-responsive-lg">
+                        <tr>
+                            {# sorting of properties based on query components #}
+                            <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.Id'|trans, 't.id') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.Name'|trans, 't.name') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.Price'|trans, 't.money') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.Duration'|trans, 't.duration') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.VAT'|trans, 't.vat') }}</th>
+                            <th class="text-center">{% trans %}OperatorList.Manage{% endtrans %}</th>
+                        </tr>
+
+                        {# table body #}
+                        {% for treatment in pagination %}
+                            <tr>
+                                <td>{{ treatment.id }}</td>
+                                <td>{{ treatment.name }}</td>
+                                <td>{{ treatment.money.value }}</td>
+                                <td>{{ treatment.duration }}</td>
+                                <td>{{ treatment.duration }}</td>
+                                <td>
+                                    <div class="row btn-toolbar justify-content-center">
+                                        <div class="col-2 btn-group mr-3">
+                                            <!-- Button trigger modal -->
+                                            <button type="button"
+                                                    class="btn btn-danger deleteButton"
+                                                    id="{{ treatment.id }}"
+                                                    data-toggle="modal"
+                                                    data-target="#exampleModal"
+                                                    title="{% trans %}OperatorList.Delete{% endtrans %} {{ treatment.name }}">
+                                                <i class="fa fa-trash-alt" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-2 btn-group ml-3">
+                                            <a href="#"
+                                               class="btn btn-warning"
+                                               title="{% trans %}OperatorList.Edit{% endtrans %} {{ treatment.name }}">
+                                                <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        <!-- Modal -->
+                        {% include 'modal/LoadingModal.html.twig' %}
+
+                    </table>
+                    {# display navigation #}
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination, null, {}, {
+                            'align': 'center',
+                        }) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{#@TODO remove treatment#}
+{#{% block customJavascripts %}#}
+{#    {{ parent() }}#}
+{#    <script src="{{ asset('build/js/delete-SPA.js') }}"></script>#}
+{#{% endblock %}#}

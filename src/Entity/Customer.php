@@ -63,7 +63,7 @@ class Customer
      */
     private $spa;
 
-    public function __construct($first_name, $last_name, $spa)
+    public function __construct(string $first_name, string $last_name, SPA $spa)
     {
         $this->setFirstName($first_name);
         $this->setLastName($last_name);
@@ -71,12 +71,12 @@ class Customer
         $this->reservations = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getFirstName(): ?string
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
@@ -88,7 +88,7 @@ class Customer
         return $this;
     }
 
-    public function getLastName(): ?string
+    public function getLastName(): string
     {
         return $this->lastName;
     }
@@ -167,12 +167,12 @@ class Customer
         return $this;
     }
 
-    public function getSpa(): ?SPA
+    public function getSpa(): SPA
     {
         return $this->spa;
     }
 
-    public function setSpa(?SPA $spa): self
+    public function setSpa(SPA $spa): self
     {
         $this->spa = $spa;
 

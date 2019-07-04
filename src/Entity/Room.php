@@ -45,7 +45,7 @@ class Room
      */
     private $spa;
 
-    public function __construct($name, $spa)
+    public function __construct(string $name, SPA $spa)
     {
         $this->setName($name);
         $this->setSpa($spa);
@@ -53,12 +53,12 @@ class Room
         $this->reservations = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -127,12 +127,12 @@ class Room
         return $this;
     }
 
-    public function getSpa(): ?SPA
+    public function getSpa(): SPA
     {
         return $this->spa;
     }
 
-    public function setSpa(?SPA $spa): self
+    public function setSpa(SPA $spa): self
     {
         $this->spa = $spa;
 

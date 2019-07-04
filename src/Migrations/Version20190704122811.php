@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190629194846 extends AbstractMigration
+final class Version20190704122811 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -35,7 +35,7 @@ final class Version20190629194846 extends AbstractMigration
         $this->addSql('CREATE TABLE room_treatment (room_id INT NOT NULL, treatment_id INT NOT NULL, PRIMARY KEY(room_id, treatment_id))');
         $this->addSql('CREATE INDEX IDX_4A8DC5854177093 ON room_treatment (room_id)');
         $this->addSql('CREATE INDEX IDX_4A8DC58471C0366 ON room_treatment (treatment_id)');
-        $this->addSql('CREATE TABLE treatments (id INT NOT NULL, spa_id INT NOT NULL, name VARCHAR(255) NOT NULL, price DOUBLE PRECISION NOT NULL, duration INT NOT NULL, vat DOUBLE PRECISION NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE treatments (id INT NOT NULL, spa_id INT NOT NULL, name VARCHAR(255) NOT NULL, price float NOT NULL, duration INT NOT NULL, vat DOUBLE PRECISION NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_4A48CE0DDF3CB247 ON treatments (spa_id)');
         $this->addSql('CREATE TABLE treatment_operator (treatment_id INT NOT NULL, operator_id INT NOT NULL, PRIMARY KEY(treatment_id, operator_id))');
         $this->addSql('CREATE INDEX IDX_450CEFD8471C0366 ON treatment_operator (treatment_id)');

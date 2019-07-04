@@ -84,7 +84,7 @@ class User implements UserInterface
      */
     private $spa;
 
-    public function __construct($name, $last_name, $email, $password, $roles)
+    public function __construct(string $name, string $last_name, string $email, string $password, array $roles)
     {
         $this->setName($name);
         $this->setLastName($last_name);
@@ -93,12 +93,12 @@ class User implements UserInterface
         $this->setRoles($roles);
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -169,7 +169,7 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -181,7 +181,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getLastName(): ?string
+    public function getLastName(): string
     {
         return $this->lastName;
     }

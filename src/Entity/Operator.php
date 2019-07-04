@@ -46,12 +46,12 @@ class Operator
     private $spa;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Treatment", mappedBy="operator")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Treatment", mappedBy="operators")
      * @var Collection|Treatment[]
      */
     private $treatments;
 
-    public function __construct($first_name, $last_name, $spa )
+    public function __construct(string $first_name, string $last_name, SPA $spa )
     {
         $this->setFirstName($first_name);
         $this->setLastName($last_name);
@@ -59,12 +59,12 @@ class Operator
         $this->treatments = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getFirstName(): ?string
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
@@ -76,7 +76,7 @@ class Operator
         return $this;
     }
 
-    public function getLastName(): ?string
+    public function getLastName(): string
     {
         return $this->lastName;
     }
@@ -88,12 +88,12 @@ class Operator
         return $this;
     }
 
-    public function getSpa(): ?SPA
+    public function getSpa(): SPA
     {
         return $this->spa;
     }
 
-    public function setSpa(?SPA $spa): self
+    public function setSpa(SPA $spa): self
     {
         $this->spa = $spa;
 

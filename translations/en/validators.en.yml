@@ -8,3 +8,5 @@ DTO:
       LettersOnly: Last name can not contain numbers
     Password:
       PasswordFieldMustMatch: The password fields must match
+  OperatorDTO:
+    NumbersOnly: Insert numbers only

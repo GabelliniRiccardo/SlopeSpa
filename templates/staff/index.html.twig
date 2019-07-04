@@ -3,7 +3,7 @@
 {% block main %}
     <div class="row justify-content-center">
         <div class="col-md-8 col-xl-4 mb-4">
-            <a href="#">
+            <a href="{{ path('staff_create_operator') }}">
                 <div class="card border-left-success shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -21,12 +21,12 @@
         </div>
 
         <div class="col-md-8 col-xl-4 mb-4">
-            <a href="#">
+            <a href="{{ path('staff_operator_list') }}">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">{% trans %}OperatorList{% endtrans %}
+                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">{% trans %}Operators{% endtrans %}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -64,7 +64,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">{% trans %}RoomList{% endtrans %}
+                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">{% trans %}Rooms{% endtrans %}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -79,7 +79,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8 col-xl-4 mb-4">
-            <a href="#">
+            <a href="{{ path ('staff_create_treatment')}}">
                 <div class="card border-left-success shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -97,12 +97,12 @@
         </div>
 
         <div class="col-md-8 col-xl-4 mb-4">
-            <a href="#">
+            <a href="{{ path('staff_treatment_list') }}">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">{% trans %}TreatmentList{% endtrans %}
+                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">{% trans %}Treatments{% endtrans %}
                                 </div>
                             </div>
                             <div class="col-auto">

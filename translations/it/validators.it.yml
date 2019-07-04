@@ -8,3 +8,5 @@ DTO:
       LettersOnly: Il Cognome non può contenere valori numerici
     Password:
       PasswordFieldMustMatch: Le passwords non coincidono
+  OperatorDTO:
+    NumbersOnly: Inserire solo valori numerici

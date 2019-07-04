@@ -119,6 +119,69 @@ Login:
 AddOperator: Add Operator
 AddRoom: Add Room
 AddTreatment: Add Treatment
-OperatorList: Operator List
-RoomList: Room List
-TreatmentList: Treatment List
+Operators: Operator List
+Rooms: Room List
+Treatments: Treatment List
+
+# OPERATOR CREATE page
+
+OperatorForm:
+  AddOperator: Add Operator
+  Name:
+    Value: Name
+    Placeholder: Operator's name
+  LastName:
+    Value: Last Name
+    Placeholder: Operator's last name
+  PhoneNumber:
+    Value: Phone Number
+    Placeholder: ex 3333333333
+  CreateButton: Create
+
+# OPERATOR LIST page
+
+OperatorList:
+  AddOperator: Add Operator
+  ListOfOperators: List of operators
+  TotalNumOfElements: Total number of elements
+  Id: Id
+  Name: Name
+  LastName: Last Name
+  PhoneNumber: Phone Number
+  Manage: Manage
+  Delete: Delete
+  Edit: Edit
+
+# TREATMENT LIST page
+
+TreatmentList:
+  AddTreatment: Add Treatment
+  ListOfTreatments: List of treatments
+  TotalNumOfElements: Total number of elements
+  Id: Id
+  Name: Name
+  Price: Price
+  Duration: Duration
+  VAT: VAT
+  Manage: Manage
+  Delete: Delete
+  Edit: Edit
+
+# TREATMENT CREATE page
+
+TreatmentForm:
+  AddTreatment: Add Treatment
+  Name:
+    Value: Name
+    Placeholder: Treatment's name
+  Price:
+    Value: Price
+    Placeholder: Treatment's price
+  Duration:
+    Value: Duration
+    Hour: Hours
+    Minute: Minute
+  VAT:
+    Value: VAT
+    Placeholder: 22
+  CreateButton: Create

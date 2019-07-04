@@ -89,7 +89,9 @@
                     </table>
                     {# display navigation #}
                     <div class="navigation">
-                        {{ knp_pagination_render(pagination) }}
+                        {{ knp_pagination_render(pagination, null, {}, {
+                            'align': 'center',
+                        }) }}
                     </div>
                 </div>
             </div>

@@ -2,9 +2,14 @@
 
 namespace App\Entity;
 
+use App\Objects\Money;
+use App\Types\MoneyType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping as ORM;
+
+Type::addType('money_type', MoneyType::class);
 
 /**
  * @ORM\Table(name="treatments")
@@ -27,10 +32,10 @@ class Treatment
     private $name;
 
     /**
-     * @ORM\Column(type="float")
-     * @var float
+     * @ORM\Column(type="money_type", name="price")
+     * @var Money
      */
-    private $price;
+    private $money;
 
     /**
      * @ORM\Column(type="integer")
@@ -42,13 +47,13 @@ class Treatment
      * @ORM\Column(type="float")
      * @var float
      */
-    private $VAT;
+    private $vat;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Operator", inversedBy="treatments")
-     * @var Operator
+     * @var Collection|Operator[]
      */
-    private $operator;
+    private $operators;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Room", mappedBy="treatment")
@@ -58,6 +63,7 @@ class Treatment
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="treatment")
+     * @var Collection|Reservation[]
      */
     private $reservations;
 
@@ -68,54 +74,48 @@ class Treatment
      */
     private $spa;
 
-    public function __construct($name, $price, $duration, $VAT, $operator, $rooms, $spa)
+    public function __construct(string $name, Money $money, int $duration, float $vat, SPA $spa)
     {
         $this->setName($name);
-        $this->setPrice($price);
+        $this->setMoney($money);
         $this->setDuration($duration);
-        $this->setVAT($VAT);
+        $this->setVat($vat);
         $this->setSpa($spa);
-        $this->operator = new ArrayCollection();
+        $this->operators = new ArrayCollection();
         $this->rooms = new ArrayCollection();
         $this->reservations = new ArrayCollection();
-
-        foreach ($rooms as $room) {
-            $this->addRoom($room);
-        }
-
-        $this->addOperator($operator);
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getVAT(): ?float
+    public function getVat(): float
     {
-        return $this->VAT;
+        return $this->vat;
     }
 
-    public function setVAT(float $VAT): self
+    public function setVat(float $vat): self
     {
-        $this->VAT = $VAT;
+        $this->vat = $vat;
 
         return $this;
     }
 
-    public function getPrice(): ?float
+    public function getMoney(): ?Money
     {
-        return $this->price;
+        return $this->money;
     }
 
-    public function setPrice(float $price): self
+    public function setMoney(Money $money): self
     {
-        $this->price = $price;
+        $this->money = $money;
 
         return $this;
     }
 
-    public function getDuration(): ?int
+    public function getDuration(): int
     {
         return $this->duration;
     }
@@ -130,15 +130,15 @@ class Treatment
     /**
      * @return Collection|Operator[]
      */
-    public function getOperator(): Collection
+    public function getOperators(): Collection
     {
-        return $this->operator;
+        return $this->operators;
     }
 
     public function addOperator(Operator $operator): self
     {
-        if (!$this->operator->contains($operator)) {
-            $this->operator[] = $operator;
+        if (!$this->operators->contains($operator)) {
+            $this->operators[] = $operator;
         }
 
         return $this;
@@ -146,8 +146,8 @@ class Treatment
 
     public function removeOperator(Operator $operator): self
     {
-        if ($this->operator->contains($operator)) {
-            $this->operator->removeElement($operator);
+        if ($this->operators->contains($operator)) {
+            $this->operators->removeElement($operator);
         }
 
         return $this;
@@ -212,7 +212,7 @@ class Treatment
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -224,12 +224,12 @@ class Treatment
         return $this;
     }
 
-    public function getSpa(): ?SPA
+    public function getSpa(): SPA
     {
         return $this->spa;
     }
 
-    public function setSpa(?SPA $spa): self
+    public function setSpa(SPA $spa): self
     {
         $this->spa = $spa;
 

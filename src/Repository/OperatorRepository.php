@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Operator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -14,9 +15,23 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class OperatorRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    private $paginator;
+
+    public function __construct(RegistryInterface $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Operator::class);
+        $this->paginator = $paginator;
+    }
+
+    public function findAllPaginated($page, $spaID)
+    {
+        $dbQuery = $this->createQueryBuilder('o')
+            ->andWhere('o.spa = :spa_id')
+            ->setParameter('spa_id', $spaID)
+            ->getQuery();
+
+        $paginatedOperators = $this->paginator->paginate($dbQuery, $page, 5);
+        return $paginatedOperators;
     }
 
     // /**
