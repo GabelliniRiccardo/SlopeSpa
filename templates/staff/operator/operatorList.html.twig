@@ -58,7 +58,7 @@
                                             </button>
                                         </div>
                                         <div class="col-2 btn-group ml-3">
-                                            <a href="#"
+                                            <a href="{{ path('staff_edit_operator', {'operator' : operator.id}) }}"
                                                class="btn btn-warning"
                                                title="{% trans %}OperatorList.Edit{% endtrans %} {{ operator.firstName }}">
                                                 <i class="fa fa-pencil-alt" aria-hidden="true"></i>

@@ -64,6 +64,11 @@ services:
       tags:
         - { name: command_handler, handles: App\Command\Staff\Operator\CreateOperator}
 
+    edit_operator_command_handler:
+      class: App\CommandHandler\Staff\Operator\EditOperatorCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Operator\EditOperator}
+
     # Treatment Command Handler pattern
 
     create_treatment_command_handler:

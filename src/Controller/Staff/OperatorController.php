@@ -3,9 +3,11 @@
 namespace App\Controller\Staff;
 
 use App\Command\Staff\Operator\CreateOperator;
+use App\Command\Staff\Operator\EditOperator;
 use App\Entity\Operator;
 use App\Entity\SPA;
 use App\Form\CreateOperatorForm;
+use App\Form\EditOperatorForm;
 use Doctrine\ORM\EntityManagerInterface;
 use SimpleBus\SymfonyBridge\Bus\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -64,6 +66,25 @@ class OperatorController extends AbstractController
         }
 
         return $this->render('staff/operator/createOperator.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/edit/{operator}", name="staff_edit_operator", methods={"GET","POST"})
+     */
+    public function edit(Operator $operator, Request $request)
+    {
+        $editOperator = new EditOperator($operator);
+        $treatmentList = $operator->getSpa()->getTreatments();
+
+        $form = $this->createForm(EditOperatorForm::class, $editOperator, array('treatments' => $treatmentList ));
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->commandBus->handle($editOperator);
+            return $this->redirectToRoute('staff_dashboard');
+        }
+        return $this->render('staff/operator/editOperator.html.twig', [
             'form' => $form->createView()
         ]);
     }

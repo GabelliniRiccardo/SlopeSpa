@@ -137,6 +137,7 @@ OperatorForm:
     Value: Phone Number
     Placeholder: ex 3333333333
   CreateButton: Create
+  EditButton: Edit
 
 # OPERATOR LIST page
 
