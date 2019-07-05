@@ -32,7 +32,7 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Treatment 1',
                 'price' => 20.5,
-                'duration' => 20,
+                'duration' => 1800,
                 'VAT' => 22,
                 'operator_id' => 1,
                 'rooms_ids' => [1,2,3],
@@ -41,7 +41,7 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Treatment 2',
                 'price' => 50.5,
-                'duration' => 40,
+                'duration' => 3600,
                 'VAT' => 22,
                 'operator_id' => 2,
                 'rooms_ids' => [4,5,6],
@@ -50,7 +50,7 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Treatment 3',
                 'price' => 100,
-                'duration' => 100,
+                'duration' => 3600,
                 'VAT' => 22,
                 'operator_id' => 3,
                 'rooms_ids' => [7,8,9],
@@ -59,7 +59,7 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Treatment 4',
                 'price' => 200,
-                'duration' => 180,
+                'duration' => 2700,
                 'VAT' => 22,
                 'operator_id' => 3,
                 'rooms_ids' => [1,2,3],
@@ -68,7 +68,7 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Treatment 5',
                 'price' => 50,
-                'duration' => 40,
+                'duration' => 5400,
                 'VAT' => 22,
                 'operator_id' => 3,
                 'rooms_ids' => [4,5,6],
@@ -77,7 +77,7 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Treatment 6',
                 'price' => 30,
-                'duration' => 15,
+                'duration' => 7200,
                 'VAT' => 22,
                 'operator_id' => 1,
                 'rooms_ids' => [7,8,9],

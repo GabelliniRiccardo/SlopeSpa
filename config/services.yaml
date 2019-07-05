@@ -80,3 +80,13 @@ services:
       class: App\CommandHandler\Staff\Treatment\CreateTreatmentCommandHandler
       tags:
         - { name: command_handler, handles: App\Command\Staff\Treatment\CreateTreatment}
+
+    edit_treatment_command_handler:
+      class: App\CommandHandler\Staff\Treatment\EditTreatmentCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Treatment\EditTreatment}
+
+    delete_treatment_command_handler:
+      class: App\CommandHandler\Staff\Treatment\DeleteTreatmentCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Treatment\DeleteTreatment}

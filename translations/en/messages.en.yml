@@ -127,6 +127,7 @@ Treatments: Treatment List
 
 OperatorForm:
   AddOperator: Add Operator
+  EditOperator: Edit Operator
   Name:
     Value: Name
     Placeholder: Operator's name
@@ -173,6 +174,7 @@ TreatmentList:
 
 TreatmentForm:
   AddTreatment: Add Treatment
+  EditTreatment: Edit Treatment
   Name:
     Value: Name
     Placeholder: Treatment's name
@@ -187,3 +189,5 @@ TreatmentForm:
     Value: VAT
     Placeholder: 22
   CreateButton: Create
+  EditButton: Edit
+  DeleteButton: Delete

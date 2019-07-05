@@ -40,8 +40,8 @@
                                 <td>{{ treatment.id }}</td>
                                 <td>{{ treatment.name }}</td>
                                 <td>{{ treatment.money.value }}</td>
-                                <td>{{ treatment.duration }}</td>
-                                <td>{{ treatment.duration }}</td>
+                                <td>{{ treatment.duration | date('H:i') }}</td>
+                                <td>{{ treatment.vat }}</td>
                                 <td>
                                     <div class="row btn-toolbar justify-content-center">
                                         <div class="col-2 btn-group mr-3">
@@ -56,7 +56,7 @@
                                             </button>
                                         </div>
                                         <div class="col-2 btn-group ml-3">
-                                            <a href="#"
+                                            <a href="{{ path('staff_edit_treatment', {'treatment' : treatment.id}) }}"
                                                class="btn btn-warning"
                                                title="{% trans %}OperatorList.Edit{% endtrans %} {{ treatment.name }}">
                                                 <i class="fa fa-pencil-alt" aria-hidden="true"></i>
@@ -83,8 +83,7 @@
     </div>
 {% endblock %}
 
-{#@TODO remove treatment#}
-{#{% block customJavascripts %}#}
-{#    {{ parent() }}#}
-{#    <script src="{{ asset('build/js/delete-SPA.js') }}"></script>#}
-{#{% endblock %}#}
+{% block customJavascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/js/delete-Treatment.js') }}"></script>
+{% endblock %}

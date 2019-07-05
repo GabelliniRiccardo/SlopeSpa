@@ -74,5 +74,14 @@ class TreatmentDTO
     public function __construct(SPA $spa)
     {
         $this->spa = $spa;
+        $this->money = new Money(0);
+    }
+
+    public function getPrice(){
+        return $this->money->getValue();
+    }
+
+    public function getCurrency(){
+        return $this->money->getCurrency();
     }
 }

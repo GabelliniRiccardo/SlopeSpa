@@ -45,7 +45,6 @@ class MoneyType extends Type
         if ($value instanceof Money) {
             $value = $value->getValue();
         }
-
         return $value;
     }
 

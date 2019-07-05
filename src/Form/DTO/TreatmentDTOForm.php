@@ -4,8 +4,8 @@
 namespace App\Form\DTO;
 
 
+use App\Form\Types\MoneyFormType;
 use App\Model\DTO\TreatmentDTO;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\PercentType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
@@ -25,14 +25,12 @@ class TreatmentDTOForm extends AbstractType
                         'placeholder' => 'TreatmentForm.Name.Placeholder'
                     ]
                 ])
-            ->add('money', MoneyType::class,
+            ->add('_',
+                MoneyFormType::class,
                 [
-                    'label_format' => 'TreatmentForm.Price.Value',
-                    'attr' => [
-                        'placeholder' => 'TreatmentForm.Price.Placeholder',
-                        'class' => 'col-6 col-md-3'
-                    ]
-                ])
+                    'property_path' => 'money',
+                ]
+            )
             ->add('duration', TimeType::class,
                 [
                     'input' => 'timestamp', // Type of input to render
@@ -40,10 +38,11 @@ class TreatmentDTOForm extends AbstractType
                     'placeholder' => [
                         'hour' => 'TreatmentForm.Duration.Hour', 'minute' => 'TreatmentForm.Duration.Minute'
                     ],
-                    'minutes' => range(1,59)
                 ])
             ->add('vat', PercentType::class,
                 [
+                    'scale' =>1,
+                    'type' => 'integer',
                     'label_format' => 'TreatmentForm.VAT.Value',
                     'attr' => [
                         'placeholder' => 'TreatmentForm.VAT.Placeholder',

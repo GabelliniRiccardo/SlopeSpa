@@ -23,8 +23,9 @@ class TreatmentManager
     public function create(TreatmentDTO $treatmentDTO): Treatment
     {
         $name = $treatmentDTO->name;
-        $price = $treatmentDTO->money;
-        $money = new Money($price);
+        $money = $treatmentDTO->money;
+
+        $money = new Money($money->getValue(), $money->getCurrency());
         $duration = $treatmentDTO->duration;
         $vat = $treatmentDTO->vat;
         $spa = $treatmentDTO->spa;
@@ -35,5 +36,43 @@ class TreatmentManager
         $this->entityManager->flush();
 
         return $treatment;
+    }
+
+    /**
+     * @param TreatmentDTO $treatmentDTO
+     * @return Treatment
+     */
+    public function update(TreatmentDTO $treatmentDTO): Treatment
+    {
+        $id = $treatmentDTO->id;
+        $name = $treatmentDTO->name;
+        $money = $treatmentDTO->money;
+        $duration = $treatmentDTO->duration;
+        $vat = $treatmentDTO->vat;
+        $spa = $treatmentDTO->spa;
+
+        $treatment = $this->entityManager->getRepository(Treatment::class)->find($id);
+        $this->entityManager->refresh($treatment);
+
+        $treatment->setName($name);
+        $treatment->setDuration($duration);
+        $treatment->setVat($vat);
+        $treatment->setSpa($spa);
+        $treatment->setMoney($money);
+
+        $this->entityManager->persist($treatment);
+        $this->entityManager->flush();
+
+        return $treatment;
+    }
+
+    /**
+     * @param Treatment $treatment
+     * @return void
+     */
+    public function delete(Treatment $treatment): void
+    {
+        $this->entityManager->remove($treatment);
+        $this->entityManager->flush();
     }
 }
