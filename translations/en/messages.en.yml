@@ -34,26 +34,23 @@ DeleteUserModal:
 SPAList:
   List: SPA list
   TotalNumOfElements: Total number of elements
-  Id: Id
   Name: Name
   Email: Email
   Address: Address
   PhoneNumber: Phone
-  Manage: Manage
   Delete: Delete
   Edit: Edit
-  AddStaffTo: Add Staff to
+  Staff: Staff
   WatchStaff: Watch Staff
 
 UserList:
   ListUsersForSPA: List of users for SPA
   TotalNumOfElements: Total number of elements
-  Id: Id
+  AddUser: Add User
   Name: Name
   LastName: Last Name
   Email: Email
   Address: Address
-  Manage: Manage
   Delete: Delete
   Edit: Edit
 
@@ -145,13 +142,12 @@ OperatorForm:
 
 OperatorList:
   AddOperator: Add Operator
+  AddOperatorTo: Add Operator to
   ListOfOperators: List of operators
   TotalNumOfElements: Total number of elements
-  Id: Id
   Name: Name
   LastName: Last Name
   PhoneNumber: Phone Number
-  Manage: Manage
   Delete: Delete
   Edit: Edit
 
@@ -159,14 +155,13 @@ OperatorList:
 
 TreatmentList:
   AddTreatment: Add Treatment
+  AddTreatmentTo: Add Treatment to
   ListOfTreatments: List of Treatments
   TotalNumOfElements: Total number of elements
-  Id: Id
   Name: Name
   Price: Price
   Duration: Duration
   VAT: VAT
-  Manage: Manage
   Delete: Delete
   Edit: Edit
 
@@ -196,11 +191,10 @@ TreatmentForm:
 
 RoomList:
   AddRoom: Add Room
+  AddRoomTo: Add Room to
   ListOfRooms: List of Rooms
   TotalNumOfElements: Total number of elements
-  Id: Id
   Name: Name
-  Manage: Manage
   Delete: Delete
   Edit: Edit
 
@@ -214,3 +208,4 @@ RoomForm:
     Placeholder: Room's name
   CreateButton: Create
   EditButton: Edit
+  DeleteButton: Delete

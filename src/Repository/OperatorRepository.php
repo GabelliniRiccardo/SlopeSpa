@@ -28,6 +28,7 @@ class OperatorRepository extends ServiceEntityRepository
         $dbQuery = $this->createQueryBuilder('o')
             ->andWhere('o.spa = :spa_id')
             ->setParameter('spa_id', $spaID)
+            ->orderBy('o.firstName')
             ->getQuery();
 
         $paginatedOperators = $this->paginator->paginate($dbQuery, $page, 5);

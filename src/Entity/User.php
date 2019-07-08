@@ -23,50 +23,24 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @Assert\NotBlank
      * @ORM\Column(type="string", length=45)
-     * @Assert\Regex(
-     *     pattern     = "/^[a-z ]+$/i",
-     *     match=true,
-     *     message="DTO.UserDTO.Name.LettersOnly"
-     * )
-     * @Assert\Length(
-     *      min = 3,
-     *      max = 20,
-     * )
      * @var string
      */
     private $name;
 
     /**
-     * @Assert\NotBlank
      * @ORM\Column(type="string", length=45)
-     * @Assert\Regex(
-     *     pattern     = "/^[a-z ]+$/i",
-     *     match=true,
-     *     message="DTO.UserDTO.LastName.LettersOnly"
-     * )
-     * @Assert\Length(
-     *      min = 3,
-     *      max = 20,
-     * )
      * @var string
      */
     private $lastName;
 
     /**
-     * @Assert\NotBlank
-     * @Assert\Email
      * @ORM\Column(type="string", length=180)
      * @var string
      */
     private $email;
 
     /**
-     * @Assert\NotBlank
-     * @Assert\Length(
-     *      min = 3,
-     * )
      * @ORM\Column(type="string")
      * @var string
      */

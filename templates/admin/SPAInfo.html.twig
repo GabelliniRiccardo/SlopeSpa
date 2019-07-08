@@ -6,52 +6,56 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row">
-                <div class="col col-lg-4">
-                    <h6 class="m-0 font-weight-bold text-primary">{% trans %}UserList.ListUsersForSPA{% endtrans %}: {{ spa.name }}</h6>
+                <div class="col-xl-4">
+                    <h6 class="m-0 font-weight-bold text-primary">{% trans %}UserList.ListUsersForSPA{% endtrans %}
+                        : {{ spa.name }}</h6>
                 </div>
-                <div class="col count">
+                <div class="col-xl-4 count">
                     {% trans %}UserList.TotalNumOfElements{% endtrans %}: {{ pagination.getTotalItemCount }}
+                </div>
+                <div class="col-xl-4 text-xl-right">
+                    <a href="{{ path('admin_add_staff', {'spa' : spa.id}) }}"
+                       class="btn btn-success"
+                       title="{% trans %}SPAList.AddStaffTo{% endtrans %} {{ spa.name }}">
+                        {% trans %}UserList.AddUser{% endtrans %}
+                        <i class="fa fa-plus ml-2" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="card-body">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <table class="table table-responsive-lg">
+                    <table class="table table-responsive-md">
                         <tr>
                             {# sorting of properties based on query components #}
-                            <th>{{ knp_pagination_sortable(pagination, 'UserList.Id'|trans, 'u.id') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'UserList.Name'|trans, 'u.name') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'UserList.LastName'|trans, 'u.lastName') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'UserList.Email'|trans, 'u.email') }}</th>
-                            <th>{% trans %}UserList.Manage{% endtrans %}</th>
+                            <th class="text-center">{% trans %}UserList.Edit{% endtrans %}</th>
+                            <th class="text-center">{% trans %}UserList.Delete{% endtrans %}</th>
                         </tr>
 
                         {# table body #}
                         {% for user in pagination %}
                             <tr>
-                                <td>{{ user.id }}</td>
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.lastName }}</td>
                                 <td>{{ user.email }}</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-sm-6 mb-0 mb-sm-1">
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-danger deleteButton" id="{{ user.id }}"
-                                                    data-toggle="modal" data-target="#exampleModal"
-                                                    title="{% trans %}UserList.Delete{% endtrans %} {{ user.name }}">
-                                                <i class="fa fa-trash-alt" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                        <div class="col-sm-6 mb-0 mb-sm-1">
-                                            <a href="{{ path('admin_edit_staff', {'user' : user.id}) }}"
-                                               class="btn btn-warning"
-                                               title="{% trans %}UserList.Edit{% endtrans %} {{ user.name }}">
-                                                <i class="fa fa-pencil-alt" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <td class="text-center" width="1">
+                                    <a href="{{ path('admin_edit_staff', {'user' : user.id}) }}"
+                                       class="btn btn-warning"
+                                       title="{% trans %}UserList.Edit{% endtrans %} {{ user.name }}">
+                                        <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td class="text-center" width="1">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger deleteButton" id="{{ user.id }}"
+                                            data-toggle="modal" data-target="#exampleModal"
+                                            title="{% trans %}UserList.Delete{% endtrans %} {{ user.name }}">
+                                        <i class="fa fa-trash-alt" aria-hidden="true"></i>
+                                    </button>
                                 </td>
                             </tr>
                         {% endfor %}

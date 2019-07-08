@@ -24,7 +24,7 @@ class TreatmentDTO
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 3,
-     *      max = 20,
+     *      max = 60,
      * )
      */
     public $name;

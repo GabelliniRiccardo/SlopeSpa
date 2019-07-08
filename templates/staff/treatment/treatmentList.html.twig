@@ -11,58 +11,53 @@
                     {% trans %}TreatmentList.TotalNumOfElements{% endtrans %}: {{ pagination.getTotalItemCount }}
                 </div>
                 <div class="col-xl-4 text-xl-right">
-                    <a href="{{ path('staff_create_treatment') }}" class="text-decoration-none">
-                        <h6 class="m-0 font-weight-bold text-primary">{% trans %}TreatmentList.AddTreatment{% endtrans %}
-                            <i class="fas fa-plus-circle"></i>
-                        </h6>
+                    <a href="{{ path('staff_create_treatment') }}"
+                       class="btn btn-success"
+                       title="{% trans %}TreatmentList.AddTreatmentTo{% endtrans %} {{ app.user.spa.name }}">
+                        {% trans %}TreatmentList.AddTreatment{% endtrans %}
+                        <i class="fa fa-plus ml-2" aria-hidden="true"></i>
                     </a>
-
                 </div>
             </div>
         </div>
         <div class="card-body">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <table class="table table-responsive-lg">
+                    <table class="table table-responsive-md">
                         <tr>
                             {# sorting of properties based on query components #}
-                            <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.Id'|trans, 't.id') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.Name'|trans, 't.name') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.Price'|trans, 't.money') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.Duration'|trans, 't.duration') }}</th>
                             <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.VAT'|trans, 't.vat') }}</th>
-                            <th class="text-center">{% trans %}OperatorList.Manage{% endtrans %}</th>
+                            <th class="text-center">{% trans %}TreatmentList.Edit{% endtrans %}</th>
+                            <th class="text-center">{% trans %}TreatmentList.Delete{% endtrans %}</th>
                         </tr>
 
                         {# table body #}
                         {% for treatment in pagination %}
                             <tr>
-                                <td>{{ treatment.id }}</td>
                                 <td>{{ treatment.name }}</td>
                                 <td>{{ treatment.money.value }}</td>
                                 <td>{{ treatment.duration | date('H:i') }}</td>
                                 <td>{{ treatment.vat }}</td>
-                                <td>
-                                    <div class="row btn-toolbar justify-content-center">
-                                        <div class="col-2 btn-group mr-3">
-                                            <!-- Button trigger modal -->
-                                            <button type="button"
-                                                    class="btn btn-danger deleteButton"
-                                                    id="{{ treatment.id }}"
-                                                    data-toggle="modal"
-                                                    data-target="#exampleModal"
-                                                    title="{% trans %}OperatorList.Delete{% endtrans %} {{ treatment.name }}">
-                                                <i class="fa fa-trash-alt" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                        <div class="col-2 btn-group ml-3">
-                                            <a href="{{ path('staff_edit_treatment', {'treatment' : treatment.id}) }}"
-                                               class="btn btn-warning"
-                                               title="{% trans %}OperatorList.Edit{% endtrans %} {{ treatment.name }}">
-                                                <i class="fa fa-pencil-alt" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <td width="1">
+                                    <a href="{{ path('staff_edit_treatment', {'treatment' : treatment.id}) }}"
+                                       class="btn btn-warning"
+                                       title="{% trans %}TreatmentList.Edit{% endtrans %} {{ treatment.name }}">
+                                        <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                                <td width="1">
+                                    <!-- Button trigger modal -->
+                                    <button type="button"
+                                            class="btn btn-danger deleteButton"
+                                            id="{{ treatment.id }}"
+                                            data-toggle="modal"
+                                            data-target="#exampleModal"
+                                            title="{% trans %}TreatmentList.Delete{% endtrans %} {{ treatment.name }}">
+                                        <i class="fa fa-trash-alt" aria-hidden="true"></i>
+                                    </button>
                                 </td>
                             </tr>
                         {% endfor %}

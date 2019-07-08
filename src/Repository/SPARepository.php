@@ -24,6 +24,7 @@ class SPARepository extends ServiceEntityRepository
     public function findAllPaginated($page)
     {
         $dbQuery = $this->createQueryBuilder('s')
+            ->orderBy('s.name')
             ->getQuery();
 
         $paginatedSpas = $this->paginator->paginate($dbQuery, $page, 5);

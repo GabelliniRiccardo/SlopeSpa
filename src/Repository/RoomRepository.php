@@ -28,6 +28,7 @@ class RoomRepository extends ServiceEntityRepository
         $dbQuery = $this->createQueryBuilder('r')
             ->andWhere('r.spa = :spa_id')
             ->setParameter('spa_id', $spaID)
+            ->orderBy('r.name')
             ->getQuery();
 
         $paginatedRooms = $this->paginator->paginate($dbQuery, $page, 5);

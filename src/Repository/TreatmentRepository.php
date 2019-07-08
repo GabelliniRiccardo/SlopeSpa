@@ -28,6 +28,7 @@ class TreatmentRepository extends ServiceEntityRepository
         $dbQuery = $this->createQueryBuilder('t')
             ->andWhere('t.spa = :spa_id')
             ->setParameter('spa_id', $spaID)
+            ->orderBy('t.name')
             ->getQuery();
 
         $paginatedTreatments = $this->paginator->paginate($dbQuery, $page, 5);

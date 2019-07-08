@@ -39,8 +39,14 @@ class SPADTO
     public $address;
 
     /**
-     * @Assert\Length(min = 8, max = 20, )
-     * @Assert\Regex(pattern="/^[0-9]*$/", message="DTO.SPADTO.NumbersOnly")
+     * @Assert\Length(
+     *     min = 8,
+     *     max = 20,
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[0-9]*$/",
+     *     message="DTO.SPADTO.NumbersOnly"
+     * )
      * @var string
      */
     public $phoneNumber;

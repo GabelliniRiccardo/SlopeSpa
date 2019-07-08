@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190705154540 extends AbstractMigration
+final class Version20190708105219 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,19 +22,19 @@ final class Version20190705154540 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('CREATE SEQUENCE rooms_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE SPAs_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE rooms_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE treatments_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE reservations_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE customers_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE users_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE operators_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE TABLE SPAs (id INT NOT NULL, name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, address VARCHAR(255) DEFAULT NULL, phone_number VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE rooms (id INT NOT NULL, spa_id INT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_7CA11A96DF3CB247 ON rooms (spa_id)');
         $this->addSql('CREATE TABLE room_treatment (room_id INT NOT NULL, treatment_id INT NOT NULL, PRIMARY KEY(room_id, treatment_id))');
         $this->addSql('CREATE INDEX IDX_4A8DC5854177093 ON room_treatment (room_id)');
         $this->addSql('CREATE INDEX IDX_4A8DC58471C0366 ON room_treatment (treatment_id)');
-        $this->addSql('CREATE TABLE SPAs (id INT NOT NULL, name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, address VARCHAR(255) DEFAULT NULL, phone_number VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE treatments (id INT NOT NULL, spa_id INT NOT NULL, name VARCHAR(255) NOT NULL, price float NOT NULL, duration INT NOT NULL, vat DOUBLE PRECISION NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_4A48CE0DDF3CB247 ON treatments (spa_id)');
         $this->addSql('CREATE TABLE treatment_operator (treatment_id INT NOT NULL, operator_id INT NOT NULL, PRIMARY KEY(treatment_id, operator_id))');
@@ -75,29 +75,29 @@ final class Version20190705154540 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE SCHEMA public');
-        $this->addSql('ALTER TABLE room_treatment DROP CONSTRAINT FK_4A8DC5854177093');
-        $this->addSql('ALTER TABLE reservations DROP CONSTRAINT FK_4DA23954177093');
         $this->addSql('ALTER TABLE rooms DROP CONSTRAINT FK_7CA11A96DF3CB247');
         $this->addSql('ALTER TABLE treatments DROP CONSTRAINT FK_4A48CE0DDF3CB247');
         $this->addSql('ALTER TABLE reservations DROP CONSTRAINT FK_4DA239DF3CB247');
         $this->addSql('ALTER TABLE customers DROP CONSTRAINT FK_62534E21DF3CB247');
         $this->addSql('ALTER TABLE users DROP CONSTRAINT FK_1483A5E9DF3CB247');
         $this->addSql('ALTER TABLE operators DROP CONSTRAINT FK_8166DA1ADF3CB247');
+        $this->addSql('ALTER TABLE room_treatment DROP CONSTRAINT FK_4A8DC5854177093');
+        $this->addSql('ALTER TABLE reservations DROP CONSTRAINT FK_4DA23954177093');
         $this->addSql('ALTER TABLE room_treatment DROP CONSTRAINT FK_4A8DC58471C0366');
         $this->addSql('ALTER TABLE treatment_operator DROP CONSTRAINT FK_450CEFD8471C0366');
         $this->addSql('ALTER TABLE reservations DROP CONSTRAINT FK_4DA239471C0366');
         $this->addSql('ALTER TABLE reservations DROP CONSTRAINT FK_4DA2399395C3F3');
         $this->addSql('ALTER TABLE treatment_operator DROP CONSTRAINT FK_450CEFD8584598A3');
-        $this->addSql('DROP SEQUENCE rooms_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE SPAs_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE rooms_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE treatments_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE reservations_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE customers_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE users_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE operators_id_seq CASCADE');
+        $this->addSql('DROP TABLE SPAs');
         $this->addSql('DROP TABLE rooms');
         $this->addSql('DROP TABLE room_treatment');
-        $this->addSql('DROP TABLE SPAs');
         $this->addSql('DROP TABLE treatments');
         $this->addSql('DROP TABLE treatment_operator');
         $this->addSql('DROP TABLE reservations');
