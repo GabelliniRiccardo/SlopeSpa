@@ -44,18 +44,19 @@
                 <span>{% trans %}Menu.SPAList{% endtrans %}</span></a>
         </li>
 
-        <!-- Nav Item - Logout -->
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('app_logout') }}">
-                <i class="fas fa-fw fa-sign-out-alt"></i>
-                <span>{% trans %}Menu.Logout{% endtrans %}</span></a>
-        </li>
-
         <!-- Nav Item - Back to Home -->
         <li class="nav-item">
             <a class="nav-link" href="{{ path('home') }}">
                 <i class="fas fa-fw fa-home"></i>
                 <span>{% trans %}Menu.Back to Home{% endtrans %}</span></a>
+        </li>
+
+        <!-- Nav Item - Logout -->
+        <li class="nav-item">
+            <a class="nav-link" href="#Logout" data-toggle="modal"
+               data-target="#logoutModal">
+                <i class="fas fa-fw fa-sign-out-alt"></i>
+                <span>{% trans %}Menu.Logout{% endtrans %}</span></a>
         </li>
 
         <!-- Sidebar Toggler (Sidebar) -->

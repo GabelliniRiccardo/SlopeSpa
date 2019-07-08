@@ -57,19 +57,15 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">{% trans %}Menu.Configure.YouCanConfigure{% endtrans %}:</h6>
-                    <a class="collapse-item" href="{{ path('staff_treatment_list') }}">{% trans %}Menu.Configure.Treatments{% endtrans %}</a>
-                    <a class="collapse-item" href="{{ path('staff_operator_list') }}">{% trans %}Menu.Configure.Operators{% endtrans %}</a>
-                    <a class="collapse-item" href="{{ path('staff_room_list') }}">{% trans %}Menu.Configure.Rooms{% endtrans %}</a>
+                    <a class="collapse-item"
+                       href="{{ path('staff_treatment_list') }}">{% trans %}Menu.Configure.Treatments{% endtrans %}</a>
+                    <a class="collapse-item"
+                       href="{{ path('staff_operator_list') }}">{% trans %}Menu.Configure.Operators{% endtrans %}</a>
+                    <a class="collapse-item"
+                       href="{{ path('staff_room_list') }}">{% trans %}Menu.Configure.Rooms{% endtrans %}</a>
                     <a class="collapse-item" href="#">{% trans %}Menu.Configure.Account{% endtrans %}</a>
                 </div>
             </div>
-        </li>
-
-        <!-- Nav Item - Logout -->
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('app_logout') }}">
-                <i class="fas fa-fw fa-sign-out-alt"></i>
-                <span>{% trans %}Menu.Logout{% endtrans %}</span></a>
         </li>
 
         <!-- Nav Item - Back to Home -->
@@ -77,6 +73,14 @@
             <a class="nav-link" href="{{ path('home') }}">
                 <i class="fas fa-fw fa-home"></i>
                 <span>{% trans %}Menu.Back to Home{% endtrans %}</span></a>
+        </li>
+
+        <!-- Nav Item - Logout -->
+        <li class="nav-item">
+            <a class="nav-link" href="#Logout" data-toggle="modal"
+               data-target="#logoutModal">
+                <i class="fas fa-fw fa-sign-out-alt"></i>
+                <span>{% trans %}Menu.Logout{% endtrans %}</span></a>
         </li>
 
         <!-- Divider -->
