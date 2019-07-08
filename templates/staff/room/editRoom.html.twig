@@ -1,0 +1,17 @@
+{% extends 'staff/baseStaff.html.twig' %}
+
+{% block main %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">{% trans %}RoomForm.EditRoom{% endtrans %}</h6>
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col">
+                    {{ form_start(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

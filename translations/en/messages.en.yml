@@ -159,7 +159,7 @@ OperatorList:
 
 TreatmentList:
   AddTreatment: Add Treatment
-  ListOfTreatments: List of treatments
+  ListOfTreatments: List of Treatments
   TotalNumOfElements: Total number of elements
   Id: Id
   Name: Name
@@ -191,3 +191,26 @@ TreatmentForm:
   CreateButton: Create
   EditButton: Edit
   DeleteButton: Delete
+
+# ROOM LIST page
+
+RoomList:
+  AddRoom: Add Room
+  ListOfRooms: List of Rooms
+  TotalNumOfElements: Total number of elements
+  Id: Id
+  Name: Name
+  Manage: Manage
+  Delete: Delete
+  Edit: Edit
+
+# ROOM CREATE page
+
+RoomForm:
+  AddRoom: Add Room
+  EditRoom: Edit Room
+  Name:
+    Value: Name
+    Placeholder: Room's name
+  CreateButton: Create
+  EditButton: Edit

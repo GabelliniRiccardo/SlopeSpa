@@ -33,7 +33,7 @@ class Room
     private $treatment;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="room")
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="room", orphanRemoval=true)
      * @var Collection|Reservation[]
      */
     private $reservations;

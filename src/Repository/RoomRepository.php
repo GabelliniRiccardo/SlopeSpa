@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Room;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -14,9 +15,23 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class RoomRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    private $paginator;
+
+    public function __construct(RegistryInterface $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Room::class);
+        $this->paginator = $paginator;
+    }
+
+    public function findAllPaginated($page, $spaID)
+    {
+        $dbQuery = $this->createQueryBuilder('r')
+            ->andWhere('r.spa = :spa_id')
+            ->setParameter('spa_id', $spaID)
+            ->getQuery();
+
+        $paginatedRooms = $this->paginator->paginate($dbQuery, $page, 5);
+        return $paginatedRooms;
     }
 
     // /**

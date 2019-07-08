@@ -49,6 +49,10 @@ Encore
     './assets/js/delete-Treatment.js'
   ])
 
+  .addEntry('js/delete-Room', [
+    './assets/js/delete-Room.js'
+  ])
+
   .addStyleEntry('css/sb-admin-2', [
     './node_modules/startbootstrap-sb-admin-2/css/sb-admin-2.css',
     './node_modules/@fortawesome/fontawesome-free/css/all.css',

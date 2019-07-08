@@ -90,3 +90,20 @@ services:
       class: App\CommandHandler\Staff\Treatment\DeleteTreatmentCommandHandler
       tags:
         - { name: command_handler, handles: App\Command\Staff\Treatment\DeleteTreatment}
+
+    # Room Command Handler pattern
+
+    create_room_command_handler:
+      class: App\CommandHandler\Staff\Room\CreateRoomCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Room\CreateRoom}
+
+    edit_room_command_handler:
+      class: App\CommandHandler\Staff\Room\EditRoomCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Room\EditRoom}
+
+    delete_room_command_handler:
+      class: App\CommandHandler\Staff\Room\DeleteRoomCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Room\DeleteRoom}
