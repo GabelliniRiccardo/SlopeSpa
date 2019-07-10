@@ -31,6 +31,7 @@ Encore
     './node_modules/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js',
     './node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.js',
     '@fortawesome/fontawesome-free/js/all.js',
+    './node_modules/bootstrap-auto-dismiss-alert',
   ])
 
   .addEntry('js/delete-SPA', [

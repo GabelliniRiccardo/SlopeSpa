@@ -21,7 +21,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  * @Route("/admin/spa")
  * @IsGranted("ROLE_ADMIN")
  */
-
 class SpaController extends AbstractController
 {
     private $commandBus;
@@ -70,6 +69,7 @@ class SpaController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($createSPA);
+            $this->addFlash('success', 'SPA created');
             return $this->redirectToRoute('admin_SPA_list');
         }
         return $this->render('admin/createSPA.html.twig', [
@@ -88,6 +88,7 @@ class SpaController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($editSPA);
+            $this->addFlash('success', 'SPA ' . $spa->getName() . ' updated');
             return $this->redirectToRoute('admin_SPA_list');
         }
         return $this->render('admin/editSPA.html.twig', [
@@ -109,6 +110,7 @@ class SpaController extends AbstractController
         if ($deleteSPAForm->isSubmitted() && $deleteSPAForm->isValid()) {
             $deleteSPA = new DeleteSPA($spa);
             $this->commandBus->handle($deleteSPA);
+            $this->addFlash('successDelete', 'SPA ' . $spa->getName() . ' deleted');
             return $this->redirectToRoute('admin_SPA_list');
         }
 

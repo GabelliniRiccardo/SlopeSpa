@@ -64,6 +64,7 @@ class OperatorController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($createOperator);
+            $this->addFlash('success', 'Operator created');
             return $this->redirectToRoute('staff_operator_list');
         }
 
@@ -84,6 +85,7 @@ class OperatorController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($editOperator);
+            $this->addFlash('success', 'Operator ' . $operator->getFirstName() . ' ' . $operator->getLastName() . ' updated');
             return $this->redirectToRoute('staff_operator_list');
         }
         return $this->render('staff/operator/editOperator.html.twig', [
@@ -94,7 +96,7 @@ class OperatorController extends AbstractController
     /**
      * @Route("/delete/{operator}", name="staff_delete_operator", methods={"GET","DELETE"})
      */
-    public function deleteSPA(Operator $operator, Request $request)
+    public function delete(Operator $operator, Request $request)
     {
         $deleteOperatorForm = $this->createForm(DeleteOperatorForm::class, $operator,
             [
@@ -105,6 +107,7 @@ class OperatorController extends AbstractController
         if ($deleteOperatorForm->isSubmitted() && $deleteOperatorForm->isValid()) {
             $deleteSPA = new DeleteOperator($operator);
             $this->commandBus->handle($deleteSPA);
+            $this->addFlash('successDelete', 'Operator ' . $operator->getFirstName() . ' ' . $operator->getLastName() . ' deleted');
             return $this->redirectToRoute('staff_operator_list');
         }
 

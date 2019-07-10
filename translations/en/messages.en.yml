@@ -32,6 +32,7 @@ DeleteUserModal:
   Cancel: Cancel
 
 SPAList:
+  AddSPA: Add SPA
   List: SPA list
   TotalNumOfElements: Total number of elements
   Name: Name
@@ -46,7 +47,7 @@ SPAList:
 UserList:
   ListUsersForSPA: List of users for SPA
   TotalNumOfElements: Total number of elements
-  AddUser: Add User
+  AddUser: Add Staff
   Name: Name
   LastName: Last Name
   Email: Email

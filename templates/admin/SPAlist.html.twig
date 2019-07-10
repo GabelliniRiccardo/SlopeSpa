@@ -6,11 +6,19 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row">
-                <div class="col col-lg-2">
+                <div class="col-xl-4">
                     <h6 class="m-0 font-weight-bold text-primary">{% trans %}SPAList.List{% endtrans %}</h6>
                 </div>
-                <div class="col count">
+                <div class="col-xl-4 count">
                     {% trans %}SPAList.TotalNumOfElements{% endtrans %}: {{ pagination.getTotalItemCount }}
+                </div>
+                <div class="col-xl-4 text-xl-right">
+                    <a href="{{ path('admin_create_SPA') }}"
+                       class="btn btn-success"
+                       title="{% trans %}SPAList.AddSPA{% endtrans %}">
+                        {% trans %}SPAList.AddSPA{% endtrans %}
+                        <i class="fa fa-plus ml-2" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
         </div>

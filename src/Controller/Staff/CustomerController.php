@@ -63,6 +63,7 @@ class CustomerController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($createCustomer);
+            $this->addFlash('success', 'Customer created');
             return $this->redirectToRoute('staff_customer_list');
         }
 
@@ -82,6 +83,7 @@ class CustomerController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($editCustomer);
+            $this->addFlash('success', 'Customer ' . $customer->getFirstName() . ' ' . $customer->getLastName() . ' updated');
             return $this->redirectToRoute('staff_customer_list');
         }
         return $this->render('staff/customer/editCustomer.html.twig', [
@@ -103,6 +105,7 @@ class CustomerController extends AbstractController
         if ($deleteCustomerForm->isSubmitted() && $deleteCustomerForm->isValid()) {
             $deleteSPA = new DeleteCustomer($customer);
             $this->commandBus->handle($deleteSPA);
+            $this->addFlash('successDelete', 'Customer ' . $customer->getFirstName() . ' ' . $customer->getLastName() . ' deleted');
             return $this->redirectToRoute('staff_customer_list');
         }
 

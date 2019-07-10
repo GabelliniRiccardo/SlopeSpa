@@ -63,6 +63,7 @@ class RoomController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($createRoom);
+            $this->addFlash('success', 'Room created');
             return $this->redirectToRoute('staff_room_list');
         }
 
@@ -82,6 +83,7 @@ class RoomController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($editRoom);
+            $this->addFlash('success', 'Room ' . $room->getName() . ' updated');
             return $this->redirectToRoute('staff_room_list');
         }
         return $this->render('staff/room/editRoom.html.twig', [
@@ -92,7 +94,7 @@ class RoomController extends AbstractController
     /**
      * @Route("/delete/{room}", name="staff_delete_room", methods={"GET","DELETE"})
      */
-    public function deleteSPA(Room $room, Request $request)
+    public function delete(Room $room, Request $request)
     {
         $deleteRoomForm = $this->createForm(DeleteRoomForm::class, $room,
             [
@@ -103,6 +105,7 @@ class RoomController extends AbstractController
         if ($deleteRoomForm->isSubmitted() && $deleteRoomForm->isValid()) {
             $deleteSPA = new DeleteRoom($room);
             $this->commandBus->handle($deleteSPA);
+            $this->addFlash('successDelete', 'Room ' . $room->getName() . ' deleted');
             return $this->redirectToRoute('staff_room_list');
         }
 

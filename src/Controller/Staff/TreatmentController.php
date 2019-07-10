@@ -63,6 +63,7 @@ class TreatmentController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($createTreatment);
+            $this->addFlash('success', 'Treatment created');
             return $this->redirectToRoute('staff_treatment_list');
         }
         return $this->render('staff/treatment/createTreatment.html.twig', [
@@ -81,6 +82,7 @@ class TreatmentController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($editTreatment);
+            $this->addFlash('success', 'Room ' . $treatment->getName() . ' updated');
             return $this->redirectToRoute('staff_treatment_list');
         }
         return $this->render('staff/treatment/editTreatment.html.twig', [
@@ -91,7 +93,7 @@ class TreatmentController extends AbstractController
     /**
      * @Route("/delete/{treatment}", name="staff_delete_treatment", methods={"GET","DELETE"})
      */
-    public function deleteTreatment(Treatment $treatment, Request $request)
+    public function delete(Treatment $treatment, Request $request)
     {
         $deleteTreatmentForm = $this->createForm(DeleteTreatmentForm::class, $treatment,
             [
@@ -102,6 +104,7 @@ class TreatmentController extends AbstractController
         if ($deleteTreatmentForm->isSubmitted() && $deleteTreatmentForm->isValid()) {
             $deleteTreatment = new DeleteTreatment($treatment);
             $this->commandBus->handle($deleteTreatment);
+            $this->addFlash('successDelete', 'Treatment ' . $treatment->getName() . ' deleted');
             return $this->redirectToRoute('staff_treatment_list');
         }
 
