@@ -63,7 +63,7 @@ class RoomController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($createRoom);
-            return $this->redirectToRoute('staff_dashboard');
+            return $this->redirectToRoute('staff_room_list');
         }
 
         return $this->render('staff/room/createRoom.html.twig', [
@@ -82,7 +82,7 @@ class RoomController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($editRoom);
-            return $this->redirectToRoute('staff_dashboard');
+            return $this->redirectToRoute('staff_room_list');
         }
         return $this->render('staff/room/editRoom.html.twig', [
             'form' => $form->createView()
@@ -103,7 +103,7 @@ class RoomController extends AbstractController
         if ($deleteRoomForm->isSubmitted() && $deleteRoomForm->isValid()) {
             $deleteSPA = new DeleteRoom($room);
             $this->commandBus->handle($deleteSPA);
-            return $this->redirectToRoute('staff_dashboard');
+            return $this->redirectToRoute('staff_room_list');
         }
 
         return $this->render('modal/RoomDeleteConfirmationModal.html.twig', [

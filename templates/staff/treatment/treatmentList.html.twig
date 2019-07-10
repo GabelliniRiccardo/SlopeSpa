@@ -26,10 +26,10 @@
                     <table class="table table-responsive-md">
                         <tr>
                             {# sorting of properties based on query components #}
-                            <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.Name'|trans, 't.name') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.Price'|trans, 't.money') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.Duration'|trans, 't.duration') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.VAT'|trans, 't.vat') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.Name'|trans, 'x.name') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.Price'|trans, 'x.money') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.Duration'|trans, 'x.duration') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'TreatmentList.VAT'|trans, 'x.vat') }}</th>
                             <th class="text-center">{% trans %}TreatmentList.Edit{% endtrans %}</th>
                             <th class="text-center">{% trans %}TreatmentList.Delete{% endtrans %}</th>
                         </tr>

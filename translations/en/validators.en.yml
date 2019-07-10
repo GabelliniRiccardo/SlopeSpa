@@ -10,3 +10,5 @@ DTO:
       PasswordFieldMustMatch: The password fields must match
   OperatorDTO:
     NumbersOnly: Insert numbers only
+  CustomerDTO:
+      NumbersOnly: Insert numbers only

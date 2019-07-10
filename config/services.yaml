@@ -109,3 +109,20 @@ services:
       class: App\CommandHandler\Staff\Room\DeleteRoomCommandHandler
       tags:
         - { name: command_handler, handles: App\Command\Staff\Room\DeleteRoom}
+
+  # Customer Command Handler pattern
+
+    create_customer_command_handler:
+      class: App\CommandHandler\Staff\Customer\CreateCustomerCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Customer\CreateCustomer}
+
+    edit_customer_command_handler:
+      class: App\CommandHandler\Staff\Customer\EditCustomerCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Customer\EditCustomer}
+
+    delete_customer_command_handler:
+      class: App\CommandHandler\Staff\Customer\DeleteCustomerCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Customer\DeleteCustomer}

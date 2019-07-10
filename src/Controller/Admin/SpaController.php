@@ -70,7 +70,7 @@ class SpaController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($createSPA);
-            return $this->redirectToRoute('admin_dashboard');
+            return $this->redirectToRoute('admin_SPA_list');
         }
         return $this->render('admin/createSPA.html.twig', [
             'form' => $form->createView()
@@ -88,7 +88,7 @@ class SpaController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($editSPA);
-            return $this->redirectToRoute('admin_dashboard');
+            return $this->redirectToRoute('admin_SPA_list');
         }
         return $this->render('admin/editSPA.html.twig', [
             'form' => $form->createView()

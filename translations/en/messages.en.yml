@@ -119,6 +119,8 @@ AddTreatment: Add Treatment
 Operators: Operator List
 Rooms: Room List
 Treatments: Treatment List
+AddCustomer: Add Customer
+Customers: Customers
 
 # OPERATOR CREATE page
 
@@ -206,6 +208,46 @@ RoomForm:
   Name:
     Value: Name
     Placeholder: Room's name
+  CreateButton: Create
+  EditButton: Edit
+  DeleteButton: Delete
+
+# CUSTOMER LIST page
+
+CustomerList:
+  AddCustomer: Add Customer
+  ListOfCustomers: List of Customers
+  TotalNumOfElements: Total number of elements
+  FirstName: First Name
+  LastName: Last Name
+  Address: Address
+  Birthday: Birthday
+  PhoneNumber: Phone Number
+  Delete: Delete
+  Edit: Edit
+
+# CUSTOMER CREATE page
+
+CustomerForm:
+  AddCustomer: Add Customer
+  EditCustomer: Edit Customer
+  FirstName:
+    Value: First Name
+    Placeholder: Customer's name
+  LastName:
+    Value: Last Name
+    Placeholder: Customer's last name
+  Birthday:
+    Value: Birthday
+    Year: Year
+    Month: Month
+    Day: Day
+  Address:
+    Value: Address
+    Placeholder: 10 Downing Street
+  PhoneNumber:
+    Value: Phone Number
+    Placeholder: ex 3333333333
   CreateButton: Create
   EditButton: Edit
   DeleteButton: Delete

@@ -64,7 +64,7 @@ class OperatorController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($createOperator);
-            return $this->redirectToRoute('staff_dashboard');
+            return $this->redirectToRoute('staff_operator_list');
         }
 
         return $this->render('staff/operator/createOperator.html.twig', [
@@ -84,7 +84,7 @@ class OperatorController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($editOperator);
-            return $this->redirectToRoute('staff_dashboard');
+            return $this->redirectToRoute('staff_operator_list');
         }
         return $this->render('staff/operator/editOperator.html.twig', [
             'form' => $form->createView()
@@ -105,7 +105,7 @@ class OperatorController extends AbstractController
         if ($deleteOperatorForm->isSubmitted() && $deleteOperatorForm->isValid()) {
             $deleteSPA = new DeleteOperator($operator);
             $this->commandBus->handle($deleteSPA);
-            return $this->redirectToRoute('staff_dashboard');
+            return $this->redirectToRoute('staff_operator_list');
         }
 
         return $this->render('modal/OperatorDeleteConfirmationModal.html.twig', [

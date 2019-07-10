@@ -45,7 +45,7 @@ class StaffUserController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($createUser);
-            return $this->redirectToRoute('admin_dashboard');
+            return $this->redirectToRoute('admin_spa_info', ['spa' => $spa->getId()]);
         }
         return $this->render('admin/addStaffUser.html.twig', [
             'form' => $form->createView(),
@@ -69,10 +69,7 @@ class StaffUserController extends AbstractController
             $deleteUser = new DeleteUser($user);
             $this->commandBus->handle($deleteUser);
             $spa_id = $user->getSpa()->getId();
-            return $this->redirectToRoute('admin_spa_info',
-                [
-                    'spa' => $spa_id
-                ]);
+            return $this->redirectToRoute('admin_spa_info', ['spa' => $spa_id]);
         }
 
         return $this->render('modal/UserDeleteConfirmationModal.html.twig', [
@@ -96,10 +93,7 @@ class StaffUserController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($editUser);
-            return $this->redirectToRoute('admin_spa_info',
-                [
-                    'spa' => $spa->getId()
-                ]);
+            return $this->redirectToRoute('admin_spa_info', ['spa' => $spa->getId()]);
         }
         return $this->render('admin/editStaffUser.html.twig', [
             'form' => $form->createView(),

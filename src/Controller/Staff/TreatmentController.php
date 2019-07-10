@@ -63,7 +63,7 @@ class TreatmentController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($createTreatment);
-            return $this->redirectToRoute('staff_dashboard');
+            return $this->redirectToRoute('staff_treatment_list');
         }
         return $this->render('staff/treatment/createTreatment.html.twig', [
             'form' => $form->createView()
@@ -81,7 +81,7 @@ class TreatmentController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commandBus->handle($editTreatment);
-            return $this->redirectToRoute('staff_dashboard');
+            return $this->redirectToRoute('staff_treatment_list');
         }
         return $this->render('staff/treatment/editTreatment.html.twig', [
             'form' => $form->createView()
@@ -102,7 +102,7 @@ class TreatmentController extends AbstractController
         if ($deleteTreatmentForm->isSubmitted() && $deleteTreatmentForm->isValid()) {
             $deleteTreatment = new DeleteTreatment($treatment);
             $this->commandBus->handle($deleteTreatment);
-            return $this->redirectToRoute('staff_dashboard');
+            return $this->redirectToRoute('staff_treatment_list');
         }
 
         return $this->render('modal/TreatmentDeleteConfirmationModal.html.twig', [

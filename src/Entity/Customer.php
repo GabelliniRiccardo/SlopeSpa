@@ -45,12 +45,6 @@ class Customer
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="customer")
-     * @var Collection|Reservation[]
-     */
-    private $reservations;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
@@ -62,6 +56,12 @@ class Customer
      * @var SPA
      */
     private $spa;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="customer", orphanRemoval=true)
+     * @var Collection|Reservation[]
+     */
+    private $reservations;
 
     public function __construct(string $first_name, string $last_name, SPA $spa)
     {

@@ -5,16 +5,16 @@
         <div class="card-header py-3">
             <div class="row">
                 <div class="col-xl-4">
-                    <h6 class="m-0 font-weight-bold text-primary">{% trans %}RoomList.ListOfRooms{% endtrans %}</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">{% trans %}CustomerList.ListOfCustomers{% endtrans %}</h6>
                 </div>
                 <div class="col-xl-4 count">
-                    {% trans %}RoomList.TotalNumOfElements{% endtrans %}: {{ pagination.getTotalItemCount }}
+                    {% trans %}CustomerList.TotalNumOfElements{% endtrans %}: {{ pagination.getTotalItemCount }}
                 </div>
                 <div class="col-xl-4 text-xl-right">
-                    <a href="{{ path('staff_create_room') }}"
+                    <a href="{{ path('staff_create_customer') }}"
                        class="btn btn-success"
-                       title="{% trans %}RoomList.AddRoomTo{% endtrans %} {{ app.user.spa.name }}">
-                        {% trans %}RoomList.AddRoom{% endtrans %}
+                       title="{% trans %}OperatorList.AddOperatorTo{% endtrans %} {{ app.user.spa.name }}">
+                        {% trans %}CustomerList.AddCustomer{% endtrans %}
                         <i class="fa fa-plus ml-2" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -23,22 +23,30 @@
         <div class="card-body">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <table class="table table-responsive-sm">
+                    <table class="table table-responsive-xl">
                         <tr>
                             {# sorting of properties based on query components #}
-                            <th>{{ knp_pagination_sortable(pagination, 'RoomList.Name'|trans, 'x.name') }}</th>
-                            <th class="text-center">{% trans %}RoomList.Edit{% endtrans %}</th>
-                            <th class="text-center">{% trans %}RoomList.Delete{% endtrans %}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.FirstName'|trans, 'x.firstName') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.LastName'|trans, 'x.lastName') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.Address'|trans, 'x.address') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.Birthday'|trans, 'x.birthday') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.PhoneNumber'|trans, 'x.phoneNumber') }}</th>
+                            <th class="text-center">{% trans %}CustomerList.Edit{% endtrans %}</th>
+                            <th class="text-center">{% trans %}CustomerList.Delete{% endtrans %}</th>
                         </tr>
 
                         {# table body #}
-                        {% for room in pagination %}
+                        {% for customer in pagination %}
                             <tr>
-                                <td>{{ room.name }}</td>
+                                <td>{{ customer.firstName }}</td>
+                                <td>{{ customer.lastName }}</td>
+                                <td>{{ customer.address }}</td>
+                                <td>{% if customer.birthday %}{{ customer.birthday | date("d/m/Y") }}{% endif %}</td>
+                                <td>{{ customer.phoneNumber }}</td>
                                 <td width="1">
-                                    <a href="{{ path('staff_edit_room', {'room' : room.id}) }}"
+                                    <a href="{{ path('staff_edit_customer', {'customer' : customer.id}) }}"
                                        class="btn btn-warning"
-                                       title="{% trans %}RoomList.Edit{% endtrans %} {{ room.name }}">
+                                       title="{% trans %}OperatorList.Edit{% endtrans %} {{ customer.firstName }}">
                                         <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                                     </a>
                                 </td>
@@ -46,10 +54,10 @@
                                     <!-- Button trigger modal -->
                                     <button type="button"
                                             class="btn btn-danger deleteButton"
-                                            id="{{ room.id }}"
+                                            id="{{ customer.id }}"
                                             data-toggle="modal"
                                             data-target="#exampleModal"
-                                            title="{% trans %}RoomList.Delete{% endtrans %} {{ room.name }}">
+                                            title="{% trans %}CustomerList.Delete{% endtrans %} {{ customer.firstName }}">
                                         <i class="fa fa-trash-alt" aria-hidden="true"></i>
                                     </button>
                                 </td>
@@ -74,5 +82,5 @@
 
 {% block customJavascripts %}
     {{ parent() }}
-    <script src="{{ asset('build/js/delete-Room.js') }}"></script>
+    <script src="{{ asset('build/js/delete-Customer.js') }}"></script>
 {% endblock %}

@@ -114,4 +114,42 @@
             </a>
         </div>
     </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-xl-4 mb-4">
+            <a href="{{ path('staff_create_customer') }}">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-success text-uppercase mb-1">{% trans %}AddCustomer{% endtrans %}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-plus fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-8 col-xl-4 mb-4">
+            <a href="{{ path('staff_customer_list') }}">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">{% trans %}Customers{% endtrans %}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-list fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 {% endblock %}

@@ -18,8 +18,8 @@ class SPARepository extends AbstractMultiTenantRepository
 
     public function findAllPaginated($page)
     {
-        $dbQuery = $this->createQueryBuilder('s')
-            ->orderBy('s.name')
+        $dbQuery = $this->createQueryBuilder('x')
+            ->orderBy('x.name')
             ->getQuery();
 
         $paginatedSpas = $this->paginator->paginate($dbQuery, $page, 5);
