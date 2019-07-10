@@ -3,48 +3,22 @@
 namespace App\Repository;
 
 use App\Entity\Reservation;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Service\MultitenantService;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-/**
- * @method Reservation|null find($id, $lockMode = null, $lockVersion = null)
- * @method Reservation|null findOneBy(array $criteria, array $orderBy = null)
- * @method Reservation[]    findAll()
- * @method Reservation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class ReservationRepository extends ServiceEntityRepository
+class ReservationRepository extends AbstractMultiTenantRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(RegistryInterface $registry, MultitenantService $multitenantService)
     {
-        parent::__construct($registry, Reservation::class);
+        parent::__construct($registry, Reservation::class, $multitenantService);
     }
 
-    // /**
-    //  * @return Reservation[] Returns an array of Reservation objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    protected function enforceTenancy(int $spaID, QueryBuilder $queryBuilder): QueryBuilder
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $queryBuilder
+            ->andWhere('x.spa = :spaId')
+            ->setParameter('spaId', $spaID);
+        return $queryBuilder;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Reservation
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

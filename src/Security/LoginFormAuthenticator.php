@@ -3,6 +3,7 @@
 namespace App\Security;
 
 use App\Entity\User;
+use App\Service\MultitenantService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,7 +54,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             Security::LAST_USERNAME,
             $credentials['email']
         );
-
         return $credentials;
     }
 
@@ -64,7 +64,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             throw new InvalidCsrfTokenException();
         }
 
-        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
+        $user = $this->entityManager->getRepository(User::class)->findUserByEmail($credentials['email']);
 
         if (!$user) {
             // fail authentication with a custom error
@@ -84,9 +84,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-
-        // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-//        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
 
         $roles = $token->getRoles();
 

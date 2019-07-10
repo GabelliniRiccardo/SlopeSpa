@@ -4,6 +4,7 @@ namespace App\Security;
 
 use App\Entity\SPA;
 use App\Entity\User;
+use App\Service\MultitenantService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
@@ -14,10 +15,12 @@ class UserProvider implements UserProviderInterface
 {
 
     private $entityManager;
+    private $multitenantService;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, MultitenantService $multitenantService)
     {
         $this->entityManager = $entityManager;
+        $this->multitenantService = $multitenantService;
     }
 
     /**
@@ -64,7 +67,10 @@ class UserProvider implements UserProviderInterface
 
         $roles = $user->getRoles();
         if (in_array('ROLE_STAFF', $roles, true)) {
+            $multitenantValue = $this->multitenantService->isMultitenant();
+            $this->multitenantService->setMultitenant(false);
             $spa = $this->entityManager->getRepository(SPA::class)->find($user->getSpa()->getId());
+            $this->multitenantService->setMultitenant($multitenantValue);
             $user->setSpa($spa);
             return $user;
         }

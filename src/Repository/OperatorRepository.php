@@ -3,64 +3,38 @@
 namespace App\Repository;
 
 use App\Entity\Operator;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Service\MultitenantService;
+use Doctrine\ORM\QueryBuilder;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-/**
- * @method Operator|null find($id, $lockMode = null, $lockVersion = null)
- * @method Operator|null findOneBy(array $criteria, array $orderBy = null)
- * @method Operator[]    findAll()
- * @method Operator[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class OperatorRepository extends ServiceEntityRepository
+class OperatorRepository extends AbstractMultiTenantRepository
 {
     private $paginator;
 
-    public function __construct(RegistryInterface $registry, PaginatorInterface $paginator)
+    public function __construct(RegistryInterface $registry, PaginatorInterface $paginator, MultitenantService $multitenantService)
     {
-        parent::__construct($registry, Operator::class);
+        parent::__construct($registry, Operator::class, $multitenantService);
         $this->paginator = $paginator;
     }
 
     public function findAllPaginated($page, $spaID)
     {
-        $dbQuery = $this->createQueryBuilder('o')
-            ->andWhere('o.spa = :spa_id')
+        $dbQuery = $this->createQueryBuilder('x')
+            ->andWhere('x.spa = :spa_id')
             ->setParameter('spa_id', $spaID)
-            ->orderBy('o.firstName')
+            ->orderBy('x.firstName')
             ->getQuery();
 
         $paginatedOperators = $this->paginator->paginate($dbQuery, $page, 5);
         return $paginatedOperators;
     }
 
-    // /**
-    //  * @return Operator[] Returns an array of Operator objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    protected function enforceTenancy(int $spaID, QueryBuilder $queryBuilder): QueryBuilder
     {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $queryBuilder
+            ->andWhere('x.spa = :spaId')
+            ->setParameter('spaId', $spaID);
+        return $queryBuilder;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Operator
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

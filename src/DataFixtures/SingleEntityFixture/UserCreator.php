@@ -29,7 +29,7 @@ class UserCreator
         $user->setPassword($password_encoder->encodePassword($user, $user->getPassword()));
 
         if (!!$fields['spa_id']){
-            $spa = $manager->getRepository(SPA::class)->findOneBy(['id' => $fields['spa_id']]);
+            $spa = $manager->getRepository(SPA::class)->find($fields['spa_id']);
             $user->setSPA($spa);
         }
 

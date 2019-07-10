@@ -3,64 +3,38 @@
 namespace App\Repository;
 
 use App\Entity\Room;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Service\MultitenantService;
+use Doctrine\ORM\QueryBuilder;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-/**
- * @method Room|null find($id, $lockMode = null, $lockVersion = null)
- * @method Room|null findOneBy(array $criteria, array $orderBy = null)
- * @method Room[]    findAll()
- * @method Room[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class RoomRepository extends ServiceEntityRepository
+class RoomRepository extends AbstractMultiTenantRepository
 {
     private $paginator;
 
-    public function __construct(RegistryInterface $registry, PaginatorInterface $paginator)
+    public function __construct(RegistryInterface $registry, PaginatorInterface $paginator, MultitenantService $multitenantService)
     {
-        parent::__construct($registry, Room::class);
+        parent::__construct($registry, Room::class, $multitenantService);
         $this->paginator = $paginator;
     }
 
     public function findAllPaginated($page, $spaID)
     {
-        $dbQuery = $this->createQueryBuilder('r')
-            ->andWhere('r.spa = :spa_id')
+        $dbQuery = $this->createQueryBuilder('x')
+            ->andWhere('x.spa = :spa_id')
             ->setParameter('spa_id', $spaID)
-            ->orderBy('r.name')
+            ->orderBy('x.name')
             ->getQuery();
 
         $paginatedRooms = $this->paginator->paginate($dbQuery, $page, 5);
         return $paginatedRooms;
     }
 
-    // /**
-    //  * @return Room[] Returns an array of Room objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    protected function enforceTenancy(int $spaID, QueryBuilder $queryBuilder): QueryBuilder
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $queryBuilder
+            ->andWhere('x.spa = :spaId')
+            ->setParameter('spaId', $spaID);
+        return $queryBuilder;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Room
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

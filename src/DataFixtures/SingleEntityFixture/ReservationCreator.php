@@ -20,10 +20,10 @@ class ReservationCreator
      */
     public static function create(ObjectManager $manager, array $fields = []): Reservation
     {
-        $spa = $manager->getRepository(SPA::class)->findOneBy(['id' => $fields['spa_id']]);
-        $treatment = $manager->getRepository(Treatment::class)->findOneBy(['id' => $fields['treatment_id']]);
-        $room = $manager->getRepository(Room::class)->findOneBy(['id' => $fields['room_id']]);
-        $customer = $manager->getRepository(Customer::class)->findOneBy(['id' => $fields['customer_id']]);
+        $spa = $manager->getRepository(SPA::class)->find($fields['spa_id']);
+        $treatment = $manager->getRepository(Treatment::class)->find($fields['treatment_id']);
+        $room = $manager->getRepository(Room::class)->find($fields['room_id']);
+        $customer = $manager->getRepository(Customer::class)->find($fields['customer_id']);
 
         if (is_null($treatment)) {
             throw new Exception('SPA with id : ' . $fields['spa_id'] . ' not found');

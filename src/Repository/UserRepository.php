@@ -3,30 +3,26 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use App\Service\MultitenantService;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-/**
- * @method User|null find($id, $lockMode = null, $lockVersion = null)
- * @method User|null findOneBy(array $criteria, array $orderBy = null)
- * @method User[]    findAll()
- * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class UserRepository extends ServiceEntityRepository
+class UserRepository extends AbstractMultiTenantRepository
 {
     private $paginator;
 
-    public function __construct(RegistryInterface $registry, PaginatorInterface $paginator)
+    public function __construct(RegistryInterface $registry, PaginatorInterface $paginator, MultitenantService $multitenantService)
     {
-        parent::__construct($registry, User::class);
+        parent::__construct($registry, User::class, $multitenantService);
         $this->paginator = $paginator;
     }
 
     public function findAllPaginated($page, $spaID)
     {
-        $dbQuery = $this->createQueryBuilder('u')
-            ->andWhere('u.spa = :spa_id')
+        $dbQuery = $this->createQueryBuilder('x')
+            ->andWhere('x.spa = :spa_id')
             ->setParameter('spa_id', $spaID)
             ->getQuery();
 
@@ -34,32 +30,20 @@ class UserRepository extends ServiceEntityRepository
         return $paginatedUsers;
     }
 
-    // /**
-    //  * @return User[] Returns an array of User objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findUserByEmail(string $email)
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('x')
+            ->andWhere('x.email = :email')
+            ->setParameter('email', $email)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getOneOrNullResult();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?User
+    protected function enforceTenancy(int $spaID, QueryBuilder $queryBuilder): QueryBuilder
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $queryBuilder
+            ->andWhere('x.spa = :spaId')
+            ->setParameter('spaId', $spaID);
+        return $queryBuilder;
     }
-    */
 }

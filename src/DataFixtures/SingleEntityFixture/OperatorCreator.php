@@ -17,7 +17,7 @@ class OperatorCreator
      */
     public static function create(ObjectManager $manager, array $fields = []): Operator
     {
-        $spa = $manager->getRepository(SPA::class)->findOneBy(['id' => $fields['spa_id']]);
+        $spa = $manager->getRepository(SPA::class)->find($fields['spa_id']);
         if (is_null($spa)) {
             throw new Exception('spa with id: ' . $fields['spa_id'] . ' not found');
         }

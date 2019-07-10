@@ -13,6 +13,7 @@ use App\Form\EditUserForm;
 use Doctrine\ORM\EntityManagerInterface;
 use SimpleBus\SymfonyBridge\Bus\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -86,7 +87,9 @@ class StaffUserController extends AbstractController
     public function editUser(User $user, Request $request, UserPasswordEncoderInterface $encoder)
     {
         $spa = $user->getSpa();
-        $spa_id = $spa->getId();
+        if (!$spa) {
+            throw new AccessDeniedException('Could not change Admin user ' . $user->getName() . ' ' . $user->getLastName());
+        }
 
         $editUser = new EditUser($user);
         $form = $this->createForm(EditUserForm::class, $editUser);
@@ -95,7 +98,7 @@ class StaffUserController extends AbstractController
             $this->commandBus->handle($editUser);
             return $this->redirectToRoute('admin_spa_info',
                 [
-                    'spa' => $spa_id
+                    'spa' => $spa->getId()
                 ]);
         }
         return $this->render('admin/editStaffUser.html.twig', [
