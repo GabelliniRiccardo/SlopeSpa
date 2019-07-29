@@ -51,12 +51,19 @@ class Operator
      */
     private $treatments;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="operator", orphanRemoval=true)
+     * @var Collection|Reservation[]
+     */
+    private $reservations;
+
     public function __construct(string $first_name, string $last_name, SPA $spa )
     {
         $this->setFirstName($first_name);
         $this->setLastName($last_name);
         $this->setSpa($spa);
         $this->treatments = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): int
@@ -138,5 +145,36 @@ class Operator
         $this->phoneNumber = $phoneNumber;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setOperator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->contains($reservation)) {
+            $this->reservations->removeElement($reservation);
+        }
+
+        return $this;
+    }
+
+    public function __toString() {
+        return $this->firstName . ' ' . $this->lastName;
     }
 }

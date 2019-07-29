@@ -30,22 +30,64 @@ class OperatorsFixtures extends Fixture implements DependentFixtureInterface
         return [
             [
                 'spa_id' => 1,
-                'first_name' => 'Operator 1 name',
-                'last_name' => 'Operator 1 last name',
-                'phone_number' => '1111111111'
-            ],
-            [
-                'spa_id' => 2,
-                'first_name' => 'Operator 2 name',
-                'last_name' => 'Operator 2 last name',
-                'phone_number' => '2222222222'
+                'first_name' => 'Arianna',
+                'last_name' => 'Riommi',
+                'phone_number' => '3299167609'
             ],
             [
                 'spa_id' => 1,
-                'first_name' => 'Operator 3 name',
-                'last_name' => 'Operator 3 last name',
-                'phone_number' => '3333333333'
-            ]
+                'first_name' => 'Simone',
+                'last_name' => 'Codovini',
+                'phone_number' => '3462342922'
+            ],
+            [
+                'spa_id' => 1,
+                'first_name' => 'Francesco',
+                'last_name' => 'Bucci',
+                'phone_number' => '3384237556'
+            ],
+            [
+                'spa_id' => 1,
+                'first_name' => 'Cristina',
+                'last_name' => 'Minelli',
+                'phone_number' => '3331771995'
+            ],
+            [
+                'spa_id' => 1,
+                'first_name' => 'Diego',
+                'last_name' => 'Izzo',
+                'phone_number' => '3474640373'
+            ],
+            [
+                'spa_id' => 1,
+                'first_name' => 'Elena',
+                'last_name' => 'Ragni',
+                'phone_number' => '3332631377'
+            ],
+            [
+                'spa_id' => 1,
+                'first_name' => 'Lorenzo',
+                'last_name' => 'Fabbri',
+                'phone_number' => '3333553039'
+            ],
+            [
+                'spa_id' => 1,
+                'first_name' => 'Giovanni',
+                'last_name' => 'Gabbolini',
+                'phone_number' => '3348152592'
+            ],
+            [
+                'spa_id' => 1,
+                'first_name' => 'Federico',
+                'last_name' => 'Parroni',
+                'phone_number' => '3387582547'
+            ],
+            [
+                'spa_id' => 1,
+                'first_name' => 'Claudia',
+                'last_name' => 'Mancini',
+                'phone_number' => '3358156621'
+            ],
         ];
     }
 }

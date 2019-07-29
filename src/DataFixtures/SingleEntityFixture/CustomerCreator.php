@@ -4,7 +4,6 @@ namespace App\DataFixtures\SingleEntityFixture;
 
 use App\Entity\Customer;
 use App\Entity\SPA;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ObjectManager;
 use \Symfony\Component\Config\Definition\Exception\Exception;
 

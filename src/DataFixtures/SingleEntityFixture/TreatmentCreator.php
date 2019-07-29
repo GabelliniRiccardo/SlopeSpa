@@ -5,7 +5,6 @@ namespace App\DataFixtures\SingleEntityFixture;
 
 
 use App\Entity\Operator;
-use App\Entity\Room;
 use App\Entity\SPA;
 use App\Entity\Treatment;
 use App\Objects\Money;
@@ -38,21 +37,11 @@ class TreatmentCreator
             $spa
         );
 
-        foreach ($fields['rooms_ids'] as $room_id) {
-            $room = $manager->getRepository(Room::class)->find($room_id);
-            if (is_null($room)) {
-                throw new Exception('Room with id: ' . $room_id . ' not found');
-            }
-            $treatment->addRoom($room);
-
+        $operatorsIds = $fields['operators_id'];
+        foreach ($operatorsIds as $operatorId){
+            $operator = $manager->getRepository(Operator::class)->find($operatorId);
+            $treatment->addOperator($operator);
         }
-
-        $operator = $manager->getRepository(Operator::class)->find($fields['operator_id']);
-        if (is_null($operator)) {
-            throw new Exception('Operator with id: ' . $fields['operator_id'] . ' not found');
-        }
-
-        $treatment->addOperator($operator);
 
         $manager->persist($treatment);
 

@@ -14,10 +14,11 @@ class CreateCustomerForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('_',
+            ->add('customer',
                 CustomerDTOForm::class,
                 [
                     'property_path' => 'customerDTO',
+                    'label' => false,
                 ]
             )
             ->add('create',

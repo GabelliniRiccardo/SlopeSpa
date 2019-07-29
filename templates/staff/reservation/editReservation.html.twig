@@ -1,0 +1,36 @@
+{% extends 'staff/baseStaff.html.twig' %}
+
+{% block main %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">{% trans %}ReservationForm.EditReservation{% endtrans %}</h6>
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col">
+                    {{ form_start(form) }}
+                    {% for message in app.flashes('alert') %}
+                        <div class="row justify-content-center">
+                            <div class="col">
+                                <div class="alert alert-danger alert-dismissible fade show text-center" data-auto-dismiss>
+                                    {{ message | raw }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    {% include 'modal/LoadingAjaxModal.html.twig' %}
+{% endblock %}
+
+{% block customJavascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/js/edit-reservation.js') }}"></script>
+{% endblock %}

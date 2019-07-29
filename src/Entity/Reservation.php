@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use App\Objects\Money;
+use App\Types\MoneyType;
+use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,13 +22,13 @@ class Reservation
     private $id;
 
     /**
-     * @ORM\Column(type="date_immutable")
+     * @ORM\Column(type="datetime_immutable")
      * @var \DateTimeImmutable
      */
     private $start_time;
 
     /**
-     * @ORM\Column(type="date_immutable")
+     * @ORM\Column(type="datetime_immutable")
      * @var \DateTimeImmutable
      */
     private $end_time;
@@ -37,10 +40,10 @@ class Reservation
     private $duration;
 
     /**
-     * @ORM\Column(type="float")
-     * @var float
+     * @ORM\Column(type="money_type", name="price")
+     * @var Money
      */
-    private $price;
+    private $money;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Treatment", inversedBy="reservations")
@@ -48,13 +51,6 @@ class Reservation
      * @var Treatment
      */
     private $treatment;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Room", inversedBy="reservations")
-     * @ORM\JoinColumn(nullable=false)
-     * @var Room
-     */
-    private $room;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="reservations")
@@ -76,26 +72,34 @@ class Reservation
      */
     private $spa;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Operator", inversedBy="reservations")
+     * @ORM\JoinColumn(nullable=false)
+     * @var Operator
+     */
+    private $operator;
+
     public function __construct(
         \DateTimeImmutable $start_time,
         \DateTimeImmutable $end_time,
         int $duration,
-        float $price,
+        Money $money,
         Treatment $treatment,
-        Room $room,
         Customer $customer,
         float $vat,
-        SPA $spa)
+        SPA $spa,
+        Operator $operator
+    )
     {
         $this->setStartTime($start_time);
         $this->setEndTime($end_time);
         $this->setDuration($duration);
-        $this->setPrice($price);
+        $this->setMoney($money);
         $this->setTreatment($treatment);
-        $this->setRoom($room);
         $this->setCustomer($customer);
         $this->setVat($vat);
         $this->setSpa($spa);
+        $this->setOperator($operator);
     }
 
     public function getId(): int
@@ -139,14 +143,14 @@ class Reservation
         return $this;
     }
 
-    public function getPrice(): float
+    public function getMoney(): ?Money
     {
-        return $this->price;
+        return $this->money;
     }
 
-    public function setPrice(float $price): self
+    public function setMoney(Money $money): self
     {
-        $this->price = $price;
+        $this->money = $money;
 
         return $this;
     }
@@ -159,18 +163,6 @@ class Reservation
     public function setTreatment(Treatment $treatment): self
     {
         $this->treatment = $treatment;
-
-        return $this;
-    }
-
-    public function getRoom(): Room
-    {
-        return $this->room;
-    }
-
-    public function setRoom(Room $room): self
-    {
-        $this->room = $room;
 
         return $this;
     }
@@ -207,6 +199,18 @@ class Reservation
     public function setSpa(SPA $spa): self
     {
         $this->spa = $spa;
+
+        return $this;
+    }
+
+    public function getOperator(): Operator
+    {
+        return $this->operator;
+    }
+
+    public function setOperator(Operator $operator): self
+    {
+        $this->operator = $operator;
 
         return $this;
     }

@@ -28,10 +28,10 @@
                     <table class="table table-responsive-lg">
                         <tr>
                             {# sorting of properties based on query components #}
-                            <th>{{ knp_pagination_sortable(pagination, 'SPAList.Name'|trans, 'x.name') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'SPAList.Email'|trans, 'x.email') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'SPAList.Address'|trans, 'x.address') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'SPAList.PhoneNumber'|trans, 'x.phoneNumber') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'SPAList.Name'|trans, 's.name') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'SPAList.Email'|trans, 's.email') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'SPAList.Address'|trans, 's.address') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'SPAList.PhoneNumber'|trans, 's.phoneNumber') }}</th>
                             <th class="text-center">{% trans %}SPAList.Staff{% endtrans %}</th>
                             <th class="text-center">{% trans %}SPAList.Edit{% endtrans %}</th>
                             <th class="text-center">{% trans %}SPAList.Delete{% endtrans %}</th>
@@ -65,7 +65,7 @@
                                             class="btn btn-danger deleteButton"
                                             id="{{ spa.id }}"
                                             data-toggle="modal"
-                                            data-target="#exampleModal"
+                                            data-target="#loadingModal"
                                             title="{% trans %}SPAList.Delete{% endtrans %} {{ spa.name }}">
                                         <i class="fa fa-trash-alt" aria-hidden="true"></i>
                                     </button>

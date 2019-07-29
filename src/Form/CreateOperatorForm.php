@@ -16,11 +16,12 @@ class CreateOperatorForm extends AbstractType
     {
         $treatments = $options['treatments'];
         $builder
-            ->add('_',
+            ->add('operator',
                 OperatorDTOForm::class,
                 [
                     'property_path' => 'operatorDTO',
-                    'treatments' => $treatments
+                    'treatments' => $treatments,
+                    'label' => false,
                 ]
             )
             ->add('create',
@@ -35,7 +36,7 @@ class CreateOperatorForm extends AbstractType
         $resolver->setDefaults([
             'data_class' => CreateOperator::class,
         ]);
-        $resolver->setRequired('treatments'); // Requires that currentOrg be set by the caller.
-        $resolver->setAllowedTypes('treatments', PersistentCollection::class); // Validates the type(s) of option(s) passed.
+        $resolver->setRequired('treatments');
+        $resolver->setAllowedTypes('treatments', PersistentCollection::class);
     }
 }

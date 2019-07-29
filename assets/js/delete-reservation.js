@@ -3,7 +3,7 @@ var loadingContent = $('#loadingModalDialog').html();
 $(".deleteButton").click(function (e) {
   e.preventDefault();
   var id = $(this).attr('id');
-  var url = '/staff/room/delete/' + id;
+  var url = '/staff/reservation/delete/' + id;
 
   $('#loadModalContent').replaceWith(loadingContent);
 
@@ -12,9 +12,9 @@ $(".deleteButton").click(function (e) {
     $('#loadModalContent').replaceWith(content);
   })
     .fail(function () {
-      console.error('Ajax request for room id ' + id + ' error')
+      console.error('Ajax request for reservation id ' + id + ' error')
     })
     .done(function () {
-      console.log('Ajax request for room id ' + id + ' success');
+      console.log('Ajax request for reservation id ' + id + ' success');
     });
 });

@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 class CustomerRepository extends AbstractMultiTenantRepository
 {
     private $paginator;
+    protected $alias = 'c';
 
     public function __construct(RegistryInterface $registry, PaginatorInterface $paginator, MultitenantService $multitenantService)
     {
@@ -20,10 +21,10 @@ class CustomerRepository extends AbstractMultiTenantRepository
 
     public function findAllPaginated($page, $spaID)
     {
-        $dbQuery = $this->createQueryBuilder('x')
-            ->andWhere('x.spa = :spa_id')
+        $dbQuery = $this->createQueryBuilder('c')
+            ->andWhere('c.spa = :spa_id')
             ->setParameter('spa_id', $spaID)
-            ->orderBy('x.firstName')
+            ->orderBy('c.firstName')
             ->getQuery();
 
         $paginatedOperators = $this->paginator->paginate($dbQuery, $page, 5);
@@ -33,7 +34,7 @@ class CustomerRepository extends AbstractMultiTenantRepository
     protected function enforceTenancy(int $spaID, QueryBuilder $queryBuilder): QueryBuilder
     {
         $queryBuilder
-            ->andWhere('x.spa = :spaId')
+            ->andWhere('c.spa = :spaId')
             ->setParameter('spaId', $spaID);
         return $queryBuilder;
     }

@@ -30,28 +30,44 @@ class CustomersFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             [
-                'first_name' => 'Customer 1 first_name',
-                'last_name' => 'Customer 1 last_name',
-                'birthday' => new \DateTimeImmutable('1994-01-01'),
-                'address' => 'Address of customer 1',
-                'phone_number' => '1111111111',
+                'first_name' => 'Anno',
+                'last_name' => 'Cardosi',
+                'birthday' => new \DateTimeImmutable('1958-10-08'),
+                'address' => 'C.S. Sorbello 41',
+                'phone_number' => '3339306024',
                 'spa_id' => 1
             ],
             [
-                'first_name' => 'Customer 2 first_name',
-                'last_name' => 'Customer 2 last_name',
-                'birthday' => new \DateTimeImmutable('1981-07-09'),
-                'address' => 'Address of customer 1',
-                'phone_number' => '2222222222',
+                'first_name' => 'Massimo',
+                'last_name' => 'Montinaro',
+                'birthday' => new \DateTimeImmutable('1957-06-02'),
+                'address' => 'C.S. Sorbello 41',
+                'phone_number' => '3339102499',
                 'spa_id' => 1
             ],
             [
-                'first_name' => 'Customer 3 first_name',
-                'last_name' => 'Customer 3 last_name',
-                'birthday' => new \DateTimeImmutable('1979-04-04'),
-                'address' => 'Address of customer 1',
-                'phone_number' => '2222222222',
-                'spa_id' => 2
+                'first_name' => 'Giada',
+                'last_name' => 'Montinaro',
+                'birthday' => new \DateTimeImmutable('1984-05-20'),
+                'address' => 'San lorenzo 52',
+                'phone_number' => '3401010287',
+                'spa_id' => 1
+            ],
+            [
+                'first_name' => 'Alice',
+                'last_name' => 'Montinaro',
+                'birthday' => new \DateTimeImmutable('1981-12-17'),
+                'address' => 'C.S. Sorbello 41',
+                'phone_number' => '3924745186',
+                'spa_id' => 1
+            ],
+            [
+                'first_name' => 'Chiara',
+                'last_name' => 'Montinaro',
+                'birthday' => new \DateTimeImmutable('1994-11-04'),
+                'address' => 'C.S. Sorbello 41',
+                'phone_number' => '3392264061',
+                'spa_id' => 1
             ],
         ];
     }

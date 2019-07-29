@@ -34,6 +34,24 @@ Encore
     './node_modules/bootstrap-auto-dismiss-alert',
   ])
 
+  .addEntry('js/charts', [
+    './node_modules/chart.js/dist/Chart.bundle.js',
+    './node_modules/chart.js/dist/Chart.js',
+    './node_modules/randomcolor/randomColor.js',
+  ])
+
+  .addEntry('js/reservation-histogram-chart', [
+    './assets/js/reservation-histogram-chart.js'
+  ])
+
+  .addEntry('js/reservation-line-chart', [
+    './assets/js/reservation-line-chart.js'
+  ])
+
+  .addEntry('js/treatment-histogram-chart', [
+    './assets/js/treatment-histogram-chart.js'
+  ])
+
   .addEntry('js/delete-SPA', [
     './assets/js/delete-SPA.js'
   ])
@@ -50,12 +68,24 @@ Encore
     './assets/js/delete-Treatment.js'
   ])
 
-  .addEntry('js/delete-Room', [
-    './assets/js/delete-Room.js'
-  ])
-
   .addEntry('js/delete-Customer', [
     './assets/js/delete-Customer.js'
+  ])
+
+  .addEntry('js/delete-reservation', [
+    './assets/js/delete-reservation.js'
+  ])
+
+  .addEntry('js/edit-reservation', [
+    './assets/js/edit-reservation.js'
+  ])
+
+  .addEntry('js/create-reservation', [
+    './assets/js/create-reservation.js'
+  ])
+
+  .addStyleEntry('css/charts', [
+    './node_modules/chart.js/dist/Chart.css',
   ])
 
   .addStyleEntry('css/sb-admin-2', [

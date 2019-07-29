@@ -25,6 +25,7 @@ services:
         tags: ['controller.service_arguments']
 
     App\Service\MultitenantService:
+    App\Service\ReservationQueryService:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
@@ -93,23 +94,6 @@ services:
       tags:
         - { name: command_handler, handles: App\Command\Staff\Treatment\DeleteTreatment}
 
-    # Room Command Handler pattern
-
-    create_room_command_handler:
-      class: App\CommandHandler\Staff\Room\CreateRoomCommandHandler
-      tags:
-        - { name: command_handler, handles: App\Command\Staff\Room\CreateRoom}
-
-    edit_room_command_handler:
-      class: App\CommandHandler\Staff\Room\EditRoomCommandHandler
-      tags:
-        - { name: command_handler, handles: App\Command\Staff\Room\EditRoom}
-
-    delete_room_command_handler:
-      class: App\CommandHandler\Staff\Room\DeleteRoomCommandHandler
-      tags:
-        - { name: command_handler, handles: App\Command\Staff\Room\DeleteRoom}
-
   # Customer Command Handler pattern
 
     create_customer_command_handler:
@@ -126,3 +110,20 @@ services:
       class: App\CommandHandler\Staff\Customer\DeleteCustomerCommandHandler
       tags:
         - { name: command_handler, handles: App\Command\Staff\Customer\DeleteCustomer}
+
+  # Reservation Command Handler pattern
+
+    create_Reservation_command_handler:
+      class: App\CommandHandler\Staff\Reservation\CreateReservationCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Reservation\CreateReservation}
+
+    edit_Reservation_command_handler:
+      class: App\CommandHandler\Staff\Reservation\EditReservationCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Reservation\EditReservation}
+
+    delete_Reservation_command_handler:
+      class: App\CommandHandler\Staff\Reservation\DeleteReservationCommandHandler
+      tags:
+        - { name: command_handler, handles: App\Command\Staff\Reservation\DeleteReservation}

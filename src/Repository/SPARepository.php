@@ -10,6 +10,8 @@ use Knp\Component\Pager\PaginatorInterface;
 
 class SPARepository extends AbstractMultiTenantRepository
 {
+    protected $alias = 's';
+
     public function __construct(RegistryInterface $registry, PaginatorInterface $paginator, MultitenantService $multitenantService)
     {
         parent::__construct($registry, SPA::class, $multitenantService);
@@ -18,8 +20,8 @@ class SPARepository extends AbstractMultiTenantRepository
 
     public function findAllPaginated($page)
     {
-        $dbQuery = $this->createQueryBuilder('x')
-            ->orderBy('x.name')
+        $dbQuery = $this->createQueryBuilder('s')
+            ->orderBy('s.name')
             ->getQuery();
 
         $paginatedSpas = $this->paginator->paginate($dbQuery, $page, 5);
@@ -29,7 +31,7 @@ class SPARepository extends AbstractMultiTenantRepository
     protected function enforceTenancy(int $spaID, QueryBuilder $queryBuilder): QueryBuilder
     {
         $queryBuilder
-            ->andWhere('x.id = :spaId')
+            ->andWhere('s.id = :spaId')
             ->setParameter('spaId', $spaID);
         return $queryBuilder;
     }

@@ -14,6 +14,7 @@ use Symfony\Component\Intl\Exception\NotImplementedException;
 abstract class AbstractMultiTenantRepository extends ServiceEntityRepository
 {
     protected $multitenantService;
+    protected $alias;
 
     public function __construct(ManagerRegistry $registry, $entityClass, MultitenantService $multitenantService)
     {
@@ -33,12 +34,12 @@ abstract class AbstractMultiTenantRepository extends ServiceEntityRepository
 
     public function find($id, $lockMode = null, $lockVersion = null)
     {
-        $queryBuilder = parent::createQueryBuilder('x');
+        $queryBuilder = parent::createQueryBuilder($this->alias);
         if ($this->multitenantService->isMultitenant()) {
             Assertion::notNull($this->multitenantService->getSpaIdOfCurrentUser(), 'Tenancy cannot be enforced without a spa ID.');
             $queryBuilder = $this->enforceTenancy($this->multitenantService->getSpaIdOfCurrentUser(), $queryBuilder);
         }
-        $queryBuilder->andWhere('x.id = :id')->setParameter('id', $id);
+        $queryBuilder->andWhere($this->alias . '.id = :id')->setParameter('id', $id);
         return $queryBuilder->getQuery()->getSingleResult();
     }
 
@@ -46,7 +47,12 @@ abstract class AbstractMultiTenantRepository extends ServiceEntityRepository
 
     public function findAll()
     {
-        throw new NotImplementedException('findAll() method on AbstractMultiTenantRepository cannot be callable');
+        $queryBuilder = parent::createQueryBuilder($this->alias);
+        if ($this->multitenantService->isMultitenant()) {
+            Assertion::notNull($this->multitenantService->getSpaIdOfCurrentUser(), 'Tenancy cannot be enforced without a spa ID.');
+            $queryBuilder = $this->enforceTenancy($this->multitenantService->getSpaIdOfCurrentUser(), $queryBuilder);
+        }
+        return $queryBuilder->getQuery()->getResult();
     }
 
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)

@@ -16,11 +16,12 @@ class EditOperatorForm extends AbstractType
     {
         $treatments = $options['treatments'];
         $builder
-            ->add('_',
+            ->add('operator',
                 OperatorDTOForm::class,
                 [
                     'property_path' => 'operatorDTO',
-                    'treatments' => $treatments
+                    'treatments' => $treatments,
+                    'label' => false,
                 ]
             )
             ->add('edit',

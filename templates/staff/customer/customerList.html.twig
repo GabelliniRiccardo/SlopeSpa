@@ -26,11 +26,11 @@
                     <table class="table table-responsive-xl">
                         <tr>
                             {# sorting of properties based on query components #}
-                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.FirstName'|trans, 'x.firstName') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.LastName'|trans, 'x.lastName') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.Address'|trans, 'x.address') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.Birthday'|trans, 'x.birthday') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.PhoneNumber'|trans, 'x.phoneNumber') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.FirstName'|trans, 'c.firstName') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.LastName'|trans, 'c.lastName') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.Address'|trans, 'c.address') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.Birthday'|trans, 'c.birthday') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'CustomerList.PhoneNumber'|trans, 'c.phoneNumber') }}</th>
                             <th class="text-center">{% trans %}CustomerList.Edit{% endtrans %}</th>
                             <th class="text-center">{% trans %}CustomerList.Delete{% endtrans %}</th>
                         </tr>
@@ -56,7 +56,7 @@
                                             class="btn btn-danger deleteButton"
                                             id="{{ customer.id }}"
                                             data-toggle="modal"
-                                            data-target="#exampleModal"
+                                            data-target="#loadingModal"
                                             title="{% trans %}CustomerList.Delete{% endtrans %} {{ customer.firstName }}">
                                         <i class="fa fa-trash-alt" aria-hidden="true"></i>
                                     </button>

@@ -21,7 +21,6 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
     {
         return array(
             OperatorsFixtures::class,
-            RoomsFixtures::class,
             SPAsFixtures::class,
         );
     }
@@ -30,57 +29,43 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             [
-                'name' => 'Treatment 1',
-                'price' => 20.5,
-                'duration' => 1800,
-                'VAT' => 22,
-                'operator_id' => 1,
-                'rooms_ids' => [1,2,3],
-                'spa_id' => 1
-            ],
-            [
-                'name' => 'Treatment 2',
-                'price' => 50.5,
-                'duration' => 3600,
-                'VAT' => 22,
-                'operator_id' => 2,
-                'rooms_ids' => [4,5,6],
-                'spa_id' => 2
-            ],
-            [
-                'name' => 'Treatment 3',
-                'price' => 100,
-                'duration' => 3600,
-                'VAT' => 22,
-                'operator_id' => 3,
-                'rooms_ids' => [7,8,9],
-                'spa_id' => 1
-            ],
-            [
-                'name' => 'Treatment 4',
-                'price' => 200,
-                'duration' => 2700,
-                'VAT' => 22,
-                'operator_id' => 3,
-                'rooms_ids' => [1,2,3],
-                'spa_id' => 1
-            ],
-            [
-                'name' => 'Treatment 5',
+                'name' => 'Massaggio Kembiki',
                 'price' => 50,
+                'duration' => 3600,
+                'VAT' => 22,
+                'operators_id' => [4, 6, 8],
+                'spa_id' => 1
+            ],
+            [
+                'name' => 'Massaggio Ayurvedico',
+                'price' => 70,
                 'duration' => 5400,
                 'VAT' => 22,
-                'operator_id' => 3,
-                'rooms_ids' => [4,5,6],
+                'operators_id' => [6, 10],
                 'spa_id' => 1
             ],
             [
-                'name' => 'Treatment 6',
+                'name' => 'Linfodrenaggio Gambe',
                 'price' => 30,
-                'duration' => 7200,
+                'duration' => 1800,
                 'VAT' => 22,
-                'operator_id' => 1,
-                'rooms_ids' => [7,8,9],
+                'operators_id' => [2, 5],
+                'spa_id' => 1
+            ],
+            [
+                'name' => 'Hot Stone Massage',
+                'price' => 60,
+                'duration' => 3600,
+                'VAT' => 22,
+                'operators_id' => [3, 6, 9],
+                'spa_id' => 1
+            ],
+            [
+                'name' => 'Massaggio Californiano',
+                'price' => 80,
+                'duration' => 3600,
+                'VAT' => 22,
+                'operators_id' => [7, 8, 10],
                 'spa_id' => 1
             ],
         ];

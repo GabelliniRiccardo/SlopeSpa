@@ -15,10 +15,11 @@ class CreateUserForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('_',
+            ->add('user',
                 UserDTOForm::class,
                 [
                     'property_path' => 'userDTO',
+                    'label' => false,
                 ]
             )
             ->add('edit',

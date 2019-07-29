@@ -2,6 +2,9 @@
     "beberlei/assert": {
         "version": "v3.2.1"
     },
+    "beberlei/doctrineextensions": {
+        "version": "v1.2.2"
+    },
     "components/jquery": {
         "version": "3.3.1"
     },

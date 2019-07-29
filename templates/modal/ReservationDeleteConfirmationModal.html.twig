@@ -1,0 +1,34 @@
+<div class="modal-content" id="loadModalContent">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Deleting Reservation</h5>
+        <button type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <p>Are You sure to delete the Reservation?</p>
+        <p>Treatment: <strong>{{ reservation.treatment }}</strong></p>
+        <p>Operator: <strong>{{ reservation.operator }}</strong></p>
+        <p>Start Time: <strong>{{ reservation.startTime | date }}</strong></p>
+        <p>Duration: <strong>{{ reservation.duration | date('H:i') }}</strong></p>
+        <p>End Time: <strong>{{ reservation.endTime | date }}</strong></p>
+        <p>Price: <strong>{{ reservation.money.value }} {{ reservation.money.currency }}</strong></p>
+        <p>VAT: <strong>{{ reservation.VAT }}%</strong></p>
+    </div>
+
+    <div class="modal-footer">
+        <div class="form-group">
+            <button type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal">
+                Close
+            </button>
+        </div>
+        {{ form(deleteReservationForm) }}
+        {{ form_end(deleteReservationForm) }}
+    </div>
+</div>

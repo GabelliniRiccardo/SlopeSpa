@@ -1,8 +1,53 @@
 {% extends 'staff/baseStaff.html.twig' %}
 
+{% block customStylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('build/css/charts.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block main %}
+
     <div class="row justify-content-center">
-        <div class="col-md-8 col-xl-4 mb-4">
+        <div class="col-12 col-md-8 col-xl-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{% trans %}Charts.HistogramChartForOperators.Title{% endtrans %}</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="histogramChartForOperators" width="400" height="400"></canvas>
+                    <hr>
+                    {% trans %}Charts.HistogramChartForOperators.Description{% endtrans %}
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8 col-xl-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{% trans %}Charts.LineChartForReservationsHistory.Title{% endtrans %}</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="lineChartForReservationsHistory" width="400" height="400"></canvas>
+                    <hr>
+                    {% trans %}Charts.LineChartForReservationsHistory.Description{% endtrans %}
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8 col-xl-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{% trans %}Charts.HistogramChartForTreatments.Title{% endtrans %}</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="histogramChartForTreatments" width="400" height="400"></canvas>
+                    <hr>
+                    {% trans %}Charts.HistogramChartForTreatments.Description{% endtrans %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-xl-3 mb-4">
             <a href="{{ path('staff_create_operator') }}">
                 <div class="card border-left-success shadow h-100 py-2">
                     <div class="card-body">
@@ -20,7 +65,7 @@
             </a>
         </div>
 
-        <div class="col-md-8 col-xl-4 mb-4">
+        <div class="col-md-8 col-xl-3 mb-4">
             <a href="{{ path('staff_operator_list') }}">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
@@ -37,48 +82,8 @@
                 </div>
             </a>
         </div>
-    </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-xl-4 mb-4">
-            <a href="{{ path('staff_create_room') }}">
-                <div class="card border-left-success shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-lg font-weight-bold text-success text-uppercase mb-1">{% trans %}AddRoom{% endtrans %}
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-plus fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-8 col-xl-4 mb-4">
-            <a href="{{ path('staff_room_list') }}">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">{% trans %}Rooms{% endtrans %}
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-list fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-xl-4 mb-4">
+        <div class="col-md-8 col-xl-3 mb-4">
             <a href="{{ path ('staff_create_treatment') }}">
                 <div class="card border-left-success shadow h-100 py-2">
                     <div class="card-body">
@@ -96,7 +101,7 @@
             </a>
         </div>
 
-        <div class="col-md-8 col-xl-4 mb-4">
+        <div class="col-md-8 col-xl-3 mb-4">
             <a href="{{ path('staff_treatment_list') }}">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
@@ -113,10 +118,9 @@
                 </div>
             </a>
         </div>
-    </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-xl-4 mb-4">
+
+        <div class="col-md-8 col-xl-3 mb-4">
             <a href="{{ path('staff_create_customer') }}">
                 <div class="card border-left-success shadow h-100 py-2">
                     <div class="card-body">
@@ -134,7 +138,7 @@
             </a>
         </div>
 
-        <div class="col-md-8 col-xl-4 mb-4">
+        <div class="col-md-8 col-xl-3 mb-4">
             <a href="{{ path('staff_customer_list') }}">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
@@ -151,5 +155,73 @@
                 </div>
             </a>
         </div>
+
+        <div class="col-md-8 col-xl-3 mb-4">
+            <a href="{{ path('staff_create_reservation') }}">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-success text-uppercase mb-1">{% trans %}AddNewReservation{% endtrans %}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-plus fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-8 col-xl-3 mb-4">
+            <a href="{{ path('staff_future_reservation_list') }}">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">{% trans %}FutureReservationsList{% endtrans %}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-list fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-8 col-xl-3 mb-4">
+            <a href="{{ path('staff_past_reservation_list') }}">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">{% trans %}PastReservationsList{% endtrans %}
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-list fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
+
+{% endblock %}
+
+{% block customJavascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/js/charts.js') }}"></script>
+    <script>
+      var operators = {{ operators|json_encode|raw }};
+      var treatments = {{ treatments|json_encode|raw }};
+      var reservationsHistory = {{ reservationsHistory|json_encode|raw }};
+    </script>
+    <script src="{{ asset('build/js/reservation-histogram-chart.js') }}"></script>
+    <script src="{{ asset('build/js/reservation-line-chart.js') }}"></script>
+    <script src="{{ asset('build/js/treatment-histogram-chart.js') }}"></script>
 {% endblock %}

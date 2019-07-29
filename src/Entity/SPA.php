@@ -70,12 +70,6 @@ class SPA
     private $customers;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Room", mappedBy="spa", orphanRemoval=true)
-     * @var Collection|Room[]
-     */
-    private $rooms;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="spa", orphanRemoval=true)
      * @var Collection|Reservation[]
      */
@@ -89,7 +83,6 @@ class SPA
         $this->operators = new ArrayCollection();
         $this->treatments = new ArrayCollection();
         $this->customers = new ArrayCollection();
-        $this->rooms = new ArrayCollection();
         $this->reservations = new ArrayCollection();
     }
 
@@ -264,37 +257,6 @@ class SPA
             // set the owning side to null (unless already changed)
             if ($customer->getSpa() === $this) {
                 $customer->setSpa(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Room[]
-     */
-    public function getRooms(): Collection
-    {
-        return $this->rooms;
-    }
-
-    public function addRoom(Room $room): self
-    {
-        if (!$this->rooms->contains($room)) {
-            $this->rooms[] = $room;
-            $room->setSpa($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRoom(Room $room): self
-    {
-        if ($this->rooms->contains($room)) {
-            $this->rooms->removeElement($room);
-            // set the owning side to null (unless already changed)
-            if ($room->getSpa() === $this) {
-                $room->setSpa(null);
             }
         }
 

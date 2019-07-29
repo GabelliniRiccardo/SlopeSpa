@@ -9,8 +9,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping as ORM;
 
-Type::addType('money_type', MoneyType::class);
-
 /**
  * @ORM\Table(name="treatments")
  * @ORM\Entity(repositoryClass="App\Repository\TreatmentRepository")
@@ -54,12 +52,6 @@ class Treatment
      * @var Collection|Operator[]
      */
     private $operators;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Room", mappedBy="treatment")
-     * @var Collection|Room[]
-     */
-    private $rooms;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="treatment", orphanRemoval=true)
@@ -154,34 +146,6 @@ class Treatment
     }
 
     /**
-     * @return Collection|Room[]
-     */
-    public function getRooms(): Collection
-    {
-        return $this->rooms;
-    }
-
-    public function addRoom(Room $room): self
-    {
-        if (!$this->rooms->contains($room)) {
-            $this->rooms[] = $room;
-            $room->addTreatment($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRoom(Room $room): self
-    {
-        if ($this->rooms->contains($room)) {
-            $this->rooms->removeElement($room);
-            $room->removeTreatment($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Reservation[]
      */
     public function getReservations(): Collection
@@ -234,5 +198,9 @@ class Treatment
         $this->spa = $spa;
 
         return $this;
+    }
+
+    public function __toString() {
+        return $this->name . ' ' . gmdate("H:i", $this->duration);
     }
 }

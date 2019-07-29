@@ -6,14 +6,15 @@ Menu:
   AddSPA: Add SPA
   SPAList: SPA List
   Agenda: Agenda
-  Clients: Clients
+  Customers: Customers
   Vouchers: Vouchers
   Configure:
     YouCanConfigure: You can configure
     Configure: Configure
     Treatments: Treatments
     Operators: Operators
-    Rooms: Rooms
+    PastReservations: Past Reservations
+    FutureReservations: Future Reservations
     Account: Account
   Logout: Logout
   Back to Home: Back to Home
@@ -115,13 +116,14 @@ Login:
 # STAFF index page
 
 AddOperator: Add Operator
-AddRoom: Add Room
 AddTreatment: Add Treatment
-Operators: Operator List
-Rooms: Room List
-Treatments: Treatment List
 AddCustomer: Add Customer
+AddNewReservation: Add Reservation
+Operators: Operator List
+Treatments: Treatment List
 Customers: Customers
+PastReservationsList: Past Reservation List
+FutureReservationsList: Future Reservation List
 
 # OPERATOR CREATE page
 
@@ -151,6 +153,7 @@ OperatorList:
   Name: Name
   LastName: Last Name
   PhoneNumber: Phone Number
+  ActualReservations: Actual Reservations
   Delete: Delete
   Edit: Edit
 
@@ -186,29 +189,6 @@ TreatmentForm:
   VAT:
     Value: VAT
     Placeholder: 22
-  CreateButton: Create
-  EditButton: Edit
-  DeleteButton: Delete
-
-# ROOM LIST page
-
-RoomList:
-  AddRoom: Add Room
-  AddRoomTo: Add Room to
-  ListOfRooms: List of Rooms
-  TotalNumOfElements: Total number of elements
-  Name: Name
-  Delete: Delete
-  Edit: Edit
-
-# ROOM CREATE page
-
-RoomForm:
-  AddRoom: Add Room
-  EditRoom: Edit Room
-  Name:
-    Value: Name
-    Placeholder: Room's name
   CreateButton: Create
   EditButton: Edit
   DeleteButton: Delete
@@ -252,3 +232,59 @@ CustomerForm:
   CreateButton: Create
   EditButton: Edit
   DeleteButton: Delete
+
+# RESERVATION CREATE page
+
+ReservationForm:
+  AddReservation: Add Reservation
+  EditReservation: Edit Reservation
+  Customer:
+    Value: Customer
+    Placeholder: Select a Customer
+  StartTime:
+    Value: Start Time
+    Month: Month
+    Day: Day
+    Year: Year
+    Hour: Hour
+    Minute: Minute
+  Treatment:
+    Value: Treatment
+    Placeholder: Select a Treatment
+  Operator:
+    Value: Operator
+    Placeholder: Select an Operator
+  CreateButton: Create
+  EditButton: Edit
+  DeleteButton: Delete
+
+# RESERVATION LIST page
+
+ReservationList:
+  AddReservation: Add Reservation
+  AddReservationTo: Add Reservation to
+  EditReservation: Edit Reservation
+  ListOfReservationsPast: List of Past Reservations
+  ListOfReservationsFuture: List of Future Reservations
+  TotalNumOfElements: Total number of elements
+  Id: Id
+  Treatment: Treatment
+  Operator: Operator
+  StartTime: Start Time
+  EndTime: End Time
+  Duration: Duration
+  Price: Price
+  VAT: VAT
+  Delete: Delete
+  Edit: Edit
+
+Charts:
+  HistogramChartForOperators:
+    Title: All reservations for operators
+    Description: This Histogram shows for each operator the whole amount of reservations
+  LineChartForReservationsHistory:
+    Title: Reservations History
+    Description: This Line chart shows the whole hystory of the amount of reservations
+  HistogramChartForTreatments:
+    Title: All reservations for Treatments
+    Description: This Histogram shows for each treatment the whole amount of reservations

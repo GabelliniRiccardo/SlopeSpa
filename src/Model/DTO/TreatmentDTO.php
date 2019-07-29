@@ -6,7 +6,6 @@ namespace App\Model\DTO;
 
 use App\Entity\Operator;
 use App\Entity\Reservation;
-use App\Entity\Room;
 use App\Entity\SPA;
 use App\Objects\Money;
 use Doctrine\Common\Collections\Collection;
@@ -51,11 +50,6 @@ class TreatmentDTO
      * Collection|Operator[]
      */
     public $operators;
-
-    /**
-     * @var Collection|Room[]
-     */
-    public $rooms;
 
     /**
      * @var Collection|Reservation[]

@@ -15,10 +15,11 @@ class CreateSPAForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('_',
+            ->add('spa',
                 SPADTOForm::class,
                 [
                     'property_path' => 'spaDTO',
+                    'label' => false,
                 ]
             )
             ->add('create',

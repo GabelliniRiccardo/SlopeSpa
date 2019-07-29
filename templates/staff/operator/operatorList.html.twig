@@ -26,9 +26,10 @@
                     <table class="table table-responsive-lg">
                         <tr>
                             {# sorting of properties based on query components #}
-                            <th>{{ knp_pagination_sortable(pagination, 'OperatorList.Name'|trans, 'x.firstName') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'OperatorList.LastName'|trans, 'x.lastName') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'OperatorList.PhoneNumber'|trans, 'x.phoneNumber') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'OperatorList.Name'|trans, 'o.firstName') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'OperatorList.LastName'|trans, 'o.lastName') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'OperatorList.PhoneNumber'|trans, 'o.phoneNumber') }}</th>
+                            <th>{% trans %}OperatorList.ActualReservations{% endtrans %}</th>
                             <th class="text-center">{% trans %}OperatorList.Edit{% endtrans %}</th>
                             <th class="text-center">{% trans %}OperatorList.Delete{% endtrans %}</th>
                         </tr>
@@ -39,6 +40,11 @@
                                 <td>{{ operator.firstName }}</td>
                                 <td>{{ operator.lastName }}</td>
                                 <td>{{ operator.phoneNumber }}</td>
+                                <td width="1">
+                                    <div class="{{ operator.reservations | length == 0 ? 'alert-danger' : 'alert-success' }} rounded text-center">
+                                        <strong>{{ operator.reservations | length }}</strong>
+                                    </div>
+                                </td>
                                 <td width="1">
                                     <a href="{{ path('staff_edit_operator', {'operator' : operator.id}) }}"
                                        class="btn btn-warning"
@@ -52,7 +58,7 @@
                                             class="btn btn-danger deleteButton"
                                             id="{{ operator.id }}"
                                             data-toggle="modal"
-                                            data-target="#exampleModal"
+                                            data-target="#loadingModal"
                                             title="{% trans %}OperatorList.Delete{% endtrans %} {{ operator.firstName }}">
                                         <i class="fa fa-trash-alt" aria-hidden="true"></i>
                                     </button>

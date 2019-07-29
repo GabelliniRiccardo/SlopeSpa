@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 class UserRepository extends AbstractMultiTenantRepository
 {
     private $paginator;
+    protected $alias = 'u';
 
     public function __construct(RegistryInterface $registry, PaginatorInterface $paginator, MultitenantService $multitenantService)
     {
@@ -21,8 +22,8 @@ class UserRepository extends AbstractMultiTenantRepository
 
     public function findAllPaginated($page, $spaID)
     {
-        $dbQuery = $this->createQueryBuilder('x')
-            ->andWhere('x.spa = :spa_id')
+        $dbQuery = $this->createQueryBuilder('u')
+            ->andWhere('u.spa = :spa_id')
             ->setParameter('spa_id', $spaID)
             ->getQuery();
 
@@ -32,8 +33,8 @@ class UserRepository extends AbstractMultiTenantRepository
 
     public function findUserByEmail(string $email)
     {
-        return $this->createQueryBuilder('x')
-            ->andWhere('x.email = :email')
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.email = :email')
             ->setParameter('email', $email)
             ->getQuery()
             ->getOneOrNullResult();
@@ -42,7 +43,7 @@ class UserRepository extends AbstractMultiTenantRepository
     protected function enforceTenancy(int $spaID, QueryBuilder $queryBuilder): QueryBuilder
     {
         $queryBuilder
-            ->andWhere('x.spa = :spaId')
+            ->andWhere('u.spa = :spaId')
             ->setParameter('spaId', $spaID);
         return $queryBuilder;
     }

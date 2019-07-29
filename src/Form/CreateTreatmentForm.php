@@ -14,10 +14,11 @@ class CreateTreatmentForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('_',
+            ->add('treatment',
                 TreatmentDTOForm::class,
                 [
                     'property_path' => 'treatmentDTO',
+                    'label' => false,
                 ]
             )
             ->add('create',

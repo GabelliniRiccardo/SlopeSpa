@@ -29,9 +29,9 @@
                     <table class="table table-responsive-md">
                         <tr>
                             {# sorting of properties based on query components #}
-                            <th>{{ knp_pagination_sortable(pagination, 'UserList.Name'|trans, 'x.name') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'UserList.LastName'|trans, 'x.lastName') }}</th>
-                            <th>{{ knp_pagination_sortable(pagination, 'UserList.Email'|trans, 'x.email') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'UserList.Name'|trans, 'u.name') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'UserList.LastName'|trans, 'u.lastName') }}</th>
+                            <th>{{ knp_pagination_sortable(pagination, 'UserList.Email'|trans, 'u.email') }}</th>
                             <th class="text-center">{% trans %}UserList.Edit{% endtrans %}</th>
                             <th class="text-center">{% trans %}UserList.Delete{% endtrans %}</th>
                         </tr>
@@ -52,7 +52,8 @@
                                 <td class="text-center" width="1">
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-danger deleteButton" id="{{ user.id }}"
-                                            data-toggle="modal" data-target="#exampleModal"
+                                            data-toggle="modal"
+                                            data-target="#loadingModal"
                                             title="{% trans %}UserList.Delete{% endtrans %} {{ user.name }}">
                                         <i class="fa fa-trash-alt" aria-hidden="true"></i>
                                     </button>
