@@ -18,8 +18,30 @@ Encore
    * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
    */
 
+  .copyFiles({
+    from: './assets/images',
+
+    // optional target path, relative to the output dir
+    //to: 'images/[path][name].[ext]',
+    // if versioning is enabled, add the file hash too
+    to: 'images/[name].[ext]',
+
+    // only copy files matching this pattern
+    //pattern: /\.(png|jpg|jpeg)$/
+  })
+
+  .copyFiles({
+    from: './assets/json',
+    to: 'json/[name].[ext]',
+  })
+
   .addEntry('js/app', [
     './assets/js/app.js',
+  ])
+
+  .addEntry('js/loadParticles', [
+    './node_modules/particles.js/particles.js',
+    './assets/js/loadParticles.js',
   ])
 
   .addEntry('js/one-page-wonder', [
@@ -88,6 +110,10 @@ Encore
     './assets/js/create-reservation.js'
   ])
 
+  .addStyleEntry('css/particles', [
+    './assets/css/particles.css',
+  ])
+
   .addStyleEntry('css/charts', [
     './node_modules/chart.js/dist/Chart.css',
   ])
@@ -99,7 +125,7 @@ Encore
 
   .addStyleEntry('css/one-page-wonder', [
     './node_modules/startbootstrap-one-page-wonder/vendor/bootstrap/css/bootstrap.min.css',
-    './node_modules/startbootstrap-one-page-wonder/css/one-page-wonder.min.css',
+    './node_modules/startbootstrap-one-page-wonder/css/one-page-wonder.css',
   ])
 
   .addStyleEntry('css/signin', ['./assets/css/signin.css'])

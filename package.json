@@ -40,6 +40,7 @@
     "bootstrap-auto-dismiss-alert": "^1.0.2",
     "chart.js": "^2.8.0",
     "jquery": "^3.4.1",
+    "particles.js": "^2.0.0",
     "popper.js": "^1.15.0",
     "randomcolor": "^0.5.4",
     "startbootstrap-one-page-wonder": "^5.0.6",

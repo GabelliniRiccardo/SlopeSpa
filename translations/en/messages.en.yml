@@ -294,3 +294,15 @@ Calendar:
   DeleteMessage:
     Error: An error occurred while deleting the reservation
     Success: The reservation was correctly deleted
+
+# HOME PAGE
+
+HomePage:
+  WelcomeMessage: Welcome to App Name
+  Enjoy: A WebApp for managing your SPA
+  ManageYourCalendar: Manage your Calendar
+  CalendarDescription: Using calendar you can see your reservations in detail. You have the possibility to manage them, deleting, updating and creating new reservations
+  ViewStatistics: View your statistic
+  StatisticsDescription: You can check how many reservations you have during an extended period of time. There are also other useful statistics waiting for you
+  ManageYourReservations: Manage your Reservations
+  ReservationsDescription: You can see all the details of your past and future Reservations and manage them as you wish.
