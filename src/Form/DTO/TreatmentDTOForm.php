@@ -25,10 +25,11 @@ class TreatmentDTOForm extends AbstractType
                         'placeholder' => 'TreatmentForm.Name.Placeholder'
                     ]
                 ])
-            ->add('_',
+            ->add('money',
                 MoneyFormType::class,
                 [
                     'property_path' => 'money',
+                    'label' => false
                 ]
             )
             ->add('duration', TimeType::class,
@@ -41,7 +42,7 @@ class TreatmentDTOForm extends AbstractType
                 ])
             ->add('vat', PercentType::class,
                 [
-                    'scale' =>1,
+                    'scale' => 1,
                     'type' => 'integer',
                     'label_format' => 'TreatmentForm.VAT.Value',
                     'attr' => [

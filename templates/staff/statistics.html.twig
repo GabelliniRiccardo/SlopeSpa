@@ -1,0 +1,60 @@
+{% extends 'staff/baseStaff.html.twig' %}
+
+{% block customStylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('build/css/charts.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-xl-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{% trans %}Charts.HistogramChartForOperators.Title{% endtrans %}</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="histogramChartForOperators" width="400" height="400"></canvas>
+                    <hr>
+                    {% trans %}Charts.HistogramChartForOperators.Description{% endtrans %}
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8 col-xl-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{% trans %}Charts.LineChartForReservationsHistory.Title{% endtrans %}</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="lineChartForReservationsHistory" width="400" height="400"></canvas>
+                    <hr>
+                    {% trans %}Charts.LineChartForReservationsHistory.Description{% endtrans %}
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8 col-xl-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{% trans %}Charts.HistogramChartForTreatments.Title{% endtrans %}</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="histogramChartForTreatments" width="400" height="400"></canvas>
+                    <hr>
+                    {% trans %}Charts.HistogramChartForTreatments.Description{% endtrans %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block customJavascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/js/charts.js') }}"></script>
+    <script>
+      var operators = {{ operators|json_encode|raw }};
+      var treatments = {{ treatments|json_encode|raw }};
+      var reservationsHistory = {{ reservationsHistory|json_encode|raw }};
+    </script>
+    <script src="{{ asset('build/js/reservation-histogram-chart.js') }}"></script>
+    <script src="{{ asset('build/js/reservation-line-chart.js') }}"></script>
+    <script src="{{ asset('build/js/treatment-histogram-chart.js') }}"></script>
+{% endblock %}

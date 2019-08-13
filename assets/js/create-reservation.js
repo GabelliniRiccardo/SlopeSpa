@@ -1,12 +1,20 @@
 import 'bootstrap';
 
+function removeParameterFromUrl(url, parameter) {
+  return url
+    .replace(new RegExp('[?&]' + parameter + '=[^&#]*(#.*)?$'), '$1')
+    .replace(new RegExp('([?&])' + parameter + '=[^&]*&'), '$1');
+}
+
 $(document).ready(function () {
 
   var form = $('form[name="create_reservation_form"]');
-  let treatment = $("#create_reservation_form_reservation_treatment");
+  // let treatment = $("#create_reservation_form_reservation_treatment");
   let operator = $("#create_reservation_form_reservation_operator");
-  treatment.prop('disabled', true);
-  operator.prop('disabled', true);
+  // treatment.prop('disabled', true);
+  if (!operator.val()) {
+    operator.prop('disabled', true);
+  }
 
   $(document).on('change',
     '#create_reservation_form_reservation_start_time,' +
@@ -26,11 +34,14 @@ $(document).ready(function () {
         startTimeYear.val() && startTimeHour.val() &&
         startTimeMinute.val()) {
 
+        // necessary to remove the operatorId during the ajax request: the operator id is needed only for the first load of the page
+        let url = removeParameterFromUrl(form.prop('action'), 'operatorId');
+
         $('#AjaxModal').fadeIn();
         $('#AjaxModal').modal('show');
         $.ajax({
           type: 'POST',
-          url: form.attr('action'),
+          url: url,
           data: form.serialize(),
           success: function (response) {
             form.replaceWith(response);

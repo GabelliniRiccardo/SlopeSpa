@@ -25,26 +25,33 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
-        <!-- Nav Item - SPA list -->
+        <!-- Nav Item - Agenda -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ path('staff_calendar') }}">
                 <i class="fas fa-fw fa-calendar-alt"></i>
                 <span>{% trans %}Menu.Agenda{% endtrans %}</span>
             </a>
         </li>
 
-        <!-- Nav Item - SPA list -->
+        <!-- Nav Item - Reservations -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('staff_future_reservation_list') }}">
+                <i class="fas fa-list fa-fw "></i>
+                <span>{% trans %}Menu.Reservations{% endtrans %}</span></a>
+        </li>
+
+        <!-- Nav Item - Customers -->
         <li class="nav-item">
             <a class="nav-link" href="{{ path('staff_customer_list') }}">
                 <i class="fas fa-users fa-fw "></i>
                 <span>{% trans %}Menu.Customers{% endtrans %}</span></a>
         </li>
 
-        <!-- Nav Item - Logout -->
+        <!-- Nav Item - Statistics -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-gifts"></i>
-                <span>{% trans %}Menu.Vouchers{% endtrans %}</span></a>
+            <a class="nav-link" href="{{ path('staff_statistics') }}">
+                <i class="fas fa-chart-line fa-fw "></i>
+                <span>{% trans %}Menu.Statistics{% endtrans %}</span></a>
         </li>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -58,13 +65,11 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">{% trans %}Menu.Configure.YouCanConfigure{% endtrans %}:</h6>
                     <a class="collapse-item"
-                       href="{{ path('staff_treatment_list') }}">{% trans %}Menu.Configure.Treatments{% endtrans %}</a>
+                       href="{{ path('staff_treatment_list') }}">{% trans %}Menu.Configure.Treatments{% endtrans %}
+                    </a>
                     <a class="collapse-item"
-                       href="{{ path('staff_operator_list') }}">{% trans %}Menu.Configure.Operators{% endtrans %}</a>
-                    <a class="collapse-item"
-                       href="{{ path('staff_future_reservation_list') }}">{% trans %}Menu.Configure.FutureReservations{% endtrans %}</a>
-                    <a class="collapse-item"
-                       href="{{ path('staff_past_reservation_list') }}">{% trans %}Menu.Configure.PastReservations{% endtrans %}</a>
+                       href="{{ path('staff_operator_list') }}">{% trans %}Menu.Configure.Operators{% endtrans %}
+                    </a>
                 </div>
             </div>
         </li>

@@ -1,0 +1,29 @@
+.fc-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+tr[data-time] td:not(.fc-axis):hover{
+    cursor: pointer;
+    background-color: rgba(0, 190, 255, 0.26);
+    border-radius: 10px;
+}
+
+.fc-content td:hover {
+    cursor: pointer;
+    background-color: rgba(0, 190, 255, 0.26);
+    border-radius: 10px;
+}
+
+.fc-event{
+    cursor: pointer;
+}
+
+.fc-timeline-event {
+    border-radius: 5px;
+}
+
+.fc-today {
+    background: unset !important;
+}

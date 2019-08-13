@@ -38,7 +38,11 @@ class TreatmentRepository extends AbstractMultiTenantRepository
             ->join('xx.reservations', 'r')
             ->andWhere('r.operator = :operatorId')
             ->setParameter('operatorId', $operatorId)
-            ->andWhere('(r.start_time BETWEEN :startTime AND :endTime) OR (r.end_time BETWEEN :startTime AND :endTime)')
+            ->andWhere(
+                '(r.start_time > :startTime AND r.start_time < :endTime)
+                 OR (r.end_time > :startTime AND r.end_time < :endTime)
+                 OR (r.start_time <= :startTime AND r.end_time >= :endTime)'
+            )
             ->setParameter('startTime', $startTime)
             ->setParameter('endTime', $endTime);
 

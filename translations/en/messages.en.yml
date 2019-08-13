@@ -6,15 +6,14 @@ Menu:
   AddSPA: Add SPA
   SPAList: SPA List
   Agenda: Agenda
+  Reservations: Reservations
   Customers: Customers
-  Vouchers: Vouchers
+  Statistics: Statistics
   Configure:
     YouCanConfigure: You can configure
     Configure: Configure
     Treatments: Treatments
     Operators: Operators
-    PastReservations: Past Reservations
-    FutureReservations: Future Reservations
     Account: Account
   Logout: Logout
   Back to Home: Back to Home
@@ -119,11 +118,10 @@ AddOperator: Add Operator
 AddTreatment: Add Treatment
 AddCustomer: Add Customer
 AddNewReservation: Add Reservation
-Operators: Operator List
-Treatments: Treatment List
+Operators: Operators List
+Treatments: Treatments List
 Customers: Customers
-PastReservationsList: Past Reservation List
-FutureReservationsList: Future Reservation List
+ListOfReservations: Reservations List
 
 # OPERATOR CREATE page
 
@@ -261,12 +259,15 @@ ReservationForm:
 # RESERVATION LIST page
 
 ReservationList:
+  ListOfFutureReservations: List of Future Reservations
+  ListOfPastReservations: List of Past Reservations
   AddReservation: Add Reservation
   AddReservationTo: Add Reservation to
   EditReservation: Edit Reservation
-  ListOfReservationsPast: List of Past Reservations
-  ListOfReservationsFuture: List of Future Reservations
-  TotalNumOfElements: Total number of elements
+  PastReservations: Past Reservations
+  FutureReservations: Future Reservations
+  TotalNumOfFutureReservations: Total number of Future Reservations
+  TotalNumOfPastReservations: Total number of Past Reservations
   Id: Id
   Treatment: Treatment
   Operator: Operator
@@ -288,3 +289,8 @@ Charts:
   HistogramChartForTreatments:
     Title: All reservations for Treatments
     Description: This Histogram shows for each treatment the whole amount of reservations
+
+Calendar:
+  DeleteMessage:
+    Error: An error occurred while deleting the reservation
+    Success: The reservation was correctly deleted

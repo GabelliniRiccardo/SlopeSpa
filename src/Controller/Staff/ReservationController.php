@@ -46,7 +46,7 @@ class ReservationController extends AbstractController
     {
         $paginatedReservations = $reservationRepository->findAllPastPaginated($page);
 
-        return $this->render('staff/reservation/ReservationList.html.twig',
+        return $this->render('staff/reservation/pastReservationList.html.twig',
             [
                 'pagination' => $paginatedReservations,
                 'title' => $this->translator->trans('ReservationList.ListOfReservationsPast'),
@@ -61,7 +61,7 @@ class ReservationController extends AbstractController
     {
         $paginatedReservations = $reservationRepository->findAllFuturePaginated($page);
 
-        return $this->render('staff/reservation/ReservationList.html.twig',
+        return $this->render('staff/reservation/futureReservationList.html.twig',
             [
                 'pagination' => $paginatedReservations,
                 'title' => $this->translator->trans('ReservationList.ListOfReservationsFuture'),
@@ -74,10 +74,22 @@ class ReservationController extends AbstractController
      */
     public function create(Request $request, TreatmentRepository $treatmentRepository, OperatorRepository $operatorRepository, ReservationQueryService $reservationQueryService)
     {
+
         $avaiableTreatments = $treatmentRepository->findAll();
         $avaiableOperators = $operatorRepository->findAll();
         $spa = $this->getUser()->getSpa();
         $command = new CreateReservation($spa);
+        if ($request->query->has('date')) {
+            $dateFromCalendar = new \DateTimeImmutable($request->get('date'));
+            $command->reservationDTO->start_time = $dateFromCalendar;
+        }
+
+        if ($request->query->has('operatorId')) {
+            $operator = $operatorRepository->find($request->get('operatorId'));
+            $command->reservationDTO->operator = $operator;
+            $avaiableTreatments = $operator->getTreatments();
+        }
+
         $form = $this->createForm(CreateReservationForm::class,
             $command,
             [

@@ -1,22 +1,18 @@
+import Color from './services/Color'
+
 $(document).ready(function () {
-  let randomColor = require('randomcolor');
+
   console.log('operators for histogram', operators);
   let canvas = document.getElementById('histogramChartForOperators').getContext('2d');
   let backgroundColors = [];
   let borderColors = [];
   operators.map((function (operator) {
-    backgroundColors.push(randomColor({
-      luminosity: 'bright',
-      format: 'rgba',
-      alpha: 0.2, // e.g. 'rgba(9, 1, 107, 0.2)',
-      seed: operator.id + 15
-    }));
-    borderColors.push(randomColor({
-      luminosity: 'bright',
-      format: 'rgba',
-      alpha: 1, // e.g. 'rgba(9, 1, 107, 1)',
-      seed: operator.id + 15,
-    }));
+    backgroundColors.push(
+      new Color(operator.id, 0.4, 'bright').color
+    );
+    borderColors.push(
+      new Color(operator.id, 1, 'bright').color
+    )
   }));
 
   let histogramChartForOperators = new Chart(canvas, {

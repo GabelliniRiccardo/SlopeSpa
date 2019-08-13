@@ -18,6 +18,10 @@ Encore
    * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
    */
 
+  .addEntry('js/app', [
+    './assets/js/app.js',
+  ])
+
   .addEntry('js/one-page-wonder', [
     './node_modules/startbootstrap-one-page-wonder/vendor/jquery/jquery.min.js',
     './node_modules/startbootstrap-one-page-wonder/vendor/bootstrap/js/bootstrap.min.js',
@@ -100,6 +104,15 @@ Encore
 
   .addStyleEntry('css/signin', ['./assets/css/signin.css'])
 
+  .addStyleEntry('css/fullcalendar', [
+    './node_modules/@fullcalendar/core/main.css',
+    './node_modules/@fullcalendar/timeline/main.css',
+    './node_modules/@fullcalendar/resource-timeline/main.css',
+    './node_modules/@fullcalendar/timegrid/main.css',
+    './node_modules/@fullcalendar/bootstrap/main.css',
+    './assets/css/my-custom-calendar.css'
+  ])
+
   // will require an extra script tag for runtime.js
   // but, you probably want this, unless you're building a single-page app
   .disableSingleRuntimeChunk()
@@ -115,8 +128,11 @@ Encore
   // uncomment if you use Sass/SCSS files
   .enableSassLoader()
 
-// uncomment if you're having problems with a jQuery plugin
-.autoProvidejQuery()
+  // Enable Vue.js
+  .enableVueLoader()
+
+  // uncomment if you're having problems with a jQuery plugin
+  .autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();

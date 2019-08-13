@@ -40,7 +40,11 @@ class OperatorRepository extends AbstractMultiTenantRepository
             ->andWhere('t.id = :treatmentId')
             ->setParameter('treatmentId', $treatmentId)
             ->join('xx.reservations', 'r')
-            ->andWhere('(r.start_time BETWEEN :startTime AND :endTime) OR (r.end_time BETWEEN :startTime AND :endTime)')
+            ->andWhere(
+                '(r.start_time > :startTime AND r.start_time < :endTime)
+                 OR (r.end_time > :startTime AND r.end_time < :endTime)
+                 OR (r.start_time <= :startTime AND r.end_time >= :endTime)'
+            )
             ->setParameter('startTime', $startTime)
             ->setParameter('endTime', $endTime);
 
@@ -76,6 +80,14 @@ class OperatorRepository extends AbstractMultiTenantRepository
             ->addgroupBy('o.firstName')
             ->addGroupBy('o.lastName')
             ->orderBy('o.firstName')
+            ->getQuery();
+        return $queryBuilder->getResult();
+    }
+
+    public function getIdFirstNameAndLastNameOfAllOperators()
+    {
+        $queryBuilder = $this->createQueryBuilder('o')
+            ->select('o.id', 'o.firstName', 'o.lastName')
             ->getQuery();
         return $queryBuilder->getResult();
     }

@@ -54,6 +54,28 @@ class ReservationRepository extends AbstractMultiTenantRepository
         return $dbQuery->getResult();
     }
 
+    public function getReservationsOfDay(\DateTime $day)
+    {
+        $dbQuery = $this->createQueryBuilder('re')
+            ->select(
+                're.id',
+                'o.id as operatorId',
+                'o.firstName as operatorFirstName',
+                'o.lastName as operatorLastName',
+                'c.firstName as customerFirstName',
+                'c.lastName as customerLastName',
+                't.name',
+                're.start_time as start',
+                're.end_time as end',
+                'date(re.start_time) as year')
+            ->join('re.treatment', 't')
+            ->join('re.operator', 'o')
+            ->join('re.customer', 'c')
+            ->getQuery();
+
+        return $dbQuery->getResult();
+    }
+
     protected function enforceTenancy(int $spaID, QueryBuilder $queryBuilder): QueryBuilder
     {
         $queryBuilder

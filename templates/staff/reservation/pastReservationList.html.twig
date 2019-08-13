@@ -1,0 +1,117 @@
+{% extends 'staff/baseStaff.html.twig' %}
+
+{% block main %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-xl-4">
+                    <h6 class="m-0 font-weight-bold text-primary">{% trans %}ReservationList.ListOfPastReservations{% endtrans %}</h6>
+                </div>
+                <div class="col-xl-4 count">
+                    {% trans %}ReservationList.TotalNumOfPastReservations{% endtrans %}
+                    : {{ pagination.getTotalItemCount }}
+                </div>
+                <div class="col-xl-4 text-xl-right">
+                    <a href="{{ path('staff_create_reservation') }}"
+                       class="btn btn-success"
+                       title="{% trans %}ReservationList.AddReservationTo{% endtrans %} {{ app.user.spa.name }}">
+                        {% trans %}ReservationList.AddReservation{% endtrans %}
+                        <i class="fa fa-plus ml-2" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <ul class="nav nav-tabs nav-tabs-cards" id="card-simple" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link" id="card-simple2-tab"
+                               href="{{ path('staff_future_reservation_list') }}"
+                               role="tab"
+                               aria-controls="card-simpletab2"
+                               aria-selected="false">{% trans %}ReservationList.FutureReservations{% endtrans %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" id="card-simple1-tab"
+                               href="{{ path('staff_past_reservation_list') }}"
+                               role="tab"
+                               aria-controls="card-simpletab1"
+                               aria-selected="true">
+                                {% trans %}ReservationList.PastReservations{% endtrans %}</a>
+                        </li>
+                        <li class="nav-item-filler"></li>
+                    </ul>
+                    <div class="tab-content" id="card-simpleContent">
+                        <div class="tab-pane p-4 fade show active" id="card-simpletab1" role="tabpanel"
+                             aria-labelledby="card-simple1-tab">
+                            <table class="table table-responsive-xl">
+                                <tr>
+                                    <th>{% trans %}ReservationList.Treatment{% endtrans %}</th>
+                                    <th>{% trans %}ReservationList.Operator{% endtrans %}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'ReservationList.StartTime'|trans, 're.start_time') }}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'ReservationList.Duration'|trans, 're.duration') }}</th>
+                                    <th class="alert-danger">{{ knp_pagination_sortable(pagination, 'ReservationList.EndTime'|trans, 're.end_time') }}</th>
+                                    <th>{% trans %}ReservationList.Price{% endtrans %}</th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'ReservationList.VAT'|trans, 're.vat') }}</th>
+                                    <th>{% trans %}ReservationList.Edit{% endtrans %}</th>
+                                    <th>{% trans %}ReservationList.Delete{% endtrans %}</th>
+                                </tr>
+
+                                {# table body #}
+                                {% for reservation in pagination %}
+                                    <tr>
+                                        <td>{{ reservation.treatment.name }}</td>
+                                        <td>{{ reservation.operator }}</td>
+                                        <td>{{ reservation.startTime | date }}</td>
+                                        <td>{{ reservation.duration | date('H:i') }}</td>
+                                        <td class="alert-danger">{{ reservation.endTime | date }}</td>
+                                        <td>{{ reservation.money.value }}</td>
+                                        <td>{{ reservation.vat }}</td>
+                                        <td width="1">
+                                            <a href="{{ path('staff_edit_reservation', {'reservation' : reservation.id}) }}"
+                                               class="btn btn-warning"
+                                               title="{% trans %}ReservationList.EditReservation{% endtrans %} {{ reservation.id }}">
+                                                <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                        <td width="1">
+                                            <!-- Button trigger modal -->
+                                            <button type="button"
+                                                    class="btn btn-danger deleteButton"
+                                                    id="{{ reservation.id }}"
+                                                    data-toggle="modal"
+                                                    data-target="#loadingModal"
+                                                    title="{% trans %}ReservationList.Delete{% endtrans %} {{ reservation.id }}">
+                                                <i class="fa fa-trash-alt" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                                <!-- Modal -->
+                                {% include 'modal/LoadingModal.html.twig' %}
+
+                            </table>
+                            {# display navigation #}
+                            <div class="navigation">
+                                {{ knp_pagination_render(pagination, null, {}, {
+                                    'align': 'center',
+                                }) }}
+                            </div>
+                        </div>
+                        <div class="tab-pane p-4 fade" id="card-simpletab2" role="tabpanel"
+                             aria-labelledby="card-simple2-tab">
+                            {#                            nothing#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block customJavascripts %}
+    {{ parent() }}
+    <script src="{{ asset('build/js/delete-reservation.js') }}"></script>
+{% endblock %}
