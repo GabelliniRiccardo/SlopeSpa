@@ -1,6 +1,6 @@
 <div class="modal-content" id="loadModalContent">
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Deleting Treatment</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{% trans %}DeleteModal.Treatment{% endtrans %}</h5>
         <button type="button"
                 class="close"
                 data-dismiss="modal"
@@ -10,7 +10,7 @@
     </div>
 
     <div class="modal-body">
-        Are You sure to delete {{ treatment.name }} ?
+        {% trans %}DeleteModal.AreYouSureToDelete{% endtrans %}{{ treatment.name }} ?
     </div>
 
     <div class="modal-footer">
@@ -18,7 +18,7 @@
             <button type="button"
                     class="btn btn-secondary"
                     data-dismiss="modal">
-                Close
+                {% trans %}DeleteModal.Close{% endtrans %}
             </button>
         </div>
         {{ form(deleteTreatmentForm) }}

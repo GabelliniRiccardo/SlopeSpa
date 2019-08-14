@@ -26,11 +26,6 @@ LogoutModal:
   Sure: Are you sure to Logout?
   Cancel: Cancel
 
-DeleteUserModal:
-  Title: Confirm Delete
-  SureToDelete: Are you sure to delete
-  Cancel: Cancel
-
 SPAList:
   AddSPA: Add SPA
   List: SPA list
@@ -306,3 +301,29 @@ HomePage:
   StatisticsDescription: You can check how many reservations you have during an extended period of time. There are also other useful statistics waiting for you
   ManageYourReservations: Manage your Reservations
   ReservationsDescription: You can see all the details of your past and future Reservations and manage them as you wish.
+
+# MODALS
+
+DeleteModal:
+  Customer: Delete Customer
+  Operator: Delete Operator
+  Reservation: Delete Reservation
+  ReservationDetail:
+    Treatment: Treatment
+    Operator: Operator
+    StartTime: StartTime
+    Duration: Duration
+    EndTime: EndTime
+    Price: Price
+    VAT: VAT
+  Spa: Delete SPA
+  Treatment: Delete Treatment
+  User: Delete User
+  AreYouSureToDelete: Are you sure to delete
+  Close: Close
+
+# ERRORS
+
+Error:
+  OperatorCannotDoTreatment: <strong> %operator% </strong> can\'t do the treatment <strong> %treatment% </strong> because is busy on <strong> %startTime% </strong> at <strong> %time% </strong> or has not permissions to do it. Please Select another interval or change operator
+  OperatorNotFoundForTreatment: Operators not found for treatment <strong> %treatment% </strong> on <strong> %startTime% </strong> at <strong> %time% </strong>. Please Select another interval or change treatment

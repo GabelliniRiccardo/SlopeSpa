@@ -127,16 +127,22 @@ class ReservationController extends AbstractController
             if (empty($avaiableTreatments) && $operator && $treatment || !in_array($operator, $avaiableOperators) && $operator) {
                 $this->addFlash(
                     'alert',
-                    '<strong>' . $operator . '</strong>' . ' can\'t do the treatment ' . '<strong>' . $treatment . '</strong>'
-                    . ' because is busy on ' . '<strong>' . $startTime->format('Y-d-m') . '</strong>'
-                    . ' at ' . '<strong>' . $startTime->format('H:i') . '</strong>' . ' or has not permissions to do it'
-                    . '. Please Select another interval or change operator');
+                    $this->translator->trans('Error.OperatorCannotDoTreatment',
+                        array(
+                            '%operator%' => $operator,
+                            '%treatment%' => $treatment,
+                            '%startTime%' => $startTime->format('Y-d-m'),
+                            '%time%' => $startTime->format('H:i')
+                        )));
                 $resetForm = true;
             } elseif (empty($avaiableOperators) && $treatment) {
-                $this->addFlash('alert', 'Operators not found for treatment ' . '<strong>' . $treatment . '</strong>'
-                    . ' on ' . '<strong>' . $startTime->format('Y-d-m') . '</strong>'
-                    . ' at ' . '<strong>' . $startTime->format('H:i') . '</strong>'
-                    . '. Please Select another interval or change treatment');
+                $this->addFlash('alert',
+                    $this->translator->trans('Error.OperatorNotFoundForTreatment',
+                        array(
+                            '%treatment%' => $treatment,
+                            '%startTime%' => $startTime->format('Y-d-m'),
+                            '%time%' => $startTime->format('H:i')
+                        )));
                 $resetForm = true;
             }
 
@@ -218,16 +224,22 @@ class ReservationController extends AbstractController
             if (empty($avaiableTreatments) && $operator && $treatment || !in_array($operator, $avaiableOperators) && $operator) {
                 $this->addFlash(
                     'alert',
-                    '<strong>' . $operator . '</strong>' . ' can\'t do the treatment ' . '<strong>' . $treatment . '</strong>'
-                    . ' because is busy on ' . '<strong>' . $startTime->format('Y-d-m') . '</strong>'
-                    . ' at ' . '<strong>' . $startTime->format('H:i') . '</strong>' . ' or has not permissions to do it'
-                    . '. Please Select another interval or change operator');
+                    $this->translator->trans('Error.OperatorCannotDoTreatment',
+                        array(
+                            '%operator%' => $operator,
+                            '%treatment%' => $treatment,
+                            '%startTime%' => $startTime->format('Y-d-m'),
+                            '%time%' => $startTime->format('H:i')
+                        )));
                 $resetForm = true;
             } elseif (empty($avaiableOperators) && $treatment) {
-                $this->addFlash('alert', 'Operators not found for treatment ' . '<strong>' . $treatment . '</strong>'
-                    . ' on ' . '<strong>' . $startTime->format('Y-d-m') . '</strong>'
-                    . ' at ' . '<strong>' . $startTime->format('H:i') . '</strong>'
-                    . '. Please Select another interval or change treatment');
+                $this->addFlash('alert',
+                    $this->translator->trans('Error.OperatorNotFoundForTreatment',
+                        array(
+                            '%treatment%' => $treatment,
+                            '%startTime%' => $startTime->format('Y-d-m'),
+                            '%time%' => $startTime->format('H:i')
+                        )));
                 $resetForm = true;
             }
 
