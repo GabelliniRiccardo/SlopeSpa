@@ -2,15 +2,20 @@
     <div>
         <div v-if="isVertical">
             <Calendar
+                    ref="verticalCalendar"
                     key="vertical"
                     v-bind:calendar-plugins="VerticalCalendar.calendarPlugins"
-                    v-bind:default-view="VerticalCalendar.defaultView">
+                    v-bind:default-view="VerticalCalendar.defaultView"
+                    v-bind:currentDate="currentDate">
             </Calendar>
         </div>
         <div v-else>
-            <Calendar key="horizontal"
+            <Calendar
+                    ref="horizontalCalendar"
+                    key="horizontal"
                       v-bind:calendar-plugins="HorizontalCalendar.calendarPlugins"
-                      v-bind:default-view="HorizontalCalendar.defaultView">
+                      v-bind:default-view="HorizontalCalendar.defaultView"
+                      v-bind:currentDate="currentDate">
             </Calendar>
         </div>
         <div class="row">
@@ -56,7 +61,8 @@
             bootstrapPlugin
           ],
           defaultView: 'resourceTimelineDay',
-        }
+        },
+        currentDate: new Date()
       }
     },
     components: {
@@ -65,6 +71,12 @@
     methods: {
       onSwitchClick() {
         console.log('switch clicked!');
+        if(this.isVertical){
+          this.currentDate = this.$refs.verticalCalendar.getCurrentDate();
+        }
+        else{
+          this.currentDate = this.$refs.horizontalCalendar.getCurrentDate();
+        }
         this.isVertical = !this.isVertical;
       }
     }

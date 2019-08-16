@@ -87,7 +87,9 @@ class ReservationController extends AbstractController
         if ($request->query->has('operatorId')) {
             $operator = $operatorRepository->find($request->get('operatorId'));
             $command->reservationDTO->operator = $operator;
-            $avaiableTreatments = $operator->getTreatments();
+            if($request->isMethod('GET')){
+                $avaiableTreatments = $operator->getTreatments();
+            }
         }
 
         $form = $this->createForm(CreateReservationForm::class,

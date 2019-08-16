@@ -60,11 +60,11 @@
     },
     props: {
       calendarPlugins: Array,
-      defaultView: String
+      defaultView: String,
+      currentDate: Date
     },
     data() {
       return {
-
         themeSystem: 'bootstrap',
         businessHours: {
           daysOfWeek: [1, 2, 3, 4, 5, 6, 7, 0], // days of week. an array of zero-based day of week integers (0=Sunday)
@@ -125,12 +125,13 @@
           customerLastName: null,
           operatorFirstName: null,
           operatorLastName: null,
-          id: null
+          id: null,
+          price: null
         },
         operatorDetailForEmptyDate: {
           title: '',
           id: null
-        }
+        },
       }
     },
     methods:
@@ -153,7 +154,8 @@
             customerLastName: details.customerLastName,
             operatorFirstName: details.operatorFirstName,
             operatorLastName: details.operatorLastName,
-            id: details.reservationId
+            id: details.reservationId,
+            price: details.price
           };
           ReservationDetailsModal.methods.show();
         }
@@ -178,6 +180,11 @@
         onDeleteSuccess(reservationId) {
           this.calendarReservations = this.calendarReservations.filter(reservation => reservation.reservationId !== reservationId
           );
+        },
+        getCurrentDate() {
+          const calendarApi = this.$refs.fullCalendar.getApi();
+          const date = calendarApi.getDate();
+          return date;
         }
       }
     ,
@@ -185,6 +192,10 @@
       this.resources = this.loadOperators();
       this.calendarReservations = this.loadDayData(new Date())
     },
+    mounted() {
+      const calendarApi = this.$refs.fullCalendar.getApi();
+      calendarApi.gotoDate(this.currentDate);
+    }
   }
 
 </script>

@@ -31,6 +31,7 @@ class ReservationsClient extends BaseClient {
           operatorLastName: element.operatorLastName,
           customerFirstName: element.customerFirstName,
           customerLastName: element.customerLastName,
+          price: element.price.value + ' ' + element.price.currency,
           allDay: false
         })
       });

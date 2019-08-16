@@ -54,7 +54,7 @@ class ReservationRepository extends AbstractMultiTenantRepository
         return $dbQuery->getResult();
     }
 
-    public function getReservationsOfDay(\DateTime $day)
+    public function getReservations()
     {
         $dbQuery = $this->createQueryBuilder('re')
             ->select(
@@ -65,6 +65,7 @@ class ReservationRepository extends AbstractMultiTenantRepository
                 'c.firstName as customerFirstName',
                 'c.lastName as customerLastName',
                 't.name',
+                't.money as price',
                 're.start_time as start',
                 're.end_time as end',
                 'date(re.start_time) as year')

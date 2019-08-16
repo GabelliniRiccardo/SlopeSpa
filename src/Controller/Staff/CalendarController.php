@@ -47,7 +47,7 @@ class CalendarController extends AbstractController
     public function today(Request $request, ReservationRepository $reservationRepository)
     {
         $date = new \DateTime($request->get('date'));
-        $reservations = $reservationRepository->getReservationsOfDay($date);
+        $reservations = $reservationRepository->getReservations($date);
 
         return new JsonResponse($reservations);
     }
