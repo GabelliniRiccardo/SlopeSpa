@@ -1,0 +1,45 @@
+server {
+    listen 80;
+
+    root /var/www/public;
+
+    location / {
+        index index.php;
+        try_files $uri @rewrite_to_app;
+    }
+
+    location ~ ^/index.php(/|$) {
+
+        include fastcgi.conf;
+
+        fastcgi_pass   unix:/run/php/php7.2-fpm.sock;
+    }
+
+    location @rewrite_to_app {
+      rewrite ^(.*)$ /index.php/$1 last;
+    }
+}
+
+server {
+    listen 81;
+
+    root /var/www/public;
+
+    location / {
+        index index.php;
+        try_files $uri @rewrite_to_app;
+    }
+
+    location ~ ^/index.php(/|$) {
+
+        include fastcgi.conf;
+
+        fastcgi_pass   unix:/run/php/php7.2-fpm.sock;
+        fastcgi_param  APP_ENV test;
+    }
+
+    location @rewrite_to_app {
+      rewrite ^(.*)$ /index.php/$1 last;
+    }
+}
+

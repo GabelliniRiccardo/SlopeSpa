@@ -1,7 +1,7 @@
 # SIDEBAR
 
 Menu:
-  AppName: App Name
+  AppName: SlopeSPA
   Dashboard: Dashboard
   AddSPA: Add SPA
   SPAList: SPA List
@@ -90,7 +90,7 @@ UserForm:
 # TOP BAR page for Home page and login page
 
 TopBar:
-  AppName: App Name
+  AppName: SlopeSPA
   YourSPA: Your SPA
   LoggedAs: Logged as
   AdminDashboard: Admin Dashboard
@@ -293,7 +293,7 @@ Calendar:
 # HOME PAGE
 
 HomePage:
-  WelcomeMessage: Welcome to App Name
+  WelcomeMessage: Welcome to SlopeSPA
   Enjoy: A WebApp for managing your SPA
   ManageYourCalendar: Manage your Calendar
   CalendarDescription: Using calendar you can see your reservations in detail. You have the possibility to manage them, deleting, updating and creating new reservations

@@ -1,60 +1,53 @@
 # SIDEBAR
 
 Menu:
-  AppName: Nome APP
+  AppName: SlopeSPA
   Dashboard: Dashboard
   AddSPA: Aggiungi SPA
-  SPAList: Lista SPA
-  Agenda: Agenda
-  Clients: Clienti
-  Vouchers: Vouchers
+  SPAList: Lista delle SPA
+  Agenda: Calendario
+  Reservations: Prenotazioni
+  Customers: Clienti
+  Statistics: Statistiche
   Configure:
-    YouCanConfigure: Puoi configurare
+    YouCanConfigure: Puoi Configurare
     Configure: Configura
     Treatments: Trattamenti
     Operators: Operatori
-    Rooms: Cabine
     Account: Account
-  Logout: Esci
-  Back to Home: Torna alla Home
+  Logout: Logout
+  Back to Home: Ritorna alla Home
 
 # ADMIN DASHBOARD page
 
 LogoutModal:
   Title: Conferma Uscita
-  Logout: Esci
+  Logout: Logout
   Sure: Sei sicuro di voler uscire?
-  Cancel: Annulla
-
-DeleteUserModal:
-  Title: Conferma Cancellazione
-  SureToDelete: Sei sicuro di voler cancellare
-  Cancel: Annulla
+  Cancel: Cancella
 
 SPAList:
+  AddSPA: Aggiungi SPA
   List: Lista delle SPA
   TotalNumOfElements: Numero totale di elementi
-  Id: Id
   Name: Nome
   Email: Email
   Address: Indirizzo
   PhoneNumber: Telefono
-  Manage: Gestisci
-  Delete: Cancella
+  Delete: Elimina
   Edit: Modifica
-  AddStaffTo: Aggiungi Staff a
-  WatchStaff: Visualizza Staff
+  Staff: Staff
+  WatchStaff: Vedi Staff
 
 UserList:
-  ListUsersForSPA: Lista degli utenti per la SPA
+  ListUsersForSPA: Lista degli utenti delle SPA
   TotalNumOfElements: Numero totale di elementi
-  Id: Id
+  AddUser: Aggiungi Staff
   Name: Nome
   LastName: Cognome
   Email: Email
   Address: Indirizzo
-  Manage: Gestisci
-  Delete: Cancella
+  Delete: Elimina
   Edit: Modifica
 
 SpaForm:
@@ -65,10 +58,10 @@ SpaForm:
     Placeholder: Nome della SPA
   Email:
     Value: Email
-    Placeholder: esempio@esempio.com
+    Placeholder: example@example.com
   Address:
-    Value: Indirizzo
-    Placeholder: Via esempio N°10
+    Value: Indirizzo della SPA
+    Placeholder: Via degli Alfieri 10
   PhoneNumber:
     Value: Numero di Telefono
     Placeholder: es 3333333333
@@ -81,13 +74,13 @@ UserForm:
   EditUser: Modifica Staff
   Name:
     Value: Nome
-    Placeholder: Nome dell'utente
+    Placeholder: Nome Utente
   LastName:
     Value: Cognome
     Placeholder: Cognome dell'utente
   Email:
     Value: Email
-    Placeholder: esempio@esempio.com
+    Placeholder: example@example.com
   Password: Password
   RepeatPassword: Ripeti Password
   CreateButton: Crea
@@ -97,43 +90,240 @@ UserForm:
 # TOP BAR page for Home page and login page
 
 TopBar:
-  AppName: Nome APP
+  AppName: SlopeSPA
   YourSPA: La tua SPA
-  LoggedAs: Entrato come
-  AdminDashboard: Dashboard Admin
-  Login: Entra
+  LoggedAs: Registrato come
+  AdminDashboard: Admin Dashboard
+  Login: Login
   Home: Home
-  Logout: Esci
+  Logout: Logout
 
 # LOGIN page
 
 Login:
-  PleaseSignIn: Esegui l'accesso
-  EmailAddress: Indirizzo email
+  PleaseSignIn: Entra
+  EmailAddress: Indirizzo Email
   Password: Password
-  RememberMe: Ricorda credenziali
-  SignIn: Entra
+  RememberMe: Ricordami
+  SignIn: Accedi
 
 # STAFF index page
 
 AddOperator: Aggiungi Operatore
-AddRoom: Aggiungi Cabina
-AddTreatment: Aggiungi Trattamento
-OperatorList: Lista Operatori
-RoomList: Lista Camere
-TreatmentList: Lista Trattamenti
+AddTreatment: Aggiungi Trattamenti
+AddCustomer: Aggiungi Clienti
+AddNewReservation: Aggiungi Prenotazioni
+Operators: Lista degli Operatori
+Treatments: Lista dei Trattamenti
+Customers: Clienti
+ListOfReservations: Lista delle Prenotazioni
 
-# STAFF OPERATOR CREATE page
+# OPERATOR CREATE page
 
 OperatorForm:
   AddOperator: Aggiungi Operatore
+  EditOperator: Modifica Operatore
   Name:
     Value: Nome
-    Placeholder: Nome dell'operatore
+    Placeholder: Nome dell'Operatore
   LastName:
     Value: Cognome
-    Placeholder: Cognome dell'operatore
+    Placeholder: Cognome dell'Operatore
   PhoneNumber:
-    Value: Numero di telefono
-    Placeholder: ex 3333333333
+    Value: Numero di Telefono
+    Placeholder: es 3333333333
   CreateButton: Crea
+  EditButton: Modifica
+  DeleteButton: Elimina
+
+# OPERATOR LIST page
+
+OperatorList:
+  AddOperator: Aggiungi Operatore
+  AddOperatorTo: Aggiungi Operatore a
+  ListOfOperators: Lista degli Operatori
+  TotalNumOfElements: Numero totale degli elementi
+  Name: Nome
+  LastName: Cognome
+  PhoneNumber: Numero di Telefono
+  ActualReservations: Prenotazioni Effettive
+  Delete: Elimina
+  Edit: Modifica
+
+# TREATMENT LIST page
+
+TreatmentList:
+  AddTreatment: Aggiungi Trattamento
+  AddTreatmentTo: Aggiungi Trattamento a
+  ListOfTreatments: Lista dei Trattamenti
+  TotalNumOfElements: Numero totale degli elementi
+  Name: Nome
+  Price: Prezzo
+  Duration: Durata
+  VAT: IVA
+  Delete: Elimina
+  Edit: Modifica
+
+# TREATMENT CREATE page
+
+TreatmentForm:
+  AddTreatment: Aggiungi Trattamento
+  EditTreatment: Modifica Trattamento
+  Name:
+    Value: Nome
+    Placeholder: Nome trattamento
+  Price:
+    Value: Prezzo
+    Placeholder: Prezzo del Trattamento
+  Duration:
+    Value: Durata
+    Hour: Ore
+    Minute: Minuti
+  VAT:
+    Value: IVA
+    Placeholder: 22
+  CreateButton: Crea
+  EditButton: Modifica
+  DeleteButton: Elimina
+
+# CUSTOMER LIST page
+
+CustomerList:
+  AddCustomer: Aggiungi Cliente
+  ListOfCustomers: Lista dei Clienti
+  TotalNumOfElements: Numero totale degli elementi
+  FirstName: Nome
+  LastName: Cognome
+  Address: Indirizzo
+  Birthday: Data di nascita
+  PhoneNumber: Numero di Telefono
+  Delete: Elimina
+  Edit: Modifica
+
+# CUSTOMER CREATE page
+
+CustomerForm:
+  AddCustomer: Aggiungi Cliente
+  EditCustomer: Modifica
+  FirstName:
+    Value: Nome
+    Placeholder: Nome del Cliente
+  LastName:
+    Value: Cognome
+    Placeholder: Cognome del Cliente
+  Birthday:
+    Value: Data di nascita
+    Year: Anno
+    Month: Mese
+    Day: Giorno
+  Address:
+    Value: Indirizzo
+    Placeholder: Via degli Alfieri 10
+  PhoneNumber:
+    Value: Numero di Telefono
+    Placeholder: es 3333333333
+  CreateButton: Crea
+  EditButton: Modifica
+  DeleteButton: Elimina
+
+# RESERVATION CREATE page
+
+ReservationForm:
+  AddReservation: Aggiungi Prenotazione
+  EditReservation: Modifica Prenotazione
+  Customer:
+    Value: Cliente
+    Placeholder: Seleziona un Cliente
+  StartTime:
+    Value: Ora di inizio
+    Month: Mese
+    Day: Giorno
+    Year: Anno
+    Hour: Ora
+    Minute: Minuti
+  Treatment:
+    Value: Trattamento
+    Placeholder: Seleziona un trattamento
+  Operator:
+    Value: Operatore
+    Placeholder: Seleziona un Operatore
+  CreateButton: Crea
+  EditButton: Modifica
+  DeleteButton: Elimina
+
+# RESERVATION LIST page
+
+ReservationList:
+  ListOfFutureReservations: Lista delle Prenotazioni Future
+  ListOfPastReservations: Lista delle Prenotazioni Passate
+  AddReservation: Aggiungi Prenotazione
+  AddReservationTo: Aggiungi Prenotazione a
+  EditReservation: Modifica Prenotazione
+  PastReservations: Prenotazioni Passate
+  FutureReservations: Prenotazioni Future
+  TotalNumOfFutureReservations: Numero totale di Prenotazioni Future
+  TotalNumOfPastReservations: Numero to di Prenotazioni Passate
+  Id: Id
+  Treatment: Trattamento
+  Operator: Operatore
+  StartTime: Ora inizio
+  EndTime: Ora fine
+  Duration: Durata
+  Price: Prezzo
+  VAT: IVA
+  Delete: Elimina
+  Edit: Modifica
+
+Charts:
+  HistogramChartForOperators:
+    Title: Tutte le prenotazioni dell'Operatore
+    Description: L'istogramma mostra il numero totale di prenotazoni di ogni Operatore
+  LineChartForReservationsHistory:
+    Title: Cronologia Prenotazioni
+    Description: Il grafico mostra l'intera cronologia delle prenotazoni
+  HistogramChartForTreatments:
+    Title: Tutte le prenotazioni del Trattamento
+    Description: L'istogramma mostra il numero totale delle prenotazioniper ogni Trattamento
+
+Calendar:
+  DeleteMessage:
+    Error: Si è verificato un errore nell'eliminazione della Prenotazione
+    Success: Questa prenotazione è stata eliminata correttamente
+
+# HOME PAGE
+
+HomePage:
+  WelcomeMessage: Benvenuto in SlopeSPA
+  Enjoy: Una WebApp per gestire la tua SPA
+  ManageYourCalendar: Gestisci il tuo Calendario
+  CalendarDescription: Usando il Calendario puoi vedere nel dettaglio le tue prenotazioni. Hai la possibilità di gestirle, eliminarle, aggiornarle e crearne di nuove.
+  ViewStatistics: Vedi le tue statistiche
+  StatisticsDescription: Puoi controllare quante prenotazioni hai in un periodo di tempo esteso. Ci sono anche altre statistiche utili che ti aspettano.
+  ManageYourReservations: Gestisci le tue prenotazioni
+  ReservationsDescription: Puoi vedere tutte le tue prenotazioni passate e gestirle come preferisci.
+
+# MODALS
+
+DeleteModal:
+  Customer: Elimina Cliente
+  Operator: Elimina Operatore
+  Reservation: Elimina Prenotazione
+  ReservationDetail:
+    Treatment: Trattamento
+    Operator: Operatore
+    StartTime: OraInizio
+    Duration: Durata
+    EndTime: OraFine
+    Price: Prezzo
+    VAT: IVA
+  Spa: Elimina SPA
+  Treatment: Elimina Trattamento
+  User: Elimina User
+  AreYouSureToDelete: Sei sicuro di voler eliminare
+  Close: Chiudi
+
+# ERRORS
+
+Error:
+  OperatorCannotDoTreatment: <strong> %operator% </strong> non può eseguire il trattamento <strong> %treatment% </strong> perchè è occupato il giorno <strong> %startTime% </strong> alle <strong> %time% </strong> oppure non ha i permessi per eseguire il trattamento. Per favore selezionare un altro intervallo oppure un altro operatore
+  OperatorNotFoundForTreatment: Nessun operatore trovato per il trattamento <strong> %treatment% </strong> il giorno <strong> %startTime% </strong> alle <strong> %time% </strong>. Per favore, selezionare un altro intervallo oppure cambiare trattamento

@@ -69,7 +69,8 @@
                                         <td>{{ reservation.money.value }}</td>
                                         <td>{{ reservation.vat }}</td>
                                         <td width="1">
-                                            <a href="{{ path('staff_edit_reservation', {'reservation' : reservation.id}) }}"
+                                            <a data-test="edit-reservation-{{ reservation.id }}"
+                                               href="{{ path('staff_edit_reservation', {'reservation' : reservation.id}) }}"
                                                class="btn btn-warning"
                                                title="{% trans %}ReservationList.EditReservation{% endtrans %} {{ reservation.id }}">
                                                 <i class="fa fa-pencil-alt" aria-hidden="true"></i>
@@ -77,7 +78,9 @@
                                         </td>
                                         <td width="1">
                                             <!-- Button trigger modal -->
-                                            <button type="button"
+                                            <button
+                                                    data-test="delete-reservation-{{ reservation.id }}"
+                                                    type="button"
                                                     class="btn btn-danger deleteButton"
                                                     id="{{ reservation.id }}"
                                                     data-toggle="modal"

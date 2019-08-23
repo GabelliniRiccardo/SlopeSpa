@@ -48,6 +48,11 @@ class MoneyType extends Type
         return $value;
     }
 
+    public function requiresSQLCommentHint(AbstractPlatform $platform) : bool
+    {
+        return true;
+    }
+
     /**
      * @return string
      */

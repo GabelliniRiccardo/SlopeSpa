@@ -1,12 +1,14 @@
 DTO:
   SPADTO:
-    NumbersOnly: Inserire solo valori numerici
+    NumbersOnly: Inserire solo numeri
   UserDTO:
     Name:
-      LettersOnly: Il Nome non può contenere valori numerici
+      LettersOnly: Il nome non può contenere numeri
     LastName:
-      LettersOnly: Il Cognome non può contenere valori numerici
+      LettersOnly: Il cognome non può contenere numeri
     Password:
-      PasswordFieldMustMatch: Le passwords non coincidono
+      PasswordFieldMustMatch: Le password devono coincidere
   OperatorDTO:
-    NumbersOnly: Inserire solo valori numerici
+    NumbersOnly: Inserire solo numeri
+  CustomerDTO:
+    NumbersOnly: Inserire solo numeri

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+bin/console doctrine:schema:drop -n -q --force --full-database --env=test &&
+rm src/Migrations/*.php &&
+bin/console make:migration --env=test &&
+bin/console doctrine:migrations:migrate -n -q --env=test &&
+bin/console doctrine:fixtures:load -n -q --env=test

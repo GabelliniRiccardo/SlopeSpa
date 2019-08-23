@@ -11,6 +11,7 @@ services:
     ports:
       - "2022:22" # Expose SSH port for test execution via PhpStorm
       - "80:80"
+      - "81:81"
     volumes:
       - ~/.composer:/root/.composer:delegated
       - ./:/var/www/:delegated
@@ -23,7 +24,7 @@ services:
     image: postgres:10.4
     hostname: postgres
     environment:
-      POSTGRES_DB: app
+      POSTGRES_DB: slopeSPA
       POSTGRES_USER: app
       POSTGRES_PASSWORD: app
     ports:
@@ -36,3 +37,27 @@ services:
       options:
         max-size: "1m"
         max-file: "1"
+
+  postgresTest:
+    image: postgres:10.4
+    hostname: postgresTest
+    environment:
+      POSTGRES_DB: slopeSPATest
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+    ports:
+      - "5433:5432" # Expose port for direct access to the DB via external tools (e.g. DBeaver)
+    logging:
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+  chrome:
+    image: selenium/standalone-chrome
+    hostname: chrome
+    volumes:
+      - .docker-dev/build/chrome/:/chrome/
+    ports:
+      - "5555:5555"
+    entrypoint:
+      - ./chrome/start_chrome.sh

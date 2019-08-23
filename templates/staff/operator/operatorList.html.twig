@@ -46,7 +46,8 @@
                                     </div>
                                 </td>
                                 <td width="1">
-                                    <a href="{{ path('staff_edit_operator', {'operator' : operator.id}) }}"
+                                    <a data-test="edit-operator-{{ operator.id }}"
+                                       href="{{ path('staff_edit_operator', {'operator' : operator.id}) }}"
                                        class="btn btn-warning"
                                        title="{% trans %}OperatorList.Edit{% endtrans %} {{ operator.firstName }}">
                                         <i class="fa fa-pencil-alt" aria-hidden="true"></i>

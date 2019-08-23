@@ -53,11 +53,11 @@
                     {% endif %}
                     {% if not app.user and app.request.get('_route') == 'home' %}
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('app_login') }}">{% trans %}TopBar.Login{% endtrans %}</a>
+                            <a data-test="login" class="nav-link" href="{{ path('app_login') }}">{% trans %}TopBar.Login{% endtrans %}</a>
                         </li>
                     {% elseif app.request.get('_route') == 'app_login' %}
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('home') }}">{% trans %}TopBar.Home{% endtrans %}</a>
+                            <a data-test="home" class="nav-link" href="{{ path('home') }}">{% trans %}TopBar.Home{% endtrans %}</a>
                         </li>
                     {% endif %}
                     {% if app.user %}

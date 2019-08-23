@@ -16,6 +16,7 @@ RUN apt-get update -y && \
       php7.2-gd \
       php7.2-zip \
       php7.2-ldap \
+      php7.2-curl \
 # We need postfix to send e-mails when in development
       postfix
 
@@ -24,7 +25,8 @@ RUN apt-get update -y && \
 ########################################################################################################################
 
 # Add custom configuration for nginx
-COPY nginx/* /etc/nginx
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/sites-available /etc/nginx/sites-available
 
 # Add custom startup scripts
 COPY my_init.d/* /etc/my_init.d
