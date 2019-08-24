@@ -172,6 +172,13 @@ class Actor
     }
 
     /**
+     * Prints in console the content of the page
+     */
+    public function ddPageContent(){
+        dd($this->chromeDriver->getContent());
+    }
+
+    /**
      * Translates CSS selector into XPath.
      *
      * @return string

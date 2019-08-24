@@ -27,7 +27,7 @@ class MultitenantTest extends BaseIntegrationTest
     {
         $this->multitenantService->setMultitenant(false);
         $spaList = $this->spaRepository->findAll();
-        $this->assertSame(sizeof($spaList), 11);
+        $this->assertSame(sizeof($spaList), 2);
     }
 
     public function tearDown()

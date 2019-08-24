@@ -28,8 +28,10 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
     private function getTreatmentsData(): array
     {
         return [
+            // Treatments of SPA with ID 1
+
             [
-                'name' => 'Massaggio Kembiki',
+                'name' => 'Kembiki Massage',
                 'price' => 50,
                 'duration' => 3600,
                 'VAT' => 22,
@@ -37,7 +39,7 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
                 'spa_id' => 1
             ],
             [
-                'name' => 'Massaggio Ayurvedico',
+                'name' => 'Ayurvedic Massaggio',
                 'price' => 70,
                 'duration' => 5400,
                 'VAT' => 22,
@@ -45,7 +47,7 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
                 'spa_id' => 1
             ],
             [
-                'name' => 'Linfodrenaggio Gambe',
+                'name' => 'Leg Lymph Drainage',
                 'price' => 30,
                 'duration' => 1800,
                 'VAT' => 22,
@@ -61,12 +63,136 @@ class TreatmentsFixtures extends Fixture implements DependentFixtureInterface
                 'spa_id' => 1
             ],
             [
-                'name' => 'Massaggio Californiano',
+                'name' => 'Californian Massage',
                 'price' => 80,
                 'duration' => 3600,
                 'VAT' => 22,
                 'operators_id' => [7, 8, 10],
                 'spa_id' => 1
+            ],
+            [
+                'name' => 'Hawaiian Lomi-Lomi Massage',
+                'price' => 45,
+                'duration' => 3600,
+                'VAT' => 22,
+                'operators_id' => [1, 11],
+                'spa_id' => 1
+            ],
+            [
+                'name' => 'Osteopatic Treatment',
+                'price' => 75,
+                'duration' => 5400,
+                'VAT' => 22,
+                'operators_id' => [13, 14,],
+                'spa_id' => 1
+            ],
+            [
+                'name' => 'Total Body Massage',
+                'price' => 65,
+                'duration' => 3600,
+                'VAT' => 22,
+                'operators_id' => [1, 12],
+                'spa_id' => 1
+            ],
+            [
+                'name' => 'Anti-stress Massage',
+                'price' => 90,
+                'duration' => 7200,
+                'VAT' => 22,
+                'operators_id' => [7, 12, 13],
+                'spa_id' => 1
+            ],
+            [
+                'name' => 'Aromatherapy Massage',
+                'price' => 40,
+                'duration' => 1800,
+                'VAT' => 22,
+                'operators_id' => [11, 15],
+                'spa_id' => 1
+            ],
+
+
+            // Treatments of SPA with ID 2
+
+            [
+                'name' => 'Massaggio con cera',
+                'price' => 40,
+                'duration' => 3600,
+                'VAT' => 22,
+                'operators_id' => [17, 24, 18],
+                'spa_id' => 2
+            ],
+            [
+                'name' => 'Massaggio agli oli essenziali',
+                'price' => 60,
+                'duration' => 3600,
+                'VAT' => 22,
+                'operators_id' => [20],
+                'spa_id' => 2
+            ],
+            [
+                'name' => 'Massaggio anti-cellulite',
+                'price' => 50,
+                'duration' => 3600,
+                'VAT' => 22,
+                'operators_id' => [16, 25],
+                'spa_id' => 2
+            ],
+            [
+                'name' => 'Massaggio viso anti-rughe',
+                'price' => 20,
+                'duration' => 1800,
+                'VAT' => 22,
+                'operators_id' => [18, 21, 22],
+                'spa_id' => 2
+            ],
+            [
+                'name' => 'Massaggio rilassamento muscolare',
+                'price' => 30,
+                'duration' => 1800,
+                'VAT' => 22,
+                'operators_id' => [16, 23],
+                'spa_id' => 2
+            ],
+            [
+                'name' => 'Massaggio cranio sacrale',
+                'price' => 70,
+                'duration' => 5400,
+                'VAT' => 22,
+                'operators_id' => [21],
+                'spa_id' => 2
+            ],
+            [
+                'name' => 'Massaggio alle foglie di The',
+                'price' => 65,
+                'duration' => 3600,
+                'VAT' => 22,
+                'operators_id' => [19, 20],
+                'spa_id' => 2
+            ],
+            [
+                'name' => 'Massaggio cinese',
+                'price' => 80,
+                'duration' => 5400,
+                'VAT' => 22,
+                'operators_id' => [25],
+                'spa_id' => 2
+            ],
+            [
+                'name' => 'Massaggio giapponese',
+                'price' => 90,
+                'duration' => 5400,
+                'VAT' => 22,
+                'operators_id' => [19, 22],
+                'spa_id' => 2
+            ],
+            [
+                'name' => 'Massaggio thailandese',
+                'price' => 100,
+                'duration' => 5400,
+                'VAT' => 22,
+                'operators_id' => [18, 23],
+                'spa_id' => 2
             ],
         ];
     }

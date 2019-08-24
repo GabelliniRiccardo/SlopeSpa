@@ -22,7 +22,7 @@ class TreatmentEditTest extends FunctionalTestCase
         $treatmentMinutes = $this->actor->findOrFail('[name="edit_treatment_form[treatment][duration][minute]"]');
         $treatmentVat = $this->actor->findOrFail('[name="edit_treatment_form[treatment][vat]"]');
 
-        self::assertSame($treatmentName->getValue(), 'Massaggio Kembiki');
+        self::assertSame($treatmentName->getValue(), 'Kembiki Massage');
         self::assertSame($treatmentPrice->getValue(), '50.00');
         self::assertSame($treatmentHours->getValue(), '1');
         self::assertSame($treatmentMinutes->getValue(), '0');

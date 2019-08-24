@@ -21,7 +21,7 @@ class CustomerRepositoryTest extends BaseIntegrationTest
         $this->authenticateStaffMemberWithId(3);
         $this->multitenantService->setMultitenant(true);
         $customers = $this->customerRepository->findAll();
-        $this->assertSame(sizeof($customers), 5);
+        $this->assertSame(sizeof($customers), 10);
     }
 
     public function tearDown()

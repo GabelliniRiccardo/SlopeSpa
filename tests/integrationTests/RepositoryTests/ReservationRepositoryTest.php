@@ -20,7 +20,7 @@ class ReservationRepositoryTest extends BaseIntegrationTest
     {
         $this->multitenantService->setMultitenant(false);
         $reservations = $this->reservationRepository->getReservations();
-        $this->assertSame(sizeof($reservations), 8);
+        $this->assertSame(sizeof($reservations), 40);
     }
 
     public function testGetReservationsWithTenancy()
@@ -28,7 +28,7 @@ class ReservationRepositoryTest extends BaseIntegrationTest
         $this->authenticateStaffMemberWithId(3);
         $this->multitenantService->setMultitenant(true);
         $reservations = $this->reservationRepository->getReservations();
-        $this->assertSame(sizeof($reservations), 8);
+        $this->assertSame(sizeof($reservations), 39);
     }
 
     public function tearDown()

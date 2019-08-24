@@ -26,7 +26,7 @@ class ReservationEditTest extends FunctionalTestCase
         $this->actor->visit('/login');
         $this->actor->loginAsStaffUser();
         $this->actor->visit('/staff/reservation/futurelist');
-        $this->actor->clickOn('[data-test="edit-reservation-4"]');
-        self::assertSame($this->actor->getCurrentUrl(), $this->actor->getBaseUrl() . '/staff/reservation/edit/4');
+        $this->actor->clickOn('[data-test="edit-reservation-19"]');
+        self::assertSame($this->actor->getCurrentUrl(), $this->actor->getBaseUrl() . '/staff/reservation/edit/19');
     }
 }

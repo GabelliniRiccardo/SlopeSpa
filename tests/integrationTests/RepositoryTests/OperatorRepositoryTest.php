@@ -24,14 +24,18 @@ class OperatorRepositoryTest extends BaseIntegrationTest
         $startTime = new \DateTimeImmutable('2019-03-02 17:00:00');
         $endTime = new \DateTimeImmutable('2019-03-02 18:00:00');
         $operators = $this->operatorRepository->findAvailableOperatorsUsingTreatment($treatmentId, $startTime, $endTime, null);
-        $this->assertSame(sizeof($operators), 2);
+        $this->assertSame(sizeof($operators), 3);
     }
 
     public function testGetNumberOfReservationPerOperator()
     {
         $numberOfReservationsPerOperator = $this->operatorRepository->getNumberOfReservationPerOperator();
         $values = (array_column($numberOfReservationsPerOperator, 'numOfReservations'));
-        $this->assertSame($values, [0, 2, 1, 1, 1, 0, 0, 2, 0, 1]);
+        $this->assertSame($values,
+            [
+                0, 5, 2, 2, 2, 2, 0, 3, 0, 4, 1, 3, 2, 0, 1, 1, 3, 0, 2, 3, 0, 0, 4, 0, 0,
+            ]
+        );
     }
 
     public function tearDown()
