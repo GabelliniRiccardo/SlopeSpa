@@ -1,7 +1,18 @@
 #!/usr/bin/env bash
 
+echo "Dropping entire DB for testing enviroment..."
 bin/console doctrine:schema:drop -n -q --force --full-database --env=test &&
-rm src/Migrations/*.php &&
-bin/console make:migration --env=test &&
+
+if [  "$1" == "total"  ]
+then
+	echo "Removing Migrations for testing enviroment..."
+	rm src/Migrations/*.php
+	echo "Making Migrations for testing enviroment..."
+	bin/console make:migration --env=test
+fi
+
+echo "Migrating migrations for testing enviroment..."
 bin/console doctrine:migrations:migrate -n -q --env=test &&
+
+echo "Loading fixtures for testing enviroment..."
 bin/console doctrine:fixtures:load -n -q --env=test

@@ -1,7 +1,18 @@
 #!/usr/bin/env bash
 
-bin/console doctrine:schema:drop -n -q --force --full-database &&
-rm src/Migrations/*.php &&
-bin/console make:migration &&
+echo "Dropping entire DB..."
+bin/console doctrine:schema:drop -n -q --force --full-database
+
+if [  "$1" == "total"  ]
+then
+	echo "Removing Migrations..."
+	rm src/Migrations/*.php
+	echo "Making Migrations..."
+	bin/console make:migration
+fi
+
+echo "Migrating migrations..."
 bin/console doctrine:migrations:migrate -n -q &&
+
+echo "Loading fixtures..."
 bin/console doctrine:fixtures:load -n -q
