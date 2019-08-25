@@ -33,7 +33,7 @@ class OperatorRepositoryTest extends BaseIntegrationTest
         $values = (array_column($numberOfReservationsPerOperator, 'numOfReservations'));
         $this->assertSame($values,
             [
-                0, 5, 2, 2, 2, 2, 0, 3, 0, 4, 1, 3, 2, 0, 1, 1, 3, 0, 2, 3, 0, 0, 4, 0, 0,
+                0, 5, 2, 2, 2, 2, 0, 3, 0, 4, 1, 1, 3, 2, 0, 1, 2, 3, 0, 3, 0, 0, 4, 0, 0,
             ]
         );
     }
