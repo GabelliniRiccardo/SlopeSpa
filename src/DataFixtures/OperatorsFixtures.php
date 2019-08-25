@@ -106,15 +106,15 @@ class OperatorsFixtures extends Fixture implements DependentFixtureInterface
                 ],
                 [
                     'spa_id' => 1,
-                    'first_name' => 'Martina',
-                    'last_name' => 'Negroni',
-                    'phone_number' => '3405177124'
+                    'first_name' => 'Elvis',
+                    'last_name' => 'Gjeci',
+                    'phone_number' => '3890943777'
                 ],
                 [
                     'spa_id' => 1,
-                    'first_name' => 'Monia',
-                    'last_name' => 'Lisetti',
-                    'phone_number' => '3312314320'
+                    'first_name' => 'Lorenzo',
+                    'last_name' => 'Fabbri',
+                    'phone_number' => '3333553039'
                 ],
                 [
                     'spa_id' => 1,
